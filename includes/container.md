@@ -2,7 +2,8 @@
 
 ## Container
 
-> Example (TODO)
+> Example (coming soon)
+
 
 A container is a representation of a Docker container in a node.
 
@@ -17,7 +18,7 @@ image_tag | Resource URI of the image (including tag) of the container
 name | A user provided name for the container (inherited from the service)
 unique_name | A unique name automatically assigned based on the user provided name
 state | The state of the container
-TODO
+
 
 ### Container states
 

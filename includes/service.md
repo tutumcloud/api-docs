@@ -2,10 +2,8 @@
 
 ## Service
 
-> Example
+> Example (coming soon)
 
-```json
-```
 
 A service is a template used to deploy one or more containers.
 
