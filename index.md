@@ -4,6 +4,7 @@ title: tutum API reference
 language_tabs:
   - shell
   - python
+  - cli
 
 toc_footers:
 
@@ -29,6 +30,13 @@ Tutum currently offers an HTTP REST API which is used by both the Web UI and the
 # Authentication
 
 > To authorize, use this code:
+
+```cli
+tutum login
+Username: username
+Password:
+Login succeeded!
+```
 
 ```python
 import tutum
