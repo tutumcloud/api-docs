@@ -1,0 +1,11 @@
+machine:
+  services:
+    - docker
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init
+    - cp -r slate/lib slate/config.rb slate/Rakefile .
+test:
+  override:
+    - docker build -t sut .
