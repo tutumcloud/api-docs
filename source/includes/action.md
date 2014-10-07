@@ -63,10 +63,11 @@ import tutum
 actions = tutum.Action.list()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/action/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/action/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -96,12 +97,12 @@ import tutum
 action = tutum.Action.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
-
 
 Get all the details of an specific action
 

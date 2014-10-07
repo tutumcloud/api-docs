@@ -71,12 +71,12 @@ import tutum
 nodeclusters = tutum.NodeCluster.list()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/nodecluster/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/nodecluster/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
-
 
 Lists all current and recently terminated node clusters. Returns a list of `NodeCluster` objects.
 
@@ -105,14 +105,15 @@ nodecluster = tutum.NodeCluster.create(name="my_cluster", node_type=node_type, r
 nodecluster.save()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/nodecluster/"
-  -X POST
-  -H "Authorization: ApiKey username:apikey"
-  -H "Content-Type: application/json"
-  -d '{"name": "my_cluster", "region": "/api/v1/region/digitalocean/lon1/", "node_type": "/api/v1/nodetype/digitalocean/1gb/"}'
-```
+```http
+POST /api/v1/nodecluster/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+Content-Type: application/json
 
+{"name": "my_cluster", "region": "/api/v1/region/digitalocean/lon1/", "node_type": "/api/v1/nodetype/digitalocean/1gb/"}
+```
 
 Creates a new node cluster without deploying it.
 
@@ -138,10 +139,11 @@ import tutum
 service = tutum.NodeCluster.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -167,10 +169,11 @@ nodecluster = tutum.NodeCluster.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 nodecluster.deploy()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/deploy/"
-  -X POST
-  -H "Authorization: ApiKey username:apikey"
+```http
+POST /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/deploy/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -198,12 +201,14 @@ nodecluster.target_num_nodes = 3
 nodecluster.save()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -X PATCH
-  -H "Authorization: ApiKey username:apikey"
-  -H "Content-Type: application/json"
-  -d '{"target_num_nodes": 3}'
+```http
+PATCH /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+Content-Type: application/json
+
+{"target_num_nodes": 3}
 ```
 
 
@@ -236,10 +241,11 @@ nodecluster = tutum.NodeCluster.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 nodecluster.delete()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -X DELETE
-  -H "Authorization: ApiKey username:apikey"
+```http
+DELETE /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 Terminates all the nodes in a node cluster and the node cluster itself. This is not reversible.

@@ -49,10 +49,11 @@ import tutum
 nodetypes = tutum.NodeType.list()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/nodetype/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/nodetype/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -79,10 +80,11 @@ import tutum
 nodetype = tutum.NodeType.fetch("digitalocean/1gb")
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/nodetype/digitalocean/1gb/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/nodetype/digitalocean/1gb/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 

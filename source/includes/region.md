@@ -49,12 +49,12 @@ import tutum
 regions = tutum.Region.list()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/region/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/region/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
-
 
 Lists all regions of all supported cloud providers. Returns a list of `Region` objects.
 
@@ -79,10 +79,11 @@ import tutum
 region = tutum.Region.fetch("digitalocean/lon1")
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/region/digitalocean/lon1/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/region/digitalocean/lon1/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 

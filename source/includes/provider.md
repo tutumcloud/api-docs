@@ -46,10 +46,11 @@ import tutum
 providers = tutum.Provider.list()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/provider/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/provider/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -75,10 +76,11 @@ import tutum
 provider = tutum.Provider.fetch("digitalocean")
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/provider/digitalocean/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/provider/digitalocean/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 

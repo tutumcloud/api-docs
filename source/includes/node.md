@@ -71,12 +71,12 @@ import tutum
 nodes = tutum.Node.list()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/node/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/node/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
-
 
 Lists all current and recently terminated nodes. Returns a list of `Node` objects.
 
@@ -103,10 +103,11 @@ import tutum
 node = tutum.Node.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -133,12 +134,12 @@ node = tutum.Node.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 node.deploy()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/deploy/"
-  -X POST
-  -H "Authorization: ApiKey username:apikey"
+```http
+POST /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/deploy/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
-
 
 Deploys and provisions a recently created node in the specified region and cloud provider.
 
@@ -163,12 +164,12 @@ node = tutum.Node.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 node.delete()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -X DELETE
-  -H "Authorization: ApiKey username:apikey"
+```http
+DELETE /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
-
 
 Terminates the specified node. For security reasons, only nodes with no running containers can be terminated, otherwise the API call will fail.
 

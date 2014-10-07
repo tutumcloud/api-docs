@@ -41,12 +41,12 @@ import tutum
 containers = tutum.Container.list()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/container/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/container/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
-
 
 Lists all current and recently terminated containers. Returns a list of `Container` objects.
 
@@ -72,10 +72,11 @@ import tutum
 container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -101,12 +102,12 @@ container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 print container.logs
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
-
 
 Get the logs of the specified container.
 
@@ -131,12 +132,12 @@ container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 container.start()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/"
-  -X POST
-  -H "Authorization: ApiKey username:apikey"
+```http
+POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
-
 
 Starts a stopped container.
 
@@ -160,10 +161,11 @@ container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 container.stop()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/"
-  -X POST
-  -H "Authorization: ApiKey username:apikey"
+```http
+POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -190,10 +192,11 @@ container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 container.delete()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -X DELETE
-  -H "Authorization: ApiKey username:apikey"
+```http
+DELETE /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 

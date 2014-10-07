@@ -47,10 +47,11 @@ import tutum
 services = tutum.Service.list()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/service/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/service/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -79,12 +80,14 @@ service = tutum.Service.create(image="tutum/hello-world", name="my-new-app", tar
 service.save()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/service/"
-  -X POST
-  -H "Authorization: ApiKey username:apikey"
-  -H "Content-Type: application/json"
-  -d '{"image": "tutum/hello-world", "name": "my-new-app", "target_num_containers": 2}'
+```http
+POST /api/v1/service/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+Content-Type: application/json
+
+{"image": "tutum/hello-world", "name": "my-new-app", "target_num_containers": 2}
 ```
 
 
@@ -111,7 +114,6 @@ autoreplace | (optional) whether the containers should be replaced with a new on
 autodestroy | (optional) Whether the containers should be terminated if they stop, i.e. `OFF` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`)
 sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`)
 roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (default: no roles, possible values: `global`)
-web_public_dns | (optional) A custom domain name to be used as CNAME for the service web endpoint, only available if the service listens in port 80, i.e. `my-app.example.com` (default: none)
 
 
 ## Get an existing service
@@ -122,10 +124,11 @@ import tutum
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -151,10 +154,11 @@ service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 print service.logs
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/"
-  -H "Authorization: ApiKey username:apikey"
-  -H "Accept: application/json"
+```http
+GET /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -182,12 +186,14 @@ service.target_num_containers = 3
 service.save()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -X PATCH
-  -H "Authorization: ApiKey username:apikey"
-  -H "Content-Type: application/json"
-  -d '{"target_num_containers": 3}'
+```http
+PATCH /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+Content-Type: application/json
+
+{"target_num_containers": 3}
 ```
 
 
@@ -220,10 +226,11 @@ service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.start()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/"
-  -X POST
-  -H "Authorization: ApiKey username:apikey"
+```http
+POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -249,10 +256,11 @@ service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.stop()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/"
-  -X POST
-  -H "Authorization: ApiKey username:apikey"
+```http
+POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -278,10 +286,11 @@ service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.redeploy()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/redeploy/"
-  -X POST
-  -H "Authorization: ApiKey username:apikey"
+```http
+POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/redeploy/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
@@ -307,10 +316,11 @@ service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.delete()
 ```
 
-```shell
-curl "https://dashboard.tutum.co/api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
-  -X DELETE
-  -H "Authorization: ApiKey username:apikey"
+```http
+DELETE /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
 ```
 
 
