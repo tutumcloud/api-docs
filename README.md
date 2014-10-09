@@ -10,6 +10,8 @@ If you find a typo or mismatch between the API and this documentation, please se
 
 To run it locally:
 
+	git clone https://github.com/tutumcloud/api-docs.git
+	git submodule init && git submodule update 
 	docker build -t tutum/api-docs .
 	docker run -p 4567:4567 tutum/api-docs
 
