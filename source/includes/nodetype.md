@@ -56,6 +56,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum nodecluster nodetype
+```
 
 Lists all node types of all supported cloud providers. Returns a list of `NodeType` objects.
 

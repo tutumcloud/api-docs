@@ -78,6 +78,10 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum nodecluster list
+```
+
 Lists all current and recently terminated node clusters. Returns a list of `NodeCluster` objects.
 
 ### HTTP Request
@@ -115,6 +119,10 @@ Content-Type: application/json
 {"name": "my_cluster", "region": "/api/v1/region/digitalocean/lon1/", "node_type": "/api/v1/nodetype/digitalocean/1gb/"}
 ```
 
+```shell
+tutum nodecluster create my_cluster digitalocean lon1 1gb
+```
+
 Creates a new node cluster without deploying it.
 
 ### HTTP Request
@@ -146,6 +154,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum nodecluster inspect 7eaf7fff
+```
 
 Get all the details of an specific node cluster
 
@@ -175,7 +186,6 @@ Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
 ```
-
 
 Deploys and provisions a recently created node cluster in the specified region and cloud provider.
 
@@ -211,6 +221,9 @@ Content-Type: application/json
 {"target_num_nodes": 3}
 ```
 
+```shell
+tutum nodecluster scale 7eaf7fff 3
+```
 
 Updates the node cluster details and applies the changes automatically.
 
@@ -246,6 +259,10 @@ DELETE /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum nodecluster rm 7eaf7fff
 ```
 
 Terminates all the nodes in a node cluster and the node cluster itself. This is not reversible.

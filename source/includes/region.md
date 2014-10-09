@@ -56,6 +56,10 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```
+tutum nodecluster region
+```
+
 Lists all regions of all supported cloud providers. Returns a list of `Region` objects.
 
 ### HTTP Request

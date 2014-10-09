@@ -78,6 +78,10 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum node list
+```
+
 Lists all current and recently terminated nodes. Returns a list of `Node` objects.
 
 ### HTTP Request
@@ -110,6 +114,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum node inspect 7eaf7fff
+```
 
 Get all the details of an specific node
 
@@ -169,6 +176,10 @@ DELETE /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum node rm 7eaf7fff
 ```
 
 Terminates the specified node. For security reasons, only nodes with no running containers can be terminated, otherwise the API call will fail.
