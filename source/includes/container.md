@@ -48,6 +48,10 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum container ps
+```
+
 Lists all current and recently terminated containers. Returns a list of `Container` objects.
 
 ### HTTP Request
@@ -79,6 +83,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum container inspect 7eaf7fff
+```
 
 Get all the details of an specific container
 
@@ -107,6 +114,10 @@ GET /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum container logs 7eaf7fff
 ```
 
 Get the logs of the specified container.
@@ -139,6 +150,10 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum container start 7eaf7fff
+```
+
 Starts a stopped container.
 
 ### HTTP Request
@@ -168,6 +183,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum container stop 7eaf7fff
+```
 
 Stops a running container.
 
@@ -199,6 +217,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum container terminate 7eaf7fff
+```
 
 Terminates the specified container. This is not reversible. All data stored in the container will be permanently deleted.
 

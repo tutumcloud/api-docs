@@ -54,6 +54,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum service ps
+```
 
 Lists all current and recently terminated services. Returns a list of `Service` objects.
 
@@ -90,6 +93,9 @@ Content-Type: application/json
 {"image": "tutum/hello-world", "name": "my-new-app", "target_num_containers": 2}
 ```
 
+```shell
+tutum service run -t 2 --name my-new-app tutum/hello-world
+```
 
 Creates a new service without deploying it.
 
@@ -131,6 +137,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum service inspect 7eaf7fff
+```
 
 Get all the details of an specific service
 
@@ -161,6 +170,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum service logs 7eaf7fff
+```
 
 Get the aggregated logs of all the containers of the service.
 
@@ -196,6 +208,9 @@ Content-Type: application/json
 {"target_num_containers": 3}
 ```
 
+```shell
+tutum service scale 7eaf7fff 3
+```
 
 Updates the service details and redeploys the changes automatically.
 
@@ -233,6 +248,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum service start 7eaf7fff
+```
 
 Starts all containers in a stopped or partly running service.
 
@@ -263,6 +281,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum service stop 7eaf7fff
+```
 
 Stops all containers in a running or partly running service.
 
@@ -293,6 +314,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum service redeploy 7eaf7fff
+```
 
 Redeploys all containers in the service with the current service configuration. It uses the latest version of the image tag configured.
 
@@ -323,6 +347,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum service terminate 7eaf7fff
+```
 
 Terminate all the containers in a service and the service itself. This is not reversible. All the data stored in all containers of the service will be permanently deleted.
 

@@ -53,6 +53,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum nodecluster provider
+```
 
 Lists all supported cloud providers. Returns a list of `Provider` objects.
 
