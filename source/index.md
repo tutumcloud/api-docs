@@ -4,6 +4,7 @@ title: tutum API reference
 language_tabs:
   - http
   - python
+  - shell
 
 toc_footers:
 
@@ -39,6 +40,13 @@ GET /api_endpoint_here HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum login
+Username:
+Password:
+Email:
 ```
 
 > Make sure to replace `username` with your username and `apikey` with your API key.
