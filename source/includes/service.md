@@ -123,8 +123,8 @@ link_variables | List of environment variables that would be exposed in the cont
 Attribute | Description
 --------- | -----------
 protocol | The protocol of the port, either `tcp` or `udp`
-inner_port | The port number inside the container to be published
-outer_port | The port number in the node public network interface to be published
+inner_port | The published port number inside the container
+outer_port | The published port number in the node public network interface
 port_name | Name of the service associated to this port
 
 
@@ -140,8 +140,9 @@ value | The value of the environment variable
 
 Attribute | Description
 --------- | -----------
-from_service | The name of the environment variable
-to_service | The value of the environment variable
+name | The link name
+from_service | The resource URI of the origin of the link
+to_service | The resource URI of the target of the link
 
 
 ### Service states
@@ -232,16 +233,41 @@ Parameter | Description
 image | (required) The image used to deploy this service in docker format, i.e. `tutum/hello-world`
 name | (optional) A human-readable name for the service, i.e. `my-hello-world-app` (default: `image` without namespace)
 target_num_containers | (optional) The number of containers to run for this service initially (default: 1)
-run_command | (optional) The command used to start the containers of this service, i.e. `/run.sh` (default: `null` - as defined in the image)
-entrypoint | (optional) The command prefix used to start the containersof this service, i.e. `/usr/sbin/sshd` (default: `null` - as defined in the image)
-container_ports | (optional) An array of objects with port information to be published in the containers for this service, i.e. `[{"protocol": "tcp", "inner_port": 80, "outer_port": 80}]` (default: all ports exposed in the image will be published in random ports)
-container_envvars | (optional) An array of objects with environment variables to be set in the service containers on launch, i.e. `[{"key": "DB_PASSWORD", "value": "mypass"}]` (default: as defined in the image, plus any link- or role-generated variables)
-linked_to_service | (optional) An array of service resource URIs to link this service to, including the link name, i.e. `[{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]` (default: no links)
-autorestart | (optional) Whether the containers for this service should be restarted if they stop, i.e. `ALWAYS` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`)
-autoreplace | (optional) whether the containers should be replaced with a new one if they stop, i.e. `ALWAYS` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`)
-autodestroy | (optional) Whether the containers should be terminated if they stop, i.e. `OFF` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`)
-sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`)
-roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (default: no roles, possible values: `global`)
+run_command | (optional) The command used to start the containers of this service, overriding the value specified in the image, i.e. `/run.sh` (default: `null`)
+entrypoint | (optional) The command prefix used to start the containers of this service, overriding the value specified in the image, i.e. `/usr/sbin/sshd` (default: `null`)
+container_ports | (optional) An array of objects with port information to be published in the containers for this service, which will be added to the image port information, i.e. `[{"protocol": "tcp", "inner_port": 80, "outer_port": 80}]` (default: `[]`) (See table `Service Port attributes` below)
+container_envvars | (optional) An array of objects with environment variables to be added in the service containers on launch (overriding any image-defined environment variables), i.e. `[{"key": "DB_PASSWORD", "value": "mypass"}]` (default: `[]`) (See table `Service Environment Variable attributes` below)
+linked_to_service | (optional) An array of service resource URIs to link this service to, including the link name, i.e. `[{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]` (default: `[]`) (See table `Related services attributes` below)
+autorestart | (optional) Whether the containers for this service should be restarted if they stop, i.e. `ALWAYS` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
+autoreplace | (optional) whether the containers should be replaced with a new one if they stop, i.e. `ALWAYS` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
+autodestroy | (optional) Whether the containers should be terminated if they stop, i.e. `OFF` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
+sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`) (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
+roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (default: `[]`, possible values: `global`) (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
+
+
+### Service Port attributes
+
+Attribute | Description
+--------- | -----------
+protocol | (required) The protocol of the port, either `tcp` or `udp`
+inner_port | (required) The port number inside the container to be published
+outer_port | (optional) The port number in the node public network interface to be published
+
+
+### Service Environment Variable attributes
+
+Attribute | Description
+--------- | -----------
+key | (required) The name of the environment variable
+value | (required) The value of the environment variable
+
+
+### Related services attributes
+
+Attribute | Description
+--------- | -----------
+to_service | (required) The resource URI of the target of the link
+name | (optional) The link name
 
 
 ## Get an existing service
