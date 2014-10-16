@@ -2,7 +2,81 @@
 
 ## Service
 
-> Example (coming soon)
+> Example
+
+```json
+{
+  "actions": [
+    "/api/v1/action/ee921c03-0f52-438f-8b7d-7331df2a9c18/", 
+    "/api/v1/action/ed4324c3-c3a3-4dad-a780-fc11ad55975d/"
+  ], 
+  "autodestroy": "OFF", 
+  "autoreplace": "OFF", 
+  "autorestart": "ON_FAILURE", 
+  "container_envvars": [
+    {
+      "key": "DB_PASS", 
+      "value": "test"
+    }
+  ], 
+  "container_ports": [
+    {
+      "inner_port": 80, 
+      "outer_port": 80, 
+      "port_name": "http", 
+      "protocol": "tcp"
+    }
+  ], 
+  "containers": [
+    "/api/v1/container/6f8ee454-9dc3-4387-80c3-57aac1be3cc6/", 
+    "/api/v1/container/fdf9c116-7c08-4a60-b0ce-c54ca72c2f25/"
+  ], 
+  "cpu_shares": 100, 
+  "current_num_containers": 2, 
+  "deployed_datetime": "Mon, 13 Oct 2014 11:01:43 +0000", 
+  "destroyed_datetime": null, 
+  "entrypoint": "", 
+  "image_name": "tutum/wordpress-stackable:latest", 
+  "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/", 
+  "link_variables": {
+    "WORDPRESS_STACKABLE_2_ENV_DB_HOST": "**LinkMe**", 
+    "WORDPRESS_STACKABLE_2_ENV_DB_NAME": "wordpress", 
+    "WORDPRESS_STACKABLE_2_ENV_DB_PASS": "test", 
+    "WORDPRESS_STACKABLE_2_ENV_DB_PORT": "**LinkMe**", 
+    "WORDPRESS_STACKABLE_2_ENV_DB_USER": "admin", 
+    "WORDPRESS_STACKABLE_2_ENV_DEBIAN_FRONTEND": "noninteractive", 
+    "WORDPRESS_STACKABLE_2_ENV_HOME": "/", 
+    "WORDPRESS_STACKABLE_2_ENV_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", 
+    "WORDPRESS_STACKABLE_2_PORT": "tcp://wordpress-stackable-2.vagrant.node.dev.tutum.io:80", 
+    "WORDPRESS_STACKABLE_2_PORT_80_TCP": "tcp://wordpress-stackable-2.vagrant.node.dev.tutum.io:80", 
+    "WORDPRESS_STACKABLE_2_PORT_80_TCP_ADDR": "wordpress-stackable-2.vagrant.node.dev.tutum.io", 
+    "WORDPRESS_STACKABLE_2_PORT_80_TCP_PORT": "80", 
+    "WORDPRESS_STACKABLE_2_PORT_80_TCP_PROTO": "tcp", 
+    "WORDPRESS_STACKABLE_TUTUM_API_URL": "https://dashboard.tutum.co/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/"
+  }, 
+  "linked_from_service": [], 
+  "linked_to_service": [
+    {
+      "name": "DB", 
+      "to_service": "/api/v1/service/72f175bd-390b-46e3-9463-830aca32ce3e/"
+    }
+  ], 
+  "memory": 2048, 
+  "name": "wordpress-stackable", 
+  "resource_uri": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/", 
+  "roles": ["global"], 
+  "run_command": "/run-wordpress.sh", 
+  "running_num_containers": 1, 
+  "sequential_deployment": false, 
+  "started_datetime": "Mon, 13 Oct 2014 11:01:43 +0000", 
+  "state": "Partly running", 
+  "stopped_datetime": null, 
+  "stopped_num_containers": 0, 
+  "target_num_containers": 2, 
+  "unique_name": "wordpress-stackable", 
+  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b"
+}
+```
 
 
 A service is a template used to deploy one or more containers.
@@ -18,8 +92,56 @@ image_tag | Resource URI of the image (including tag) used for the service conta
 name | A user provided name for the service. This name will be inherited by the service containers and will be used in endpoint URLs, environment variable names, etc.
 unique_name | A unique name automatically assigned based on the user provided name to be used in the endpoint URLs, environment variable names, etc.
 state | The state of the service.
+deployed_datetime | The date and time of the last deployment of the service (if applicable, `null` otherwise)
+started_datetime | The date and time of the last `start` operation on the service (if applicable, `null` otherwise)
+stopped_datetime | The date and time of the last `stop` operation on the service (if applicable, `null` otherwise)
+destroyed_datetime | The date and time of the `terminate` operation on the service (if applicable, `null` otherwise)
 target_num_containers | The requested number of containers to deploy for the service
 current_num_containers | The actual number of containers deployed for the service
+running_num_containers | The actual number of containers deployed for the service in `Running` state
+stopped_num_containers | The actual number of containers deployed for the service in `Stopped` state
+containers | List of resource URIs of the containers launched as part of the service
+container_ports | List of ports to be published for this service (see table `Service Port attributes` below)
+container_envvars | List of user-defined environment variables to set on the containers of the service, which will override the image environment variables (see table `Service Environment Variable attributes` below)
+entrypoint | Entrypoint to be set on the containers launched as part of the service, which will override the image entrypoint
+run_command | Run command to be set on the containers launched as part of the service, which will override the image run command
+sequential_deployment | Whether the containers for this service should be deployed in sequence, linking each of them to the previous containers (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
+cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+memory | The memory limit of the container in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+linked_from_service | A list of services that are linked to this one (see table `Related services attributes` below)
+linked_to_service | A list of services that the service is linked to (see table `Related services attributes` below)
+autorestart | Whether to restart the containers of the service automatically if they stop (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
+autoreplace | Whether to replace the containers of the service automatically with new ones if they stop (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
+autodestroy | Whether to terminate the containers of the service automatically if they stop (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
+roles | List of Tutum roles asigned to this service (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
+actions | List of resource URIs of the `Action` objects that apply to the service
+link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
+
+
+### Service Port attributes
+
+Attribute | Description
+--------- | -----------
+protocol | The protocol of the port, either `tcp` or `udp`
+inner_port | The port number inside the container to be published
+outer_port | The port number in the node public network interface to be published
+port_name | Name of the service associated to this port
+
+
+### Service Environment Variable attributes
+
+Attribute | Description
+--------- | -----------
+key | The name of the environment variable
+value | The value of the environment variable
+
+
+### Related services attributes
+
+Attribute | Description
+--------- | -----------
+from_service | The name of the environment variable
+to_service | The value of the environment variable
 
 
 ### Service states
@@ -110,9 +232,9 @@ Parameter | Description
 image | (required) The image used to deploy this service in docker format, i.e. `tutum/hello-world`
 name | (optional) A human-readable name for the service, i.e. `my-hello-world-app` (default: `image` without namespace)
 target_num_containers | (optional) The number of containers to run for this service initially (default: 1)
-run_command | (optional) The command used to start the containers of this service, i.e. `/run.sh` (default: as defined in the image)
-entrypoint | (optional) The command prefix used to start the cluster containers, i.e. `/usr/sbin/sshd` (default: as defined in the image)
-container_ports | (optional) An array of objects with port information to be published in the containers for this service, i.e. `[{"protocol": "tcp", "inner_port": 80, "outer_port": 80}]`(default: all ports exposed in the image will be published in random ports)
+run_command | (optional) The command used to start the containers of this service, i.e. `/run.sh` (default: `null` - as defined in the image)
+entrypoint | (optional) The command prefix used to start the containersof this service, i.e. `/usr/sbin/sshd` (default: `null` - as defined in the image)
+container_ports | (optional) An array of objects with port information to be published in the containers for this service, i.e. `[{"protocol": "tcp", "inner_port": 80, "outer_port": 80}]` (default: all ports exposed in the image will be published in random ports)
 container_envvars | (optional) An array of objects with environment variables to be set in the service containers on launch, i.e. `[{"key": "DB_PASSWORD", "value": "mypass"}]` (default: as defined in the image, plus any link- or role-generated variables)
 linked_to_service | (optional) An array of service resource URIs to link this service to, including the link name, i.e. `[{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]` (default: no links)
 autorestart | (optional) Whether the containers for this service should be restarted if they stop, i.e. `ALWAYS` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`)
