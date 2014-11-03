@@ -39,24 +39,51 @@
   "image_name": "tutum/wordpress-stackable:latest", 
   "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/", 
   "link_variables": {
-    "WORDPRESS_STACKABLE_2_ENV_DB_HOST": "**LinkMe**", 
-    "WORDPRESS_STACKABLE_2_ENV_DB_NAME": "wordpress", 
-    "WORDPRESS_STACKABLE_2_ENV_DB_PASS": "test", 
-    "WORDPRESS_STACKABLE_2_ENV_DB_PORT": "**LinkMe**", 
-    "WORDPRESS_STACKABLE_2_ENV_DB_USER": "admin", 
-    "WORDPRESS_STACKABLE_2_ENV_DEBIAN_FRONTEND": "noninteractive", 
-    "WORDPRESS_STACKABLE_2_ENV_HOME": "/", 
-    "WORDPRESS_STACKABLE_2_ENV_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", 
-    "WORDPRESS_STACKABLE_2_PORT": "tcp://wordpress-stackable-2.vagrant.node.dev.tutum.io:80", 
-    "WORDPRESS_STACKABLE_2_PORT_80_TCP": "tcp://wordpress-stackable-2.vagrant.node.dev.tutum.io:80", 
-    "WORDPRESS_STACKABLE_2_PORT_80_TCP_ADDR": "wordpress-stackable-2.vagrant.node.dev.tutum.io", 
-    "WORDPRESS_STACKABLE_2_PORT_80_TCP_PORT": "80", 
-    "WORDPRESS_STACKABLE_2_PORT_80_TCP_PROTO": "tcp", 
-    "WORDPRESS_STACKABLE_TUTUM_API_URL": "https://dashboard.tutum.co/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/"
-  }, 
+    "WORDPRESS_STACKABLE_1_ENV_DB_HOST": "**LinkMe**",
+    "WORDPRESS_STACKABLE_1_ENV_DB_NAME": "wordpress",
+    "WORDPRESS_STACKABLE_1_ENV_DB_PASS": "szVaPz925B7I",
+    "WORDPRESS_STACKABLE_1_ENV_DB_PORT": "**LinkMe**",
+    "WORDPRESS_STACKABLE_1_ENV_DB_USER": "admin",
+    "WORDPRESS_STACKABLE_1_ENV_DEBIAN_FRONTEND": "noninteractive",
+    "WORDPRESS_STACKABLE_1_ENV_HOME": "/",
+    "WORDPRESS_STACKABLE_1_ENV_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "WORDPRESS_STACKABLE_1_PORT": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
+    "WORDPRESS_STACKABLE_1_PORT_80_TCP": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
+    "WORDPRESS_STACKABLE_1_PORT_80_TCP_ADDR": "wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io",
+    "WORDPRESS_STACKABLE_1_PORT_80_TCP_PORT": "49153",
+    "WORDPRESS_STACKABLE_1_PORT_80_TCP_PROTO": "tcp",
+    "WORDPRESS_STACKABLE_2_ENV_DB_HOST": "**LinkMe**",
+    "WORDPRESS_STACKABLE_2_ENV_DB_NAME": "wordpress",
+    "WORDPRESS_STACKABLE_2_ENV_DB_PASS": "szVaPz925B7I",
+    "WORDPRESS_STACKABLE_2_ENV_DB_PORT": "**LinkMe**",
+    "WORDPRESS_STACKABLE_2_ENV_DB_USER": "admin",
+    "WORDPRESS_STACKABLE_2_ENV_DEBIAN_FRONTEND": "noninteractive",
+    "WORDPRESS_STACKABLE_2_ENV_HOME": "/",
+    "WORDPRESS_STACKABLE_2_ENV_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "WORDPRESS_STACKABLE_2_PORT": "tcp://wordpress-stackable-2.2686cf70-admin.node.staging.tutum.io:49154",
+    "WORDPRESS_STACKABLE_2_PORT_80_TCP": "tcp://wordpress-stackable-2.2686cf70-admin.node.staging.tutum.io:49154",
+    "WORDPRESS_STACKABLE_2_PORT_80_TCP_ADDR": "wordpress-stackable-2.2686cf70-admin.node.staging.tutum.io",
+    "WORDPRESS_STACKABLE_2_PORT_80_TCP_PORT": "49154",
+    "WORDPRESS_STACKABLE_2_PORT_80_TCP_PROTO": "tcp",
+    "WORDPRESS_STACKABLE_ENV_DB_HOST": "**LinkMe**",
+    "WORDPRESS_STACKABLE_ENV_DB_NAME": "wordpress",
+    "WORDPRESS_STACKABLE_ENV_DB_PASS": "szVaPz925B7I",
+    "WORDPRESS_STACKABLE_ENV_DB_PORT": "**LinkMe**",
+    "WORDPRESS_STACKABLE_ENV_DB_USER": "admin",
+    "WORDPRESS_STACKABLE_ENV_DEBIAN_FRONTEND": "noninteractive",
+    "WORDPRESS_STACKABLE_ENV_HOME": "/",
+    "WORDPRESS_STACKABLE_ENV_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "WORDPRESS_STACKABLE_PORT": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
+    "WORDPRESS_STACKABLE_PORT_80_TCP": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
+    "WORDPRESS_STACKABLE_PORT_80_TCP_ADDR": "wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io",
+    "WORDPRESS_STACKABLE_PORT_80_TCP_PORT": "49153",
+    "WORDPRESS_STACKABLE_PORT_80_TCP_PROTO": "tcp",
+    "WORDPRESS_STACKABLE_TUTUM_API_URL": "https://app-test.tutum.co/api/v1/service/adeebc1b-1b81-4af0-b8f2-cefffc69d7fb/"
+  },
   "linked_from_service": [], 
   "linked_to_service": [
     {
+      "from_service": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
       "name": "DB", 
       "to_service": "/api/v1/service/72f175bd-390b-46e3-9463-830aca32ce3e/"
     }
@@ -91,7 +118,7 @@ image_name | The Docker image name and tag used for the service containers
 image_tag | Resource URI of the image (including tag) used for the service containers
 name | A user provided name for the service. This name will be inherited by the service containers and will be used in endpoint URLs, environment variable names, etc.
 unique_name | A unique name automatically assigned based on the user provided name to be used in the endpoint URLs, environment variable names, etc.
-state | The state of the service.
+state | The state of the service (see table `Service states` below)
 deployed_datetime | The date and time of the last deployment of the service (if applicable, `null` otherwise)
 started_datetime | The date and time of the last `start` operation on the service (if applicable, `null` otherwise)
 stopped_datetime | The date and time of the last `stop` operation on the service (if applicable, `null` otherwise)
@@ -101,13 +128,13 @@ current_num_containers | The actual number of containers deployed for the servic
 running_num_containers | The actual number of containers deployed for the service in `Running` state
 stopped_num_containers | The actual number of containers deployed for the service in `Stopped` state
 containers | List of resource URIs of the containers launched as part of the service
-container_ports | List of ports to be published for this service (see table `Service Port attributes` below)
+container_ports | List of ports to be published on the containers of this service (see table `Service Port attributes` below)
 container_envvars | List of user-defined environment variables to set on the containers of the service, which will override the image environment variables (see table `Service Environment Variable attributes` below)
 entrypoint | Entrypoint to be set on the containers launched as part of the service, which will override the image entrypoint
 run_command | Run command to be set on the containers launched as part of the service, which will override the image run command
 sequential_deployment | Whether the containers for this service should be deployed in sequence, linking each of them to the previous containers (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
-cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
-memory | The memory limit of the container in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+cpu_shares | The relative CPU priority of the containers of the service (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+memory | The memory limit of the containers of the service in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 linked_from_service | A list of services that are linked to this one (see table `Related services attributes` below)
 linked_to_service | A list of services that the service is linked to (see table `Related services attributes` below)
 autorestart | Whether to restart the containers of the service automatically if they stop (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
