@@ -24,7 +24,8 @@
       "inner_port": 80, 
       "outer_port": 80, 
       "port_name": "http", 
-      "protocol": "tcp"
+      "protocol": "tcp",
+      "published": true
     }
   ], 
   "containers": [
@@ -155,6 +156,7 @@ protocol | The protocol of the port, either `tcp` or `udp`
 inner_port | The published port number inside the container
 outer_port | The published port number in the node public network interface
 port_name | Name of the service associated to this port
+published | Whether the port has been published in the host public network interface or not. Non-published ports can only be accessed via links.
 
 
 ### Service Environment Variable attributes
@@ -281,7 +283,8 @@ Attribute | Description
 --------- | -----------
 protocol | (required) The protocol of the port, either `tcp` or `udp`
 inner_port | (required) The port number inside the container to be published
-outer_port | (optional) The port number in the node public network interface to be published
+outer_port | (optional) The port number in the node public network interface to be published (default: dynamic allocation if `published` is `true`)
+published | (optional) Whether to publish the port in the host public network interface or not. Non-published ports can only be accessed via links. (default: `false`)
 
 
 ### Service Environment Variable attributes
