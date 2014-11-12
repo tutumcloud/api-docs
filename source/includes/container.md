@@ -181,6 +181,7 @@
     "memory": 1024,
     "name": "wordpress-stackable",
     "node": "/api/v1/node/9691c44e-3155-4ca2-958d-c9571aac0a14/",
+    "privileged": false,
     "public_dns": "wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io",
     "resource_uri": "/api/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
     "roles": ["global"],
@@ -229,6 +230,7 @@ autodestroy | Whether to terminate the container automatically if it stops (see 
 roles | List of Tutum roles asigned to this conatiner (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 actions | List of resource URIs of the `Action` objects that apply to the container
 link_variables | List of environment variables that would be exposed in any container that is linked to this one
+privileged | Whether the container has Docker's `privileged` flag set or not (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 
 
 ### Container Port attributes
