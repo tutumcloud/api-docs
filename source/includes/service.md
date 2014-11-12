@@ -24,7 +24,8 @@
       "inner_port": 80, 
       "outer_port": 80, 
       "port_name": "http", 
-      "protocol": "tcp"
+      "protocol": "tcp",
+      "published": true
     }
   ], 
   "containers": [
@@ -90,6 +91,7 @@
   ], 
   "memory": 2048, 
   "name": "wordpress-stackable", 
+  "privileged": false,
   "resource_uri": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/", 
   "roles": ["global"], 
   "run_command": "/run-wordpress.sh", 
@@ -143,6 +145,7 @@ autodestroy | Whether to terminate the containers of the service automatically i
 roles | List of Tutum roles asigned to this service (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 actions | List of resource URIs of the `Action` objects that apply to the service
 link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
+privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 
 
 ### Service Port attributes
@@ -153,6 +156,7 @@ protocol | The protocol of the port, either `tcp` or `udp`
 inner_port | The published port number inside the container
 outer_port | The published port number in the node public network interface
 port_name | Name of the service associated to this port
+published | Whether the port has been published in the host public network interface or not. Non-published ports can only be accessed via links.
 
 
 ### Service Environment Variable attributes
@@ -270,6 +274,7 @@ autoreplace | (optional) whether the containers should be replaced with a new on
 autodestroy | (optional) Whether the containers should be terminated if they stop, i.e. `OFF` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
 sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`) (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
 roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (default: `[]`, possible values: `global`) (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
+privileged | (optional) Whether to start the containers with Docker's `privileged` flag set or not, i.e. `false` (default: `false`) (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 
 
 ### Service Port attributes
@@ -278,7 +283,8 @@ Attribute | Description
 --------- | -----------
 protocol | (required) The protocol of the port, either `tcp` or `udp`
 inner_port | (required) The port number inside the container to be published
-outer_port | (optional) The port number in the node public network interface to be published
+outer_port | (optional) The port number in the node public network interface to be published (default: dynamic allocation if `published` is `true`)
+published | (optional) Whether to publish the port in the host public network interface or not. Non-published ports can only be accessed via links. (default: `false`)
 
 
 ### Service Environment Variable attributes
