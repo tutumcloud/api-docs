@@ -124,7 +124,8 @@
   ],
   "target_num_containers": 2,
   "unique_name": "wordpress-stackable", 
-  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b"
+  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b",
+  "deployment_strategy": "EVERY NODE"
 }
 ```
 
@@ -167,6 +168,7 @@ autodestroy | Whether to terminate the containers of the service automatically i
 roles | List of Tutum roles asigned to this service (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
 privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+deployment_strategy | Container distribution among nodes (See [Deployment strategies](#deployment-strategies))
 tags | List of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
 
 
@@ -223,6 +225,22 @@ Stopped | All containers for the service are stopped. Possible actions in this s
 Terminating | All containers for the service are either being terminated or already terminated. No actions allowed in this state.
 Terminated | The service and all its containers have been terminated. No actions allowed in this state.
 Not running | There are no containers to be deployed for this service. Possible actions in this state: `terminate`.
+
+
+### <a name="deployment-strategies"></a> Deployment strategies
+
+The way the containers of the service will be distributed among user's nodes. 
+
+Strategy | Description
+-------- | -----------
+BALANCE | It will deploy containers to the node with the less amount of running containers (default).
+EVERY NODE | It will deploy containers to nodes in a one-to-one relationship: one container in one node.
+
+#### Example scenario
+Node cluster with two nodes deployed, N1 and N2. If we launch a service targeting that cluster:
+
+- With an `EVERY NODE` strategy, one container will be deployed to N1 and another one to N2, following the one-container-to-one-node relationship. Number of containers of the service = Number of nodes.
+- With a `BALANCE` strategy, you need to provide the number of containers of the service. For example, we want three containers in our service. The first container will be deployed randomly in N1 or N2 because both of them have the same number of containers, zero. Let's assume it is deployed in N1. Now the less populated node is N2, so the second container will be deployed in N2. Now they are even, so the third container will be deployed randomly again. 
 
 
 ## List all services
@@ -307,6 +325,7 @@ autodestroy | (optional) Whether the containers should be terminated if they sto
 sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`) (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
 roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (default: `[]`, possible values: `global`) (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 privileged | (optional) Whether to start the containers with Docker's `privileged` flag set or not, i.e. `false` (default: `false`) (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+deployment_strategy | (optional) Container distribution among nodes: `BALANCE` will deploy containers to less populated nodes. `EVERY NODE` will assign one container per node (default: `BALANCE`.
 tags | (optional) A list of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
 
 
