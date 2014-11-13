@@ -19,6 +19,7 @@ includes:
   - service
   - container
   - errors
+  - tags
 
 search: true
 ---
