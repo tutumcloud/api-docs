@@ -103,7 +103,8 @@
   "stopped_num_containers": 0, 
   "target_num_containers": 2, 
   "unique_name": "wordpress-stackable", 
-  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b"
+  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b",
+  "deployment_strategy": "EVERY NODE"
 }
 ```
 
@@ -146,6 +147,7 @@ roles | List of Tutum roles asigned to this service (see [Service links](https:/
 actions | List of resource URIs of the `Action` objects that apply to the service
 link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
 privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+deployment_strategy | (optional) Container distribution among nodes: `BALANCE` will deploy containers to less populated nodes. `EVERY NODE` will assign one container per node (default: `BALANCE`.
 
 
 ### Service Port attributes
@@ -275,6 +277,8 @@ autodestroy | (optional) Whether the containers should be terminated if they sto
 sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`) (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
 roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (default: `[]`, possible values: `global`) (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 privileged | (optional) Whether to start the containers with Docker's `privileged` flag set or not, i.e. `false` (default: `false`) (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+deployment_strategy | (optional) Container distribution among nodes: `BALANCE` will deploy containers to less populated nodes. `EVERY NODE` will assign one container per node (default: `BALANCE`.
+
 
 
 ### Service Port attributes
