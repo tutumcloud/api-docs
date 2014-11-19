@@ -37,6 +37,11 @@ resource_uri | A unique API endpoint that represents the URL of the resource tag
 [//]: # (*** TODO)
 [//]: # (```)
 
+```python
+service = tutum.Service.fetch("91df1eaf-cef5-4810-a06c-bbddba290dc9")
+service.tag.list()
+```
+
 ```http
 GET /api/v1/nodecluster/91df1eaf-cef5-4810-a06c-bbddba290dc9/tags/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -44,6 +49,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum tag list 91df1eaf-cef5-4810-a06c-bbddba290dc9
+```
 [//]: # (```shell)
 [//]: # (*** TODO tutum ***)
 [//]: # (```)
@@ -69,6 +77,11 @@ uuid | A unique identifier for the resource generated automatically on creation.
 [//]: # (*** TODO)
 [//]: # (```)
 
+```python
+service = tutum.Service.fetch("f1ac7396-7154-47f3-9fce-77ca07ad1e7a")
+service.tag.add(["tag_one", "tag-2", "tagthree"])
+```
+
 ```http
 GET /api/v1/service/f1ac7396-7154-47f3-9fce-77ca07ad1e7a/tags/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -76,6 +89,10 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 
 {"tags": [{"name": "tag_one"}, {"name": "tag-2"}, {"name": "tagthree"}]}
+```
+
+```shell
+tutum tag add --tag tag_one --tag tag-2 --tag tagthree f1ac7396-7154-47f3-9fce-77ca07ad1e7a
 ```
 
 [//]: # (```shell)
@@ -142,11 +159,20 @@ name | Tag name.
 [//]: # (*** TODO)
 [//]: # (```)
 
+```python
+service = tutum.Service.fetch("4c4b3a8d-be28-4b8d-95e6-61c45c96f771")
+service.tag.delete("example_tag")
+```
+
 ```http
 GET /api/v1/nodecluster/91df1eaf-cef5-4810-a06c-bbddba290dc9/tags/tag_one/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum tag rm --tag example_tag 4c4b3a8d-be28-4b8d-95e6-61c45c96f771
 ```
 
 [//]: # (```shell)
