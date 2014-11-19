@@ -248,7 +248,7 @@ Content-Type: application/json
 ```
 
 ```shell
-tutum service run -t 2 --name my-new-app tutum/hello-world
+tutum service create -t 2 --name my-new-app tutum/hello-world
 ```
 
 Creates a new service without deploying it.
