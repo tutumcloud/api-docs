@@ -18,8 +18,8 @@ includes:
   - node
   - service
   - container
-  - errors
   - tags
+  - errors
 
 search: true
 ---
