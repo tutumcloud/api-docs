@@ -18,6 +18,7 @@ includes:
   - node
   - service
   - container
+  - tags
   - errors
 
 search: true
