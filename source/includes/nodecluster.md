@@ -24,7 +24,12 @@
     "resource_uri": "/api/v1/nodecluster/5516df0b-721e-4470-b350-741ff22e63a0/",
     "state": "Deployed",
     "target_num_nodes": 2,
-    "uuid": "5516df0b-721e-4470-b350-741ff22e63a0"
+    "uuid": "5516df0b-721e-4470-b350-741ff22e63a0",
+    "tags": [
+        {"name": "tag_one"},
+        {"name": "tag-two"},
+        {"name": "tagthree3"}
+    ]
 }
 ```
 
@@ -47,6 +52,7 @@ target_num_nodes | The desired number of nodes for the node cluster
 current_num_nodes | The actual number of nodes in the node cluster. This may differ from `target_num_nodes` if the node cluster is being deployed or scaled
 deployed_datetime | The date and time when this node cluster was deployed
 destroyed_datetime | The date and time when this node cluster was terminated (if applicable)
+tags | List of labels to manage the node cluster [(see Tags section for more information)](tags.md)
 
 
 ### Node Cluster states
@@ -137,6 +143,7 @@ name | (required) A user provided name for the node cluster
 node_type | (required) The resource URI of the node type to be used for the node cluster
 region | (required) The resource URI of the region where the node cluster is to be deployed
 target_num_nodes | (optional) The desired number of nodes for the node cluster (default: 1)
+tags | (optional) A list of labels the node cluster will be tagged with [(see Tags section for mor information)](tags.md)
 
 
 ## Get an existing node cluster
@@ -243,6 +250,7 @@ uuid | The UUID of the node cluster to update
 Parameter | Description
 --------- | -----------
 target_num_nodes | (optional) The number of nodes to scale this node cluster to
+tags | (optional) List of new labels the node cluster will have. This operation removes the old ones [(see Tags section for more information)](tags.md).
 
 
 ## Terminate a node cluster

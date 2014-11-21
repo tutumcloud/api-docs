@@ -24,7 +24,11 @@
 	"region": "/api/v1/region/testing-provider/testing-region/",
 	"resource_uri": "/api/v1/node/fc1a5bb9-17f5-4819-b667-8c7cd819e949/",
 	"state": "Deployed",
-	"uuid": "fc1a5bb9-17f5-4819-b667-8c7cd819e949"
+	"uuid": "fc1a5bb9-17f5-4819-b667-8c7cd819e949",
+	"tags": [
+		{"name": "tag_one"},
+		{"name": "tag-two"}
+	]
 }
 ```
 
@@ -49,6 +53,7 @@ last_seen | Date and time of the last time the node was contacted by Tutum
 public_ip | The public IP allocated to the node
 deployed_datetime | The date and time when this node cluster was deployed
 destroyed_datetime | The date and time when this node cluster was terminated (if applicable)
+tags | List of labels to manage the node [(see Tags section for more information)](tags.md)
 
 
 ### Node states
@@ -160,6 +165,37 @@ Parameter | Description
 --------- | ----------- 
 uuid | The UUID of the node to deploy
 
+
+## Edit node tags
+
+```python
+*** TODO
+```
+
+```http
+PATCH /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+Replaces the old tags in the node for the new list provided.
+
+### HTTP Request
+
+`PATCH /api/v1/node/(uuid)/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ----------- 
+uuid | The UUID of the node to retrieve
+
+### JSON Parameters
+
+Parameter | Description
+--------- | ----------- 
+tags | A list of labels the node will be tagged with [(see Tags section for mor information)](tags.md)
 
 
 ## Terminate a node

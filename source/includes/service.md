@@ -103,7 +103,12 @@
   "stopped_num_containers": 0, 
   "target_num_containers": 2, 
   "unique_name": "wordpress-stackable", 
-  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b"
+  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b",
+  "tags": [
+        {"name": "tag_one"},
+        {"name": "tag-two"},
+        {"name": "tagthree3"}
+  ]
 }
 ```
 
@@ -146,6 +151,7 @@ roles | List of Tutum roles asigned to this service (see [Service links](https:/
 actions | List of resource URIs of the `Action` objects that apply to the service
 link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
 privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+tags | List of labels to manage the service [(see Tags section for more information)](tags.md)
 
 
 ### Service Port attributes
@@ -275,6 +281,7 @@ autodestroy | (optional) Whether the containers should be terminated if they sto
 sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`) (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
 roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (default: `[]`, possible values: `global`) (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 privileged | (optional) Whether to start the containers with Docker's `privileged` flag set or not, i.e. `false` (default: `false`) (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+tags | (optional) A list of labels the service will be tagged with [(see Tags section for mor information)](tags.md)
 
 
 ### Service Port attributes
@@ -411,6 +418,7 @@ uuid | The UUID of the service to update
 Parameter | Description
 --------- | -----------
 target_num_containers | (optional) The number of containers to scale this service to
+tags | (optional) List of new labels the service will have. This operation removes the old ones [(see Tags section for more information)](tags.md).
 
 
 ## Start a service
