@@ -151,7 +151,7 @@ roles | List of Tutum roles asigned to this service (see [Service links](https:/
 actions | List of resource URIs of the `Action` objects that apply to the service
 link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
 privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
-tags | List of labels to manage the service [(see Tags section for more information)](tags.md)
+tags | List of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
 
 
 ### Service Port attributes
@@ -281,7 +281,7 @@ autodestroy | (optional) Whether the containers should be terminated if they sto
 sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`) (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
 roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (default: `[]`, possible values: `global`) (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 privileged | (optional) Whether to start the containers with Docker's `privileged` flag set or not, i.e. `false` (default: `false`) (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
-tags | (optional) A list of labels the service will be tagged with [(see Tags section for mor information)](tags.md)
+tags | (optional) A list of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
 
 
 ### Service Port attributes
@@ -383,6 +383,7 @@ import tutum
 
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.target_num_containers = 3
+service.tags.add("tag-1")
 service.save()
 ```
 
@@ -393,14 +394,15 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"target_num_containers": 3}
+{"target_num_containers": 3, "tags": [{"name": "tag-1"}]}
 ```
 
 ```shell
 tutum service scale 7eaf7fff 3
+tutum tag add 7eaf7fff -t tag-1
 ```
 
-Updates the service details and redeploys the changes automatically.
+Updates the service details and applies the changes automatically.
 
 ### HTTP Request
 
@@ -418,7 +420,7 @@ uuid | The UUID of the service to update
 Parameter | Description
 --------- | -----------
 target_num_containers | (optional) The number of containers to scale this service to
-tags | (optional) List of new labels the service will have. This operation removes the old ones [(see Tags section for more information)](tags.md).
+tags | (optional) List of new tags the service will have. This operation replaces the tag list
 
 
 ## Start a service

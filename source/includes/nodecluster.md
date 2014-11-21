@@ -23,13 +23,13 @@
     "region": "/api/v1/region/digitalocean/ams1/",
     "resource_uri": "/api/v1/nodecluster/5516df0b-721e-4470-b350-741ff22e63a0/",
     "state": "Deployed",
-    "target_num_nodes": 2,
-    "uuid": "5516df0b-721e-4470-b350-741ff22e63a0",
     "tags": [
         {"name": "tag_one"},
         {"name": "tag-two"},
         {"name": "tagthree3"}
-    ]
+    ],
+    "target_num_nodes": 2,
+    "uuid": "5516df0b-721e-4470-b350-741ff22e63a0"
 }
 ```
 
@@ -52,7 +52,7 @@ target_num_nodes | The desired number of nodes for the node cluster
 current_num_nodes | The actual number of nodes in the node cluster. This may differ from `target_num_nodes` if the node cluster is being deployed or scaled
 deployed_datetime | The date and time when this node cluster was deployed
 destroyed_datetime | The date and time when this node cluster was terminated (if applicable)
-tags | List of labels to manage the node cluster [(see Tags section for more information)](tags.md)
+tags | List of tags to identify the node cluster nodes when deploying services (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
 
 
 ### Node Cluster states
@@ -143,7 +143,7 @@ name | (required) A user provided name for the node cluster
 node_type | (required) The resource URI of the node type to be used for the node cluster
 region | (required) The resource URI of the region where the node cluster is to be deployed
 target_num_nodes | (optional) The desired number of nodes for the node cluster (default: 1)
-tags | (optional) A list of labels the node cluster will be tagged with [(see Tags section for mor information)](tags.md)
+tags | (optional) List of tags of the node cluster to be used when deploying services see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
 
 
 ## Get an existing node cluster
@@ -215,6 +215,7 @@ import tutum
 
 nodecluster = tutum.NodeCluster.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 nodecluster.target_num_nodes = 3
+nodecluster.tags.add("tag-1")
 nodecluster.save()
 ```
 
@@ -225,11 +226,12 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"target_num_nodes": 3}
+{"target_num_nodes": 3, "tags": [{"name": "tag-1"}]}
 ```
 
 ```shell
 tutum nodecluster scale 7eaf7fff 3
+tutum tag add 7eaf7fff -t tag-1
 ```
 
 Updates the node cluster details and applies the changes automatically.
@@ -250,7 +252,7 @@ uuid | The UUID of the node cluster to update
 Parameter | Description
 --------- | -----------
 target_num_nodes | (optional) The number of nodes to scale this node cluster to
-tags | (optional) List of new labels the node cluster will have. This operation removes the old ones [(see Tags section for more information)](tags.md).
+tags | (optional) List of tags the node cluster (and nodes within the node cluster) will have. This operation replaces the tag list.
 
 
 ## Terminate a node cluster
