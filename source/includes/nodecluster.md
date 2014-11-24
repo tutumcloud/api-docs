@@ -255,6 +255,35 @@ target_num_nodes | (optional) The number of nodes to scale this node cluster to
 tags | (optional) List of tags the node cluster (and nodes within the node cluster) will have. This operation replaces the tag list.
 
 
+## Upgrade Docker Daemon
+
+```python
+import tutum
+
+nodecluster = tutum.NodeCluster.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+nodecluster.docker_upgrade()
+```
+
+```http
+POST /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/docker-upgrade/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+Upgrades the Docker Daemon of all the nodes in the cluster.
+
+### HTTP Request
+
+`POST /api/v1/nodecluster/(uuid)/docker-upgrade/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the node cluster to upgrade
+
+
 ## Terminate a node cluster
 
 ```python
