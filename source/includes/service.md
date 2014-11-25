@@ -383,7 +383,7 @@ import tutum
 
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.target_num_containers = 3
-service.tags.add("tag-1")
+service.tags.append({"name":"tag-1"})
 service.save()
 ```
 
