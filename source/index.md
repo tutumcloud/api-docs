@@ -16,6 +16,7 @@ includes:
   - nodetype
   - nodecluster
   - node
+  - tokens
   - service
   - container
   - tags
