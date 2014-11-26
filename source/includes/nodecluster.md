@@ -231,7 +231,8 @@ Content-Type: application/json
 
 ```shell
 tutum nodecluster scale 7eaf7fff 3
-tutum tag add 7eaf7fff -t tag-1
+tutum tag add -t tag-1 7eaf7fff
+tutum tag set -t tag-2 7eaf7fff
 ```
 
 Updates the node cluster details and applies the changes automatically.

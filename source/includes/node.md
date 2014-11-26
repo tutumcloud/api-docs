@@ -186,7 +186,8 @@ Accept: application/json
 ```
 
 ```shell
-tutum tag add 7eaf7fff -t tag-1
+tutum tag add -t tag-1 7eaf7fff
+tutum tag set -t tag-2 7eaf7fff
 ```
 
 Replaces the old tags in the node for the new list provided.
