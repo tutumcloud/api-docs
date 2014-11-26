@@ -215,7 +215,7 @@ tags | (optional) List of tags the node will have. This operation replaces the t
 import tutum
 
 node = tutum.Node.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-node.docker_upgrade()
+node.upgrade_docker()
 ```
 
 ```http
@@ -223,6 +223,10 @@ POST /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/docker-upgrade/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum node upgrade 7eaf7fff
 ```
 
 Upgrades the docker daemon of the node.
