@@ -20,12 +20,12 @@
     "bindings": [
         {
             "volume": "/api/v1/volume/1863e34d-6a7d-4945-aefc-8f27a4ab1a9e/",
-            "host_path": None,
+            "host_path": null,
             "container_path": "/data",
             "rewritable": true
         },
         {
-            "volume": None,
+            "volume": null,
             "host_path": "/etc",
             "container_path": "/etc",
             "rewritable": true

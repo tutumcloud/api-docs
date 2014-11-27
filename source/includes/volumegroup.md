@@ -39,7 +39,7 @@ volumes | List of the resource URIs of the volumes belonging to this volume grou
 State | Description
 ----- | -----------
 Created | The volume group object has been created and it is available
-Terminated | The volume group and its associatted volumes have been deleted
+Terminated | The volume group and its associated volumes have been deleted
 
 
 ## List all volume groups
