@@ -15,14 +15,14 @@
   "autorestart": "ON_FAILURE",
   "bindings": [
     {
-        "host_path": None,
+        "host_path": null,
         "container_path": "/tmp",
         "rewritable": true,
         "volume_group": "/api/v1/volumegroup/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a173/"
     },
     {
         "host_path": "/etc",
-        "container_path": "/etc,
+        "container_path": "/etc",
         "rewritable": true,
         "volume_group": null
     }

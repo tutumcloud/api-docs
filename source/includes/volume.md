@@ -36,7 +36,7 @@ volume_group | The resource URI of the volume group this volume belongs to
 
 State | Description
 ----- | -----------
-Init | The volume object has been created in the node and it is available
+Created | The volume object has been created in the node and it is available
 Terminated | The volume has been deleted in the node.
 
 
