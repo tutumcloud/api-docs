@@ -12,7 +12,21 @@
   ], 
   "autodestroy": "OFF", 
   "autoreplace": "OFF", 
-  "autorestart": "ON_FAILURE", 
+  "autorestart": "ON_FAILURE",
+  "bindings": [
+    {
+        "host_path": null,
+        "container_path": "/tmp",
+        "rewritable": true,
+        "volume_group": "/api/v1/volumegroup/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a173/"
+    },
+    {
+        "host_path": "/etc",
+        "container_path": "/etc",
+        "rewritable": true,
+        "volume_group": null
+    }
+  ],
   "container_envvars": [
     {
       "key": "DB_PASS", 
@@ -144,6 +158,7 @@ cpu_shares | The relative CPU priority of the containers of the service (see [Ru
 memory | The memory limit of the containers of the service in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 linked_from_service | A list of services that are linked to this one (see table `Related services attributes` below)
 linked_to_service | A list of services that the service is linked to (see table `Related services attributes` below)
+bindings | A list of volume bindings that the service has mounted (see table `Service binding attributes` below)
 autorestart | Whether to restart the containers of the service automatically if they stop (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autoreplace | Whether to replace the containers of the service automatically with new ones if they stop (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the containers of the service automatically if they stop (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
@@ -152,6 +167,16 @@ actions | List of resource URIs of the `Action` objects that apply to the servic
 link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
 privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 tags | List of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
+
+
+### Service binding attributes
+
+Attribute | Description
+--------- | -----------
+host_path | The host folder of the volume
+container_path | The container folder where the volume is mounted
+rewritable | `true` is the volume has writable permissions
+volume_group | The resource URI of the volume group
 
 
 ### Service Port attributes

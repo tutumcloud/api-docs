@@ -19,6 +19,8 @@ includes:
   - tokens
   - service
   - container
+  - volumegroup
+  - volume
   - tags
   - errors
 
