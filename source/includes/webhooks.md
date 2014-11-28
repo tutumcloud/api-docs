@@ -31,7 +31,11 @@ Redeploy | Performs a `redeploy` service operation: every container with `STOPPE
 ## List all webhooks
 
 ```python
-TODO
+import tutum
+
+service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
+webhook = tutum.WebhookHandler.fetch(sercice)
+webhook.list()
 ```
 
 ```http
@@ -42,7 +46,7 @@ Accept: application/json
 ```
 
 ```shell
-TODO
+tutum webhook-handler list 61a29874-9134-48f9-b460-f37d4bec4826
 ```
 
 Lists all current webhook handlers the service has associated to. Returns a list of `ServiceWebhookHandler` objects.
@@ -61,7 +65,12 @@ uuid | The UUID of the service the webhooks are associated to
 ## Create a new webhook handler
 
 ```python
-TODO
+import tutum
+
+service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
+webhook = tutum.WebhookHandler.fetch(sercice)
+webhook.add("mywebhook_name")
+webhook.save()
 ```
 
 ```http
@@ -75,7 +84,7 @@ Content-Type: application/json
 ```
 
 ```shell
-TODO
+tutum webhook-handler create --name mywebhook_name 61a29874-9134-48f9-b460-f37d4bec4826
 ```
 
 Creates a new service webhook handler.
@@ -92,19 +101,12 @@ name | (optional) A user provided name for the webhook handler
 
 ## Get an existing webhook handler
 
-```python
-TODO
-```
 
 ```http
 GET /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/webhook/handler/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
-```
-
-```shell
-TODO
 ```
 
 Get all the details of an specific webhook handler 
@@ -123,7 +125,11 @@ webhook_uuid | The UUID of the webhook handler to retrieve
 ## Delete a webhook handler
 
 ```python
-TODO
+import tutum
+
+service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
+webhook = tutum.WebhookHandler.fetch(sercice)
+webhook.delete("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce)
 ```
 
 ```http
@@ -134,7 +140,7 @@ Accept: application/json
 ```
 
 ```shell
-TODO
+tutum webhook-handler rm 61a29874-9134-48f9-b460-f37d4bec4826 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
 ```
 
 Deletes specific webhook handler. It will be no longer available to be called.
@@ -154,7 +160,11 @@ webhook_uuid | The UUID of the webhook handler to retrieve
 ## Call a webhook handler
 
 ```python
-TODO
+import tutum
+
+service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
+webhook = tutum.WebhookHandler.fetch(sercice)
+webhook.call("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce)
 ```
 
 ```http
@@ -162,10 +172,6 @@ POST /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/webhook/handler/7eaf7f
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
-```
-
-```shell
-TODO
 ```
 
 Executes webhook handler operation associated.
