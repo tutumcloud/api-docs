@@ -34,7 +34,7 @@ Redeploy | Performs a `redeploy` service operation: every container with `STOPPE
 import tutum
 
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
-webhook = tutum.WebhookHandler.fetch(sercice)
+webhook = tutum.WebhookHandler.fetch(service)
 webhook.list()
 ```
 
@@ -68,7 +68,7 @@ uuid | The UUID of the service the webhooks are associated to
 import tutum
 
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
-webhook = tutum.WebhookHandler.fetch(sercice)
+webhook = tutum.WebhookHandler.fetch(service)
 webhook.add("mywebhook_name")
 webhook.save()
 ```
@@ -128,7 +128,7 @@ webhook_uuid | The UUID of the webhook handler to retrieve
 import tutum
 
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
-webhook = tutum.WebhookHandler.fetch(sercice)
+webhook = tutum.WebhookHandler.fetch(service)
 webhook.delete("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce)
 ```
 
@@ -163,7 +163,7 @@ webhook_uuid | The UUID of the webhook handler to retrieve
 import tutum
 
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
-webhook = tutum.WebhookHandler.fetch(sercice)
+webhook = tutum.WebhookHandler.fetch(service)
 webhook.call("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce)
 ```
 
