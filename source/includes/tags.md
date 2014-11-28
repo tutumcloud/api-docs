@@ -23,6 +23,8 @@ resource_uri | A unique API endpoint that represents the URL of the resource tag
 ## List all tags 
 
 ```python
+import tutum
+
 service = tutum.Service.fetch("91df1eaf-cef5-4810-a06c-bbddba290dc9")
 tag = tutum.Tag.fetch(service)
 tag.list()
@@ -56,6 +58,8 @@ uuid | A unique identifier for the resource generated automatically on creation.
 ## Tagging a resource
 
 ```python
+import tutum
+
 service = tutum.Service.fetch("f1ac7396-7154-47f3-9fce-77ca07ad1e7a")
 tag = tutum.Tag.fetch(service)
 tag.add(["tag_one", "tag-2", "tagthree"])
@@ -98,6 +102,8 @@ tags | An array of objects with the names of the new tags, i.e. `[{"name": "tag_
 ## Delete tag
 
 ```python
+import tutum
+
 service = tutum.Service.fetch("4c4b3a8d-be28-4b8d-95e6-61c45c96f771")
 tag = tutum.Tag.fetch(service)
 tag.delete("example_tag")

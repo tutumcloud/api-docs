@@ -579,3 +579,6 @@ Terminate all the containers in a service and the service itself. This is not re
 Parameter | Description
 --------- | ----------- 
 uuid | The UUID of the service to terminate
+
+
+
