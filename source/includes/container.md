@@ -15,7 +15,6 @@
         "/api/v1/action/c26ff306-8ae8-43f4-9a31-7bc08a9d5562/"
     ],
     "autodestroy": "OFF",
-    "autoreplace": "OFF",
     "autorestart": "OFF",
     "bindings": [
         {
@@ -240,7 +239,6 @@ run_command | Run command used on the container on launch
 cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 memory | The memory limit of the container in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 autorestart | Whether to restart the container automatically if it stops (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
-autoreplace | Whether to replace the container automatically with a new one if it stops (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the container automatically if it stops (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
 roles | List of Tutum roles asigned to this conatiner (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 actions | List of resource URIs of the `Action` objects that apply to the container
