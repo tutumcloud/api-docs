@@ -56,7 +56,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
-```
+```shell
 tutum nodecluster region
 ```
 
