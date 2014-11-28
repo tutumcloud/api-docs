@@ -1,4 +1,4 @@
-# Webhooks
+# Webhook handlers
 
 ## Service Webhooks handlers
 
@@ -12,21 +12,26 @@
 }
 ```
 
-You can assign webhooks to your services in order to execute different operations to the service.
+Webhook handlers are URLs that will start a redeploy of the service whenever a `POST` request is sent to them. They require no authorization headers, so they should be treated as access tokens. Webhook handlers can be revoked if they are leaked or no longer used for security purposes. See [Webhook Handlers](https://tutum.freshdesk.com/support/solutions/articles/5000513815) for more information.
 
 
 ### Attributes
+
 Attribute | Description
 --------- | -----------
-url | Address to execute the webhook operation
-name | A user provided name for the webhook 
-resource_uri | A unique API endpoint that represents the webhook
+url | Address to be used to call the webhook handler with a `POST` request
+name | A user provided name for the webhook handler
+resource_uri | A unique API endpoint that represents the webhook handler
 
 
-### Operations 
+<!--
+### Operations
+
 Operation | Description
 --------- | -----------
 Redeploy | Performs a `redeploy` service operation: every container with `STOPPED` or `RUNNING` state will be redeployed.
+-->
+
 
 ## List all webhooks
 
@@ -49,7 +54,7 @@ Accept: application/json
 tutum webhook-handler list 61a29874-9134-48f9-b460-f37d4bec4826
 ```
 
-Lists all current webhook handlers the service has associated to. Returns a list of `ServiceWebhookHandler` objects.
+Lists all current webhook handlers the service has associated to. Returns a list of `Service Webhook Handler` objects.
 
 ### HTTP Request
 
@@ -129,7 +134,7 @@ import tutum
 
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
 webhook = tutum.WebhookHandler.fetch(service)
-webhook.delete("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce)
+webhook.delete("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```http
@@ -153,8 +158,8 @@ Deletes specific webhook handler. It will be no longer available to be called.
 
 Parameter | Description
 --------- | ----------- 
-uuid | The UUID of the node cluster to terminate
-webhook_uuid | The UUID of the webhook handler to retrieve
+uuid | The UUID of the associated service
+webhook_uuid | The UUID of the webhook handler to delete
 
 
 ## Call a webhook handler
@@ -164,7 +169,7 @@ import tutum
 
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
 webhook = tutum.WebhookHandler.fetch(service)
-webhook.call("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce)
+webhook.call("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```http
@@ -174,7 +179,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
-Executes webhook handler operation associated.
+Executes the webhook and redeploys the associated service.
 
 
 ### HTTP Request
@@ -185,5 +190,5 @@ Executes webhook handler operation associated.
 
 Parameter | Description
 --------- | ----------- 
-uuid | The UUID of the node cluster to terminate
-webhook_uuid | The UUID of the webhook handler to retrieve
+uuid | The UUID of the associated service
+webhook_uuid | The UUID of the webhook handler to call
