@@ -229,7 +229,7 @@ Accept: application/json
 tutum node upgrade 7eaf7fff
 ```
 
-Upgrades the docker daemon of the node.
+Upgrades the docker daemon of the node. This will restart your containers on that node. See [Docker upgrade](https://support.tutum.co/support/solutions/articles/5000515535) for more information.
 
 ### HTTP Request
 
