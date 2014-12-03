@@ -16,9 +16,13 @@ includes:
   - nodetype
   - nodecluster
   - node
+  - tokens
   - service
   - container
+  - volumegroup
+  - volume
   - tags
+  - webhooks
   - errors
 
 search: true

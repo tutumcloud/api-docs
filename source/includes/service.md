@@ -11,8 +11,21 @@
     "/api/v1/action/ed4324c3-c3a3-4dad-a780-fc11ad55975d/"
   ], 
   "autodestroy": "OFF", 
-  "autoreplace": "OFF", 
-  "autorestart": "ON_FAILURE", 
+  "autorestart": "ON_FAILURE",
+  "bindings": [
+    {
+        "host_path": null,
+        "container_path": "/tmp",
+        "rewritable": true,
+        "volume_group": "/api/v1/volumegroup/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a173/"
+    },
+    {
+        "host_path": "/etc",
+        "container_path": "/etc",
+        "rewritable": true,
+        "volume_group": null
+    }
+  ],
   "container_envvars": [
     {
       "key": "DB_PASS", 
@@ -144,14 +157,24 @@ cpu_shares | The relative CPU priority of the containers of the service (see [Ru
 memory | The memory limit of the containers of the service in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 linked_from_service | A list of services that are linked to this one (see table `Related services attributes` below)
 linked_to_service | A list of services that the service is linked to (see table `Related services attributes` below)
+bindings | A list of volume bindings that the service has mounted (see table `Service binding attributes` below)
 autorestart | Whether to restart the containers of the service automatically if they stop (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
-autoreplace | Whether to replace the containers of the service automatically with new ones if they stop (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the containers of the service automatically if they stop (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
 roles | List of Tutum roles asigned to this service (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 actions | List of resource URIs of the `Action` objects that apply to the service
 link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
 privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 tags | List of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
+
+
+### Service binding attributes
+
+Attribute | Description
+--------- | -----------
+host_path | The host folder of the volume
+container_path | The container folder where the volume is mounted
+rewritable | `true` is the volume has writable permissions
+volume_group | The resource URI of the volume group
 
 
 ### Service Port attributes
@@ -276,7 +299,6 @@ container_ports | (optional) An array of objects with port information to be pub
 container_envvars | (optional) An array of objects with environment variables to be added in the service containers on launch (overriding any image-defined environment variables), i.e. `[{"key": "DB_PASSWORD", "value": "mypass"}]` (default: `[]`) (See table `Service Environment Variable attributes` below)
 linked_to_service | (optional) An array of service resource URIs to link this service to, including the link name, i.e. `[{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]` (default: `[]`) (See table `Related services attributes` below)
 autorestart | (optional) Whether the containers for this service should be restarted if they stop, i.e. `ALWAYS` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
-autoreplace | (optional) whether the containers should be replaced with a new one if they stop, i.e. `ALWAYS` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | (optional) Whether the containers should be terminated if they stop, i.e. `OFF` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
 sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`) (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
 roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (default: `[]`, possible values: `global`) (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
@@ -383,7 +405,7 @@ import tutum
 
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.target_num_containers = 3
-service.tags.add("tag-1")
+service.tags.append({"name":"tag-1"})
 service.save()
 ```
 
@@ -399,7 +421,8 @@ Content-Type: application/json
 
 ```shell
 tutum service scale 7eaf7fff 3
-tutum tag add 7eaf7fff -t tag-1
+tutum tag add -t tag-1 7eaf7fff
+tutum tag set -t tag-2 7eaf7fff
 ```
 
 Updates the service details and applies the changes automatically.
@@ -553,3 +576,6 @@ Terminate all the containers in a service and the service itself. This is not re
 Parameter | Description
 --------- | ----------- 
 uuid | The UUID of the service to terminate
+
+
+

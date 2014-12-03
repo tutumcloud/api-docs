@@ -186,7 +186,8 @@ Accept: application/json
 ```
 
 ```shell
-tutum tag add 7eaf7fff -t tag-1
+tutum tag add -t tag-1 7eaf7fff
+tutum tag set -t tag-2 7eaf7fff
 ```
 
 Replaces the old tags in the node for the new list provided.
@@ -206,6 +207,39 @@ uuid | The UUID of the node to retrieve
 Parameter | Description
 --------- | ----------- 
 tags | (optional) List of tags the node will have. This operation replaces the tag list.
+
+
+## Upgrade Docker Daemon
+
+```python
+import tutum
+
+node = tutum.Node.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+node.upgrade_docker()
+```
+
+```http
+POST /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/docker-upgrade/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+```shell
+tutum node upgrade 7eaf7fff
+```
+
+Upgrades the docker daemon of the node. This will restart your containers on that node. See [Docker upgrade](https://support.tutum.co/support/solutions/articles/5000515535) for more information.
+
+### HTTP Request
+
+`POST /api/v1/node/(uuid)/docker-upgrade/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the node to upgrade
 
 
 ## Terminate a node

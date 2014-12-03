@@ -15,8 +15,21 @@
         "/api/v1/action/c26ff306-8ae8-43f4-9a31-7bc08a9d5562/"
     ],
     "autodestroy": "OFF",
-    "autoreplace": "OFF",
     "autorestart": "OFF",
+    "bindings": [
+        {
+            "volume": "/api/v1/volume/1863e34d-6a7d-4945-aefc-8f27a4ab1a9e/",
+            "host_path": null,
+            "container_path": "/data",
+            "rewritable": true
+        },
+        {
+            "volume": null,
+            "host_path": "/etc",
+            "container_path": "/etc",
+            "rewritable": true
+        }
+    ],
     "container_envvars": [
         {
             "key": "DB_1_ENV_DEBIAN_FRONTEND",
@@ -206,6 +219,7 @@ uuid | A unique identifier for the container generated automatically on creation
 resource_uri | A unique API endpoint that represents the container
 image_name | The Docker image name and tag of the container
 image_tag | Resource URI of the image (including tag) of the container
+bindings | A list of volume bindings that the container has mounted (see table `Container binding attributes` below)
 name | A user provided name for the container (inherited from the service)
 unique_name | A unique name automatically assigned based on the user provided name
 node | The resource URI of the node where this container is running
@@ -225,12 +239,21 @@ run_command | Run command used on the container on launch
 cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 memory | The memory limit of the container in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 autorestart | Whether to restart the container automatically if it stops (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
-autoreplace | Whether to replace the container automatically with a new one if it stops (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the container automatically if it stops (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
 roles | List of Tutum roles asigned to this conatiner (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 actions | List of resource URIs of the `Action` objects that apply to the container
 link_variables | List of environment variables that would be exposed in any container that is linked to this one
 privileged | Whether the container has Docker's `privileged` flag set or not (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+
+
+### Container binding attributes
+
+Attribute | Description
+--------- | -----------
+host_path | The host folder of the volume
+container_path | The container folder where the volume is mounted
+rewritable | `true` is the volume has writable permissions
+volume | The resource URI of the volume
 
 
 ### Container Port attributes
