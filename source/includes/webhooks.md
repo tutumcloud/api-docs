@@ -175,7 +175,6 @@ webhook.call("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```http
 POST /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/webhook/handler/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
