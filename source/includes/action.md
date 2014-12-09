@@ -19,7 +19,7 @@
     "state": "Success",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.78.2 (KHTML, like Gecko) Version/7.0.6 Safari/537.78.2",
     "uuid": "6246c558-976c-4df6-ba60-eb1a344a17af",
-    "body": '{"image_tag": "/api/v1/image/tutum/ubuntu-quantal/tag/latest/", "name": "test_cluster"}' 
+    "body": "{\"image_tag\": \"/api/v1/image/tutum/ubuntu-quantal/tag/latest/\", \"name\": \"test_cluster\"}"
 }
 ```
 
