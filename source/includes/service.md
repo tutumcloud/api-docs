@@ -116,7 +116,8 @@
   "sequential_deployment": false, 
   "started_datetime": "Mon, 13 Oct 2014 11:01:43 +0000", 
   "state": "Partly running", 
-  "stopped_datetime": null, 
+  "stack": "/api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/",
+  "stopped_datetime": null,
   "stopped_num_containers": 0, 
   "tags": [
         {"name": "tag_one"},
@@ -151,6 +152,7 @@ target_num_containers | The requested number of containers to deploy for the ser
 current_num_containers | The actual number of containers deployed for the service
 running_num_containers | The actual number of containers deployed for the service in `Running` state
 stopped_num_containers | The actual number of containers deployed for the service in `Stopped` state
+stack | Resource URIs of the stack that the service belongs to
 containers | List of resource URIs of the containers launched as part of the service
 container_ports | List of ports to be published on the containers of this service (see table `Service Port attributes` below)
 container_envvars | List of user-defined environment variables to set on the containers of the service, which will override the image environment variables (see table `Service Environment Variable attributes` below)
