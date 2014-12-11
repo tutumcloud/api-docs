@@ -250,8 +250,8 @@ privileged | Whether the container has Docker's `privileged` flag set or not (se
 
 Attribute | Description
 --------- | -----------
-host_path | The host folder of the volume
-container_path | The container folder where the volume is mounted
+host_path | The host path of the volume
+container_path | The container path where the volume is mounted
 rewritable | `true` is the volume has writable permissions
 volume | The resource URI of the volume
 
