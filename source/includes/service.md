@@ -17,13 +17,19 @@
         "host_path": null,
         "container_path": "/tmp",
         "rewritable": true,
-        "volume_group": "/api/v1/volumegroup/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a173/"
+        "volumes_from": null
     },
     {
         "host_path": "/etc",
         "container_path": "/etc",
         "rewritable": true,
-        "volume_group": null
+        "volumes_from": null
+    },
+    {
+        "host_path": null,
+        "container_path": null,
+        "rewritable": true,
+        "volumes_from": "/api/v1/service/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a179/"
     }
   ],
   "container_envvars": [
@@ -114,14 +120,14 @@
   "state": "Partly running", 
   "stopped_datetime": null, 
   "stopped_num_containers": 0, 
-  "target_num_containers": 2, 
-  "unique_name": "wordpress-stackable", 
-  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b",
   "tags": [
         {"name": "tag_one"},
         {"name": "tag-two"},
         {"name": "tagthree3"}
-  ]
+  ],
+  "target_num_containers": 2,
+  "unique_name": "wordpress-stackable", 
+  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b"
 }
 ```
 
@@ -171,10 +177,10 @@ tags | List of tags to be used to deploy the service (see [Tags](https://support
 
 Attribute | Description
 --------- | -----------
-host_path | The host folder of the volume
-container_path | The container folder where the volume is mounted
+host_path | The host path of the volume
+container_path | The container path where the volume is mounted
 rewritable | `true` is the volume has writable permissions
-volume_group | The resource URI of the volume group
+volumes_from | The resource URI of the service
 
 
 ### Service Port attributes
@@ -298,12 +304,23 @@ entrypoint | (optional) The command prefix used to start the containers of this 
 container_ports | (optional) An array of objects with port information to be published in the containers for this service, which will be added to the image port information, i.e. `[{"protocol": "tcp", "inner_port": 80, "outer_port": 80}]` (default: `[]`) (See table `Service Port attributes` below)
 container_envvars | (optional) An array of objects with environment variables to be added in the service containers on launch (overriding any image-defined environment variables), i.e. `[{"key": "DB_PASSWORD", "value": "mypass"}]` (default: `[]`) (See table `Service Environment Variable attributes` below)
 linked_to_service | (optional) An array of service resource URIs to link this service to, including the link name, i.e. `[{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]` (default: `[]`) (See table `Related services attributes` below)
+bindings | (optional) An array of bindings this service hast to mount, i.e. `[{"volumes_from": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "rewritable": true}]` (default: `[]`) (See table `Related bindings attributes` below)
 autorestart | (optional) Whether the containers for this service should be restarted if they stop, i.e. `ALWAYS` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | (optional) Whether the containers should be terminated if they stop, i.e. `OFF` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
 sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`) (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
 roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (default: `[]`, possible values: `global`) (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 privileged | (optional) Whether to start the containers with Docker's `privileged` flag set or not, i.e. `false` (default: `false`) (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 tags | (optional) A list of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
+
+
+### Related bindings attributes
+
+Attribute | Description
+--------- | -----------
+host_path | (optional) The host path of the volume
+container_path | (required if `volumes_from` is omitted) The container path where the volume is mounted
+rewritable | (optional) `true` is the volume has writable permissions (default: `true`)
+volumes_from | (required if `container_path` is omitted) The resource URI of the service
 
 
 ### Service Port attributes
