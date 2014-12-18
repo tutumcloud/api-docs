@@ -65,19 +65,19 @@
         },
         {
             "key": "DB_1_PORT",
-            "value": "tcp://mysql-1.2686cf70-admin.node.staging.tutum.io:49153"
+            "value": "tcp://172.16.0.3:3306"
         },
         {
             "key": "DB_1_PORT_3306_TCP",
-            "value": "tcp://mysql-1.2686cf70-admin.node.staging.tutum.io:49153"
+            "value": "tcp://172.16.0.3:3306"
         },
         {
             "key": "DB_1_PORT_3306_TCP_ADDR",
-            "value": "mysql-1.2686cf70-admin.node.staging.tutum.io"
+            "value": "172.16.0.3"
         },
         {
             "key": "DB_1_PORT_3306_TCP_PORT",
-            "value": "49153"
+            "value": "3306"
         },
         {
             "key": "DB_1_PORT_3306_TCP_PROTO",
@@ -121,19 +121,19 @@
         },
         {
             "key": "DB_PORT",
-            "value": "tcp://mysql-1.2686cf70-admin.node.staging.tutum.io:49153"
+            "value": "tcp://172.16.0.3:3306"
         },
         {
             "key": "DB_PORT_3306_TCP",
-            "value": "tcp://mysql-1.2686cf70-admin.node.staging.tutum.io:49153"
+            "value": "tcp://172.16.0.3:3306"
         },
         {
             "key": "DB_PORT_3306_TCP_ADDR",
-            "value": "mysql-1.2686cf70-admin.node.staging.tutum.io"
+            "value": "172.16.0.3"
         },
         {
             "key": "DB_PORT_3306_TCP_PORT",
-            "value": "49153"
+            "value": "3306"
         },
         {
             "key": "DB_PORT_3306_TCP_PROTO",
@@ -163,6 +163,16 @@
     "exit_code_msg": null,
     "image_name": "tutum/wordpress-stackable:latest",
     "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
+    "linked_to_container": [
+    	{
+    		"endpoints": {
+    			"3306/tcp": "tcp://172.16.0.3:3306"
+    		},
+    		"from_container": "/api/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
+    		"name": "DB_1",
+    		"to_container": "/api/v1/container/ba434e1e-1234-411c-8613-e15146633640/"
+    	}
+    ],
     "link_variables": {
         "WORDPRESS_STACKABLE_1_ENV_DB_HOST": "**LinkMe**",
         "WORDPRESS_STACKABLE_1_ENV_DB_NAME": "wordpress",
@@ -172,10 +182,10 @@
         "WORDPRESS_STACKABLE_1_ENV_DEBIAN_FRONTEND": "noninteractive",
         "WORDPRESS_STACKABLE_1_ENV_HOME": "/",
         "WORDPRESS_STACKABLE_1_ENV_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-        "WORDPRESS_STACKABLE_1_PORT": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
-        "WORDPRESS_STACKABLE_1_PORT_80_TCP": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
-        "WORDPRESS_STACKABLE_1_PORT_80_TCP_ADDR": "wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io",
-        "WORDPRESS_STACKABLE_1_PORT_80_TCP_PORT": "49153",
+        "WORDPRESS_STACKABLE_1_PORT": "tcp://172.16.0.2:80",
+        "WORDPRESS_STACKABLE_1_PORT_80_TCP": "tcp://172.16.0.2:80",
+        "WORDPRESS_STACKABLE_1_PORT_80_TCP_ADDR": "172.16.0.2",
+        "WORDPRESS_STACKABLE_1_PORT_80_TCP_PORT": "80",
         "WORDPRESS_STACKABLE_1_PORT_80_TCP_PROTO": "tcp",
         "WORDPRESS_STACKABLE_ENV_DB_HOST": "**LinkMe**",
         "WORDPRESS_STACKABLE_ENV_DB_NAME": "wordpress",
@@ -185,10 +195,10 @@
         "WORDPRESS_STACKABLE_ENV_DEBIAN_FRONTEND": "noninteractive",
         "WORDPRESS_STACKABLE_ENV_HOME": "/",
         "WORDPRESS_STACKABLE_ENV_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-        "WORDPRESS_STACKABLE_PORT": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
-        "WORDPRESS_STACKABLE_PORT_80_TCP": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
-        "WORDPRESS_STACKABLE_PORT_80_TCP_ADDR": "wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io",
-        "WORDPRESS_STACKABLE_PORT_80_TCP_PORT": "49153",
+        "WORDPRESS_STACKABLE_PORT": "tcp://172.16.0.2:80",
+        "WORDPRESS_STACKABLE_PORT_80_TCP": "tcp://172.16.0.2:80",
+        "WORDPRESS_STACKABLE_PORT_80_TCP_ADDR": "172.16.0.2",
+        "WORDPRESS_STACKABLE_PORT_80_TCP_PORT": "80",
         "WORDPRESS_STACKABLE_PORT_80_TCP_PROTO": "tcp"
     },
     "memory": 1024,
@@ -219,7 +229,7 @@ uuid | A unique identifier for the container generated automatically on creation
 resource_uri | A unique API endpoint that represents the container
 image_name | The Docker image name and tag of the container
 image_tag | Resource URI of the image (including tag) of the container
-bindings | A list of volume bindings that the container has mounted (see table `Container binding attributes` below)
+bindings | A list of volume bindings that the container has mounted (see table `Container Binding attributes` below)
 name | A user provided name for the container (inherited from the service)
 unique_name | A unique name automatically assigned based on the user provided name
 node | The resource URI of the node where this container is running
@@ -240,18 +250,20 @@ cpu_shares | The relative CPU priority of the container (see [Runtime Constraint
 memory | The memory limit of the container in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 autorestart | Whether to restart the container automatically if it stops (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the container automatically if it stops (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
-roles | List of Tutum roles asigned to this conatiner (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
+roles | List of Tutum roles asigned to this container (see [API roles](https://support.tutum.co/support/solutions/articles/5000524639) for more information)
 actions | List of resource URIs of the `Action` objects that apply to the container
+linked_to_container | List of IP addresses of the linked containers (see table `Container Link attributes` below and [Service links](https://support.tutum.co/support/solutions/articles/5000012181) for more information)
+)
 link_variables | List of environment variables that would be exposed in any container that is linked to this one
 privileged | Whether the container has Docker's `privileged` flag set or not (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 
 
-### Container binding attributes
+### Container Binding attributes
 
 Attribute | Description
 --------- | -----------
-host_path | The host folder of the volume
-container_path | The container folder where the volume is mounted
+host_path | The host path of the volume
+container_path | The container path where the volume is mounted
 rewritable | `true` is the volume has writable permissions
 volume | The resource URI of the volume
 
@@ -277,7 +289,7 @@ key | The name of the environment variable
 value | The value of the environment variable
 
 
-### Container states
+### Container States
 
 State | Description
 ----- | -----------
@@ -288,6 +300,16 @@ Stopping | The container is being stopped. No actions allowed in this state.
 Stopped | The container is stopped. Possible actions in this state: `start`, `terminate`.
 Terminating | The container is being deleted. No actions allowed in this state.
 Terminated | The container has been deleted. No actions allowed in this state.
+
+
+### Container Link attributes
+
+Attribute | Description
+--------- | -----------
+name | The name given to the link
+from_container | The resource URI of the "client" container
+to_container | The resource URI of the "server" container being linked
+endpoints | A dictionary with the endpoints (protocol, IP and port) to be used to reach each of the "server" container exposed ports
 
 
 ## List all containers
