@@ -61,9 +61,9 @@
     "WORDPRESS_STACKABLE_1_ENV_DEBIAN_FRONTEND": "noninteractive",
     "WORDPRESS_STACKABLE_1_ENV_HOME": "/",
     "WORDPRESS_STACKABLE_1_ENV_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-    "WORDPRESS_STACKABLE_1_PORT": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
-    "WORDPRESS_STACKABLE_1_PORT_80_TCP": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
-    "WORDPRESS_STACKABLE_1_PORT_80_TCP_ADDR": "wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io",
+    "WORDPRESS_STACKABLE_1_PORT": "tcp://wordpress-stackable-1.admin.cont.tutum.io:49153",
+    "WORDPRESS_STACKABLE_1_PORT_80_TCP": "tcp://wordpress-stackable-1.admin.cont.tutum.io:49153",
+    "WORDPRESS_STACKABLE_1_PORT_80_TCP_ADDR": "wordpress-stackable-1.admin.cont.tutum.io",
     "WORDPRESS_STACKABLE_1_PORT_80_TCP_PORT": "49153",
     "WORDPRESS_STACKABLE_1_PORT_80_TCP_PROTO": "tcp",
     "WORDPRESS_STACKABLE_2_ENV_DB_HOST": "**LinkMe**",
@@ -74,9 +74,9 @@
     "WORDPRESS_STACKABLE_2_ENV_DEBIAN_FRONTEND": "noninteractive",
     "WORDPRESS_STACKABLE_2_ENV_HOME": "/",
     "WORDPRESS_STACKABLE_2_ENV_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-    "WORDPRESS_STACKABLE_2_PORT": "tcp://wordpress-stackable-2.2686cf70-admin.node.staging.tutum.io:49154",
-    "WORDPRESS_STACKABLE_2_PORT_80_TCP": "tcp://wordpress-stackable-2.2686cf70-admin.node.staging.tutum.io:49154",
-    "WORDPRESS_STACKABLE_2_PORT_80_TCP_ADDR": "wordpress-stackable-2.2686cf70-admin.node.staging.tutum.io",
+    "WORDPRESS_STACKABLE_2_PORT": "tcp://wordpress-stackable-2.admin.cont.tutum.io:49154",
+    "WORDPRESS_STACKABLE_2_PORT_80_TCP": "tcp://wordpress-stackable-2.admin.cont.tutum.io:49154",
+    "WORDPRESS_STACKABLE_2_PORT_80_TCP_ADDR": "wordpress-stackable-2.admin.cont.tutum.io",
     "WORDPRESS_STACKABLE_2_PORT_80_TCP_PORT": "49154",
     "WORDPRESS_STACKABLE_2_PORT_80_TCP_PROTO": "tcp",
     "WORDPRESS_STACKABLE_ENV_DB_HOST": "**LinkMe**",
@@ -87,9 +87,9 @@
     "WORDPRESS_STACKABLE_ENV_DEBIAN_FRONTEND": "noninteractive",
     "WORDPRESS_STACKABLE_ENV_HOME": "/",
     "WORDPRESS_STACKABLE_ENV_PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-    "WORDPRESS_STACKABLE_PORT": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
-    "WORDPRESS_STACKABLE_PORT_80_TCP": "tcp://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153",
-    "WORDPRESS_STACKABLE_PORT_80_TCP_ADDR": "wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io",
+    "WORDPRESS_STACKABLE_PORT": "tcp://wordpress-stackable-1.admin.cont.tutum.io:49153",
+    "WORDPRESS_STACKABLE_PORT_80_TCP": "tcp://wordpress-stackable-1.admin.cont.tutum.io:49153",
+    "WORDPRESS_STACKABLE_PORT_80_TCP_ADDR": "wordpress-stackable-1.admin.cont.tutum.io",
     "WORDPRESS_STACKABLE_PORT_80_TCP_PORT": "49153",
     "WORDPRESS_STACKABLE_PORT_80_TCP_PROTO": "tcp",
     "WORDPRESS_STACKABLE_TUTUM_API_URL": "https://app-test.tutum.co/api/v1/service/adeebc1b-1b81-4af0-b8f2-cefffc69d7fb/"
@@ -105,6 +105,7 @@
   "memory": 2048, 
   "name": "wordpress-stackable", 
   "privileged": false,
+  "public_dns": "wordpress-stackable.admin.svc.tutum.io",
   "resource_uri": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/", 
   "roles": ["global"], 
   "run_command": "/run-wordpress.sh", 
@@ -138,6 +139,7 @@ image_name | The Docker image name and tag used for the service containers
 image_tag | Resource URI of the image (including tag) used for the service containers
 name | A user provided name for the service. This name will be inherited by the service containers and will be used in endpoint URLs, environment variable names, etc.
 unique_name | A unique name automatically assigned based on the user provided name to be used in the endpoint URLs, environment variable names, etc.
+public_dns | An external FQDN that resolves to all IPs of the nodes where the service containers are running on (as an `A` record with multiple IP entries which will be used by clients in a [round-robin fashion](http://en.wikipedia.org/wiki/Round-robin_DNS)). If the service is not publishing any ports, this FQDN will fail to resolve.
 state | The state of the service (see table `Service states` below)
 deployed_datetime | The date and time of the last deployment of the service (if applicable, `null` otherwise)
 started_datetime | The date and time of the last `start` operation on the service (if applicable, `null` otherwise)

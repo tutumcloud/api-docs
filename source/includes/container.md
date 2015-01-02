@@ -146,7 +146,7 @@
     ],
     "container_ports": [
         {
-            "endpoint_uri": "http://wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io:49153/",
+            "endpoint_uri": "http://wordpress-stackable-1.admin.cont.tutum.io:49153/",
             "inner_port": 80,
             "outer_port": 49153,
             "port_name": "http",
@@ -205,7 +205,7 @@
     "name": "wordpress-stackable",
     "node": "/api/v1/node/9691c44e-3155-4ca2-958d-c9571aac0a14/",
     "privileged": false,
-    "public_dns": "wordpress-stackable-1.9691c44e-admin.node.staging.tutum.io",
+    "public_dns": "wordpress-stackable-1.admin.cont.tutum.io",
     "resource_uri": "/api/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
     "roles": ["global"],
     "run_command": "/run-wordpress.sh",
