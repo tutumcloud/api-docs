@@ -6,12 +6,6 @@
 
 ```json
 {
-    "actions": [
-        "/api/v1/action/61a29874-9134-48f9-b460-f37d4bec4826/",
-        "/api/v1/action/c9f69056-5c79-432c-8265-f0e7e48a3a82/",
-        "/api/v1/action/cfe03be8-ffbf-4ff2-bb1f-86a7d8925616/",
-        "/api/v1/action/4a726c7e-7e6a-409e-8e07-30bdbb03f96e/"
-    ],
     "current_num_nodes": 1,
     "deployed_datetime": "Tue, 16 Sep 2014 17:01:15 +0000",
     "destroyed_datetime": null,
@@ -44,7 +38,6 @@ uuid | A unique identifier for the node cluster generated automatically on creat
 resource_uri | A unique API endpoint that represents the node cluster
 name | A user provided name for the node cluster
 state | The state of the node cluster. See the below table for a list of possible states.
-actions | A list of resource URIs of the `Action` objects applicable to the node cluster
 node_type | The resource URI of the node type used for the node cluster
 nodes | A list of resource URIs of the `Node` objects on the node cluster
 region | The resource URI of the `Region` object where the node cluster is deployed
