@@ -6,14 +6,6 @@
 
 ```json
 {
-    "actions": [
-        "/api/v1/action/efa367b6-3586-4701-a307-bffca19622a9/",
-        "/api/v1/action/726b5cf3-e3a9-4745-9ed0-f09ddfcb59a4/",
-        "/api/v1/action/a0707bbb-aa66-4317-ac37-c9a7cba965c3/",
-        "/api/v1/action/48e356c2-3507-430a-b1ac-b96e3a25000d/",
-        "/api/v1/action/af29a1ff-027e-43e7-95d5-62bdec60cd20/",
-        "/api/v1/action/c26ff306-8ae8-43f4-9a31-7bc08a9d5562/"
-    ],
     "autodestroy": "OFF",
     "autorestart": "OFF",
     "bindings": [
@@ -250,10 +242,8 @@ cpu_shares | The relative CPU priority of the container (see [Runtime Constraint
 memory | The memory limit of the container in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 autorestart | Whether to restart the container automatically if it stops (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the container automatically if it stops (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
-roles | List of Tutum roles asigned to this container (see [API roles](https://support.tutum.co/support/solutions/articles/5000524639) for more information)
-actions | List of resource URIs of the `Action` objects that apply to the container
+roles | List of Tutum roles asigned to this container (see [API roles](https://support.tutum.co/support/solutions/articles/5000524639) for more information))
 linked_to_container | List of IP addresses of the linked containers (see table `Container Link attributes` below and [Service links](https://support.tutum.co/support/solutions/articles/5000012181) for more information)
-)
 link_variables | List of environment variables that would be exposed in any container that is linked to this one
 privileged | Whether the container has Docker's `privileged` flag set or not (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 

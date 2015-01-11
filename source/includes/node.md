@@ -6,11 +6,6 @@
 
 ```json
 {
-	"actions": [
-		"/api/v1/action/6ed5716b-9bcc-4911-9688-bc7e36988a92/",
-		"/api/v1/action/880f0c59-d8b5-4c5d-8563-35627b6bfc65/",
-		"/api/v1/action/dac67186-813f-4fc9-984a-e57ac969b5d8/"
-	],
 	"deployed_datetime": "Tue, 16 Sep 2014 17:01:15 +0000",
 	"destroyed_datetime": null,
 	"docker_execdriver": "native-0.2",
@@ -42,7 +37,6 @@ uuid | A unique identifier for the node generated automatically on creation
 resource_uri | A unique API endpoint that represents the node
 external_fqdn | An automatically generated FQDN for the node. Containers deployed on this node will inherit this FQDN.
 state | The state of the node. See the below table for a list of possible states.
-actions | A list of resource URIs of the `Action` objects applicable to the node
 node_cluster | The resouce URI of the node cluster to which this node belongs to (if applicable)
 node_type | The resource URI of the node type used for the node
 region | The resource URI of the region where the node is deployed

@@ -6,11 +6,7 @@
 
 ```json
 {
-  "actions": [
-    "/api/v1/action/ee921c03-0f52-438f-8b7d-7331df2a9c18/", 
-    "/api/v1/action/ed4324c3-c3a3-4dad-a780-fc11ad55975d/"
-  ], 
-  "autodestroy": "OFF", 
+  "autodestroy": "OFF",
   "autorestart": "ON_FAILURE",
   "bindings": [
     {
@@ -163,7 +159,6 @@ bindings | A list of volume bindings that the service has mounted (see table `Se
 autorestart | Whether to restart the containers of the service automatically if they stop (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the containers of the service automatically if they stop (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
 roles | List of Tutum roles asigned to this service (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
-actions | List of resource URIs of the `Action` objects that apply to the service
 link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
 privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 tags | List of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
