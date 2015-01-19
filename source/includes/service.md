@@ -529,7 +529,7 @@ Accept: application/json
 tutum service redeploy 7eaf7fff
 ```
 
-Redeploys all containers in the service with the current service configuration. It uses the latest version of the image tag configured.
+Redeploys all containers in the service with the current service configuration.
 
 ### HTTP Request
 
