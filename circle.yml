@@ -8,4 +8,9 @@ checkout:
     - cp -r slate/lib slate/config.rb slate/Rakefile .
 test:
   override:
-    - docker build -t sut .
+    - docker build -t apidocs .
+deployment:
+  master:
+    branch: master
+    commands:
+      - docker run -it -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY apidocs publish.sh
