@@ -57,7 +57,7 @@
   "destroyed_datetime": null, 
   "entrypoint": "", 
   "image_name": "tutum/wordpress-stackable:latest", 
-  "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/", 
+  "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
   "link_variables": {
     "WORDPRESS_STACKABLE_1_ENV_DB_HOST": "**LinkMe**",
     "WORDPRESS_STACKABLE_1_ENV_DB_NAME": "wordpress",
@@ -433,7 +433,13 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"target_num_containers": 3, "tags": [{"name": "tag-1"}]}
+{"autorestart": "ON_FAILURE", "autodestroy": "OFF", "container_envvars": [{"key": "DB_PASSWORD", "value": "mypass"}],
+"container_ports": [{"protocol": "tcp", "inner_port": 80, "outer_port": 80}], "cpu_shares": 512, 
+"entrypoint": "/usr/sbin/sshd", "image": "tutum/hello-world", 
+"linked_to_service": [{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}], 
+"memory": 2048, "privileged": True, "roles": ["global"], "run_command": "/run.sh", "sequential_deployment": False,
+"tags": [{"name": "tag-1"}], "target_num_containers": 3}
+
 ```
 
 ```shell
@@ -459,8 +465,21 @@ uuid | The UUID of the service to update
 
 Parameter | Description
 --------- | -----------
-target_num_containers | (optional) The number of containers to scale this service to
+autorestart | (optional) Whether the containers for this service should be restarted if they stop, i.e. `ALWAYS` (possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
+autodestroy | (optional) Whether the containers should be terminated if they stop, i.e. `OFF` (possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
+container_envvars | (optional) An array of objects with environment variables to be added in the service containers on launch (overriding any image-defined environment variables), i.e. `[{"key": "DB_PASSWORD", "value": "mypass"}]` (See table `Service Environment Variable attributes`)
+container_ports | (optional) An array of objects with port information to be published in the containers for this service, which will be added to the image port information, i.e. `[{"protocol": "tcp", "inner_port": 80, "outer_port": 80}]` (See table `Service Port attributes`)
+cpu_shares | (optional) The relative CPU priority of the containers the service describes (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+entrypoint | (optional) The command prefix used to start the containers of this service, overriding the value specified in the image, i.e. `/usr/sbin/sshd`
+image | (optional) The image used to deploy this service in docker format, i.e. `tutum/hello-world`, `tutum/ubuntu:5.6`. If no tag is indicated, it will be set to `latest` by default
+linked_to_service | (optional) An array of service resource URIs to link this service to, including the link name, i.e. `[{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]` (See table `Related services attributes` below)
+memory | (optional) The memory limit of the containers of the service in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+privileged | (optional) Whether to start the containers with Docker's `privileged` flag set or not, i.e. `false` (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (possible values: `global`) (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
+run_command | (optional) The command used to start the containers of this service, overriding the value specified in the image, i.e. `/run.sh`
+sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
 tags | (optional) List of new tags the service will have. This operation replaces the tag list
+target_num_containers | (optional) The number of containers to scale this service to
 
 
 ## Start a service
