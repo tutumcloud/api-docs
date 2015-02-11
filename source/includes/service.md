@@ -124,7 +124,7 @@
         {"name": "tagthree3"}
   ],
   "target_num_containers": 2,
-  "unique_name": "wordpress-stackable", 
+
   "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b"
 }
 ```
@@ -141,7 +141,6 @@ resource_uri | A unique API endpoint that represents the service
 image_name | The Docker image name and tag used for the service containers
 image_tag | Resource URI of the image (including tag) used for the service containers
 name | A user provided name for the service. This name will be inherited by the service containers and will be used in endpoint URLs, environment variable names, etc.
-unique_name | A unique name automatically assigned based on the user provided name to be used in the endpoint URLs, environment variable names, etc.
 public_dns | An external FQDN that resolves to all IPs of the nodes where the service containers are running on (as an `A` record with multiple IP entries which will be used by clients in a [round-robin fashion](http://en.wikipedia.org/wiki/Round-robin_DNS)). If the service is not publishing any ports, this FQDN will fail to resolve.
 state | The state of the service (see table `Service states` below)
 deployed_datetime | The date and time of the last deployment of the service (if applicable, `null` otherwise)
@@ -267,7 +266,6 @@ Parameter | Description
 --------- | ----------- 
 state | Filter by state. Possible values: `Init`, `Starting`, `Running`, `Partly running`, `Scaling`, `Redeploying`, `Stopping`, `Stopped`, `Terminating`, `Terminated`, `Not running`
 name | Filter by service name
-unique_name | Filter by unique name
 
 
 
