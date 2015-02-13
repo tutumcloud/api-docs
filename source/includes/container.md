@@ -205,7 +205,6 @@
     "started_datetime": "Thu, 16 Oct 2014 12:04:08 +0000",
     "state": "Running",
     "stopped_datetime": null,
-    "unique_name": "wordpress-stackable-1",
     "uuid": "c1dd4e1e-1356-411c-8613-e15146633640"
 }
 ```
@@ -223,7 +222,6 @@ image_name | The Docker image name and tag of the container
 image_tag | Resource URI of the image (including tag) of the container
 bindings | A list of volume bindings that the container has mounted (see table `Container Binding attributes` below)
 name | A user provided name for the container (inherited from the service)
-unique_name | A unique name automatically assigned based on the user provided name
 node | The resource URI of the node where this container is running
 service | The resource URI of the service which this container is part of
 public_dns | The external FQDN of the container
@@ -333,7 +331,6 @@ Parameter | Description
 --------- | ----------- 
 state | Filter by state. Possible values: `Init`, `Starting`, `Running`, `Stopping`, `Stopped`, `Terminating`, `Terminated`
 name | Filter by container name
-unique_name | Filter by unique name
 
 
 
