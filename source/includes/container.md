@@ -196,6 +196,7 @@
     "memory": 1024,
     "name": "wordpress-stackable",
     "node": "/api/v1/node/9691c44e-3155-4ca2-958d-c9571aac0a14/",
+    "private_ip": "10.7.0.1",
     "privileged": false,
     "public_dns": "wordpress-stackable-1.admin.cont.tutum.io",
     "resource_uri": "/api/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
@@ -244,6 +245,7 @@ roles | List of Tutum roles asigned to this container (see [API roles](https://s
 linked_to_container | List of IP addresses of the linked containers (see table `Container Link attributes` below and [Service links](https://support.tutum.co/support/solutions/articles/5000012181) for more information)
 link_variables | List of environment variables that would be exposed in any container that is linked to this one
 privileged | Whether the container has Docker's `privileged` flag set or not (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+private_ip | IP address of the container on the overlay network. This IP will be reachable from any other container.
 
 
 ### Container Binding attributes
