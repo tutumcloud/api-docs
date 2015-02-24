@@ -159,6 +159,50 @@ services | (optional) List of services belonging to the stack. Each service acce
 
 
 
+## Stop a stack
+
+```http
+POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/stop/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+Stops the services in the stack.
+
+### HTTP Request
+
+`POST /api/v1/stack/(uuid)/stop/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ----------- 
+uuid | The UUID of the stack to stop
+
+
+## Start a stack
+
+```http
+POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/start/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+Starts the services in the stack.
+
+### HTTP Request
+
+`POST /api/v1/stack/(uuid)/start/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the stack to start
+
+
 ## Redeploy a stack
 
 ```http
@@ -177,7 +221,7 @@ Redeploys the services in the stack in order to match the current stack configur
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the stack to redeploy
 
 
