@@ -17,6 +17,7 @@ includes:
   - nodecluster
   - node
   - tokens
+  - stack
   - service
   - container
   - volumegroup
