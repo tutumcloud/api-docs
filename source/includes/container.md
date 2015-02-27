@@ -206,6 +206,7 @@
     "started_datetime": "Thu, 16 Oct 2014 12:04:08 +0000",
     "state": "Running",
     "stopped_datetime": null,
+    "synchronized": true,
     "uuid": "c1dd4e1e-1356-411c-8613-e15146633640"
 }
 ```
@@ -227,6 +228,7 @@ node | The resource URI of the node where this container is running
 service | The resource URI of the service which this container is part of
 public_dns | The external FQDN of the container
 state | The state of the container (see table `Container states` below)
+synchronized | Flag indicating if the container is synchronized with the current service definition.
 exit_code | The numeric exit code of the container (if applicable, `null` otherwise)
 exit_code_msg | A string representation of the exit code of the container (if applicable, `null` otherwise)
 deployed_datetime | The date and time of the last deployment of the container (if applicable, `null` otherwise)

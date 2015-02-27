@@ -120,6 +120,7 @@
   "stack": "/api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/",
   "stopped_datetime": null,
   "stopped_num_containers": 0, 
+  "synchronized": true,
   "tags": [
         {"name": "tag_one"},
         {"name": "tag-two"},
@@ -144,6 +145,7 @@ image_tag | Resource URI of the image (including tag) used for the service conta
 name | A user provided name for the service. This name will be inherited by the service containers and will be used in endpoint URLs, environment variable names, etc.
 public_dns | An external FQDN that resolves to all IPs of the nodes where the service containers are running on (as an `A` record with multiple IP entries which will be used by clients in a [round-robin fashion](http://en.wikipedia.org/wiki/Round-robin_DNS)). If the service is not publishing any ports, this FQDN will fail to resolve.
 state | The state of the service (see table `Service states` below)
+synchronized | Flag indicating if the current service definition is synchronized with the current containers.
 deployed_datetime | The date and time of the last deployment of the service (if applicable, `null` otherwise)
 started_datetime | The date and time of the last `start` operation on the service (if applicable, `null` otherwise)
 stopped_datetime | The date and time of the last `stop` operation on the service (if applicable, `null` otherwise)
