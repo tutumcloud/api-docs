@@ -7,6 +7,7 @@
 ```json
 {
   "autodestroy": "OFF",
+  "autoredeploy": false,
   "autorestart": "ON_FAILURE",
   "bindings": [
     {
@@ -119,13 +120,13 @@
   "stack": "/api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/",
   "stopped_datetime": null,
   "stopped_num_containers": 0, 
+  "synchronized": true,
   "tags": [
         {"name": "tag_one"},
         {"name": "tag-two"},
         {"name": "tagthree3"}
   ],
   "target_num_containers": 2,
-
   "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b"
 }
 ```
@@ -144,6 +145,7 @@ image_tag | Resource URI of the image (including tag) used for the service conta
 name | A user provided name for the service. This name will be inherited by the service containers and will be used in endpoint URLs, environment variable names, etc.
 public_dns | An external FQDN that resolves to all IPs of the nodes where the service containers are running on (as an `A` record with multiple IP entries which will be used by clients in a [round-robin fashion](http://en.wikipedia.org/wiki/Round-robin_DNS)). If the service is not publishing any ports, this FQDN will fail to resolve.
 state | The state of the service (see table `Service states` below)
+synchronized | Flag indicating if the current service definition is synchronized with the current containers.
 deployed_datetime | The date and time of the last deployment of the service (if applicable, `null` otherwise)
 started_datetime | The date and time of the last `start` operation on the service (if applicable, `null` otherwise)
 stopped_datetime | The date and time of the last `stop` operation on the service (if applicable, `null` otherwise)
@@ -171,6 +173,7 @@ link_variables | List of environment variables that would be exposed in the cont
 privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 deployment_strategy | Container distribution among nodes (see table `Deployment strategies` below and [Deployment strategies](https://support.tutum.co/support/solutions/articles/5000520721) for more information)
 tags | List of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
+autoredeploy | Whether to redeploy the containers of the service when its image is updated in Tutum registry (see [Tutum's private registry](https://support.tutum.co/support/solutions/articles/5000012183-using-tutum-s-private-docker-image-registry) for more information)
 
 
 ### Service binding attributes
@@ -320,6 +323,7 @@ roles | (optional) A list of Tutum API roles to grant the service, i.e. `["globa
 privileged | (optional) Whether to start the containers with Docker's `privileged` flag set or not, i.e. `false` (default: `false`) (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 deployment_strategy | (optional) Container distribution among nodes (default: `EMPTIEST_NODE`, see table `Deployment strategies` above and [Deployment strategies](https://support.tutum.co/support/solutions/articles/5000520721) for more information)
 tags | (optional) A list of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
+autoredeploy | (optional) Whether to redeploy the containers of the service when its image is updated in Tutum registry (default: `false`) (see [Tutum's private registry](https://support.tutum.co/support/solutions/articles/5000012183-using-tutum-s-private-docker-image-registry) for more information)
 
 
 ### Related bindings attributes
@@ -447,7 +451,7 @@ Content-Type: application/json
 "entrypoint": "/usr/sbin/sshd", "image": "tutum/hello-world", 
 "linked_to_service": [{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}], 
 "memory": 2048, "privileged": True, "roles": ["global"], "run_command": "/run.sh", "sequential_deployment": False,
-"tags": [{"name": "tag-1"}], "target_num_containers": 3}
+"tags": [{"name": "tag-1"}], "target_num_containers": 3, "autoredeploy": False}
 
 ```
 
@@ -490,6 +494,7 @@ sequential_deployment | (optional) Whether the containers should be launched and
 tags | (optional) List of new tags the service will have. This operation replaces the tag list
 target_num_containers | (optional) The number of containers to scale this service to
 deployment_strategy | (optional) Container distribution among nodes. A service cannot be updated to or from a deployment strategy of `EVERY_NODE`. (See table `Deployment strategies` above and [Deployment strategies](https://support.tutum.co/support/solutions/articles/5000520721) for more information)
+autoredeploy | Whether to redeploy the containers of the service when its image is updated in Tutum registry (see [Tutum's private registry](https://support.tutum.co/support/solutions/articles/5000012183-using-tutum-s-private-docker-image-registry) for more information)
 
 
 ## Start a service

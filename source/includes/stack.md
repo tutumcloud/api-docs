@@ -15,11 +15,49 @@
   "name": "tutum-app",
   "resource_uri": "/api/v1/stack/7fe7ec85-58be-4904-81da-de2219098d7c/",
   "services": [
-    "/api/v1/service/cccd13e5-064d-449a-bf77-541986db5c4a/",
-    "/api/v1/service/d612c123-11a6-4e70-8582-585abe2c116b/",
-    "/api/v1/service/d5cf4613-99cb-4270-8413-5982acf37031/"
+    {
+      "autodestroy": "OFF",
+      "autorestart": "ON_FAILURE",
+      "bindings": [],
+      "container_envvars": [],
+      "container_ports": [],
+      "containers": [
+        "/api/v1/container/6f8ee454-9dc3-4387-80c3-57aac1be3cc6/",
+        "/api/v1/container/fdf9c116-7c08-4a60-b0ce-c54ca72c2f25/"
+      ],
+      "cpu_shares": 100,
+      "current_num_containers": 2,
+      "deployed_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
+      "deployment_strategy": "EMPTIEST_NODE",
+      "destroyed_datetime": null,
+      "entrypoint": "",
+      "image_name": "tutum/wordpress-stackable:latest",
+      "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
+      "link_variables": {},
+      "linked_from_service": [],
+      "linked_to_service": [],
+      "memory": 2048,
+      "name": "wordpress-stackable",
+      "privileged": false,
+      "public_dns": "wordpress-stackable.admin.svc.tutum.io",
+      "resource_uri": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
+      "roles": ["global"],
+      "run_command": "/run-wordpress.sh",
+      "running_num_containers": 1,
+      "sequential_deployment": false,
+      "started_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
+      "state": "Partly running",
+      "stack": "/api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/",
+      "stopped_datetime": null,
+      "stopped_num_containers": 0,
+      "synchronized": true,
+      "tags": [],
+      "target_num_containers": 2,
+      "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b"
+    }
   ],
   "state": "Running",
+  "synchronized": true,
   "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b"
 }
 ```
@@ -34,7 +72,8 @@ uuid | A unique identifier for the stack generated automatically on creation
 resource_uri | A unique API endpoint that represents the stack
 name | A user provided name for the stack.
 state | The state of the stack (see table `Stack states` below)
-services | List of resource URIs of the servicies belonging to the stack
+synchronized | Flag indicating if the current stack definition is synchronized with their services.
+services | List of servicies belonging to the stack (the full json of each service)
 actions | List of resource URIs of the `Action` objects that apply to the stack
 deployed_datetime | The date and time of the last deployment of the stack (if applicable, `null` otherwise)
 destroyed_datetime | The date and time of the `terminate` operation on the stack (if applicable, `null` otherwise)
@@ -212,7 +251,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
-Redeploys the services in the stack in order to match the current stack configuration.
+Redeploys all the services in the stack.
 
 ### HTTP Request
 
