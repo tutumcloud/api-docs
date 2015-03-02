@@ -42,11 +42,21 @@ Terminated | The volume has been deleted in the node.
 
 ## List all volumes
 
+```python
+import tutum
+
+volumes = tutum.Volume.list()
+```
+
 ```http
 GET /api/v1/volume/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum volume list
 ```
 
 Lists all volumes. Returns a list of `Volume` objects.
@@ -58,11 +68,21 @@ Lists all volumes. Returns a list of `Volume` objects.
 
 ## Get an existing volume
 
+```python
+import tutum
+
+volume = tutum.Volume.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+```
+
 ```http
 GET /api/v1/volume/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum volume inspect 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
 ```
 
 Get all the details of an specific volume

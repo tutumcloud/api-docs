@@ -44,11 +44,21 @@ Terminated | The volume group and its associated volumes have been deleted
 
 ## List all volume groups
 
+```python
+import tutum
+
+volumegroups = tutum.VolumeGroup.list()
+```
+
 ```http
 GET /api/v1/volumegroup/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum volumegroup list
 ```
 
 Lists all volume groups. Returns a list of `VolumeGroup` objects.
@@ -60,11 +70,21 @@ Lists all volume groups. Returns a list of `VolumeGroup` objects.
 
 ## Get an existing volume group
 
+```python
+import tutum
+
+volumegroup = tutum.VolumeGroup.inspect("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+```
+
 ```http
 GET /api/v1/volumegroup/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum volumegroup insepct 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
 ```
 
 Get all the details of an specific volume group
