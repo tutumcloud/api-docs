@@ -96,11 +96,21 @@ Terminated | The stack and all its services have been terminated. No actions all
 
 ## List all stacks
 
+```python
+import tutum
+
+stacks = tutum.Stack.list()
+```
+
 ```http
 GET /api/v1/stack/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum stack list
 ```
 
 Lists all current and recently terminated stacks. Returns a list of `Stack` objects.
@@ -118,6 +128,13 @@ name | Filter by stack name
 
 ## Create a new stack
 
+```python
+import tutum
+
+stack = tutum.Stack.create(name="my-new-stack", services=[{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}])
+stack.save()
+```
+
 ```http
 POST /api/v1/stack/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -126,6 +143,10 @@ Accept: application/json
 Content-Type: application/json
 
 {"name": "my-new-stack", "services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}
+```
+
+```shell
+tutum stack create --name hello-world -f tutum.yml
 ```
 
 Creates a new stack without deploying it.
@@ -145,11 +166,21 @@ services | (optional) List of services belonging to the stack. Each service acce
 
 ## Get an existing stack
 
+```python
+import tutum
+
+stack = tutum.stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
+```
+
 ```http
 GET /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum stack inspect 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Get all the details of an specific stack
@@ -167,6 +198,14 @@ uuid | The UUID of the stack to retrieve
 
 ## Update an existing stack
 
+```python
+import tutum
+
+stack = tutum.stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
+stack.services = {"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}
+stack.save()
+```
+
 ```http
 PATCH /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -175,6 +214,10 @@ Accept: application/json
 Content-Type: application/json
 
 {"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}
+```
+
+```shell
+tutum stack update -f tutum.yml 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Updates the details of every service in the stack.
@@ -200,11 +243,22 @@ services | (optional) List of services belonging to the stack. Each service acce
 
 ## Stop a stack
 
+```python
+import tutum
+
+stack = tutum.stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
+stack.stop()
+```
+
 ```http
 POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/stop/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum stack stop 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Stops the services in the stack.
@@ -222,11 +276,23 @@ uuid | The UUID of the stack to stop
 
 ## Start a stack
 
+```python
+import tutum
+
+stack = tutum.stack.fetch()
+stack.start()
+```
+
+
 ```http
 POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/start/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum stack start 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Starts the services in the stack.
@@ -244,11 +310,22 @@ uuid | The UUID of the stack to start
 
 ## Redeploy a stack
 
+```python
+import tutum
+
+stack = tutum.stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
+stack.redeploy()
+```
+
 ```http
 POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/redeploy/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum stack redeploy 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Redeploys all the services in the stack.
@@ -266,11 +343,22 @@ uuid | The UUID of the stack to redeploy
 
 ## Terminate a stack
 
+```python
+import tutum
+
+stack = tutum.stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
+stack.terminate()
+```
+
 ```http
 DELETE /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```
+tutum stack terminate 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Terminate all the services in a the stack and the stack itself.
