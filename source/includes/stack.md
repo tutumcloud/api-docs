@@ -169,7 +169,7 @@ services | (optional) List of services belonging to the stack. Each service acce
 ```python
 import tutum
 
-stack = tutum.stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
+stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
 ```
 
 ```http
@@ -201,7 +201,7 @@ uuid | The UUID of the stack to retrieve
 ```python
 import tutum
 
-stack = tutum.stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
+stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
 stack.services = {"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}
 stack.save()
 ```
@@ -246,7 +246,7 @@ services | (optional) List of services belonging to the stack. Each service acce
 ```python
 import tutum
 
-stack = tutum.stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
+stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
 stack.stop()
 ```
 
@@ -279,7 +279,7 @@ uuid | The UUID of the stack to stop
 ```python
 import tutum
 
-stack = tutum.stack.fetch()
+stack = tutum.Stack.fetch()
 stack.start()
 ```
 
@@ -313,7 +313,7 @@ uuid | The UUID of the stack to start
 ```python
 import tutum
 
-stack = tutum.stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
+stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
 stack.redeploy()
 ```
 
@@ -346,7 +346,7 @@ uuid | The UUID of the stack to redeploy
 ```python
 import tutum
 
-stack = tutum.stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
+stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
 stack.terminate()
 ```
 

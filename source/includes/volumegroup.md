@@ -84,7 +84,7 @@ Accept: application/json
 ```
 
 ```shell
-tutum volumegroup insepct 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
+tutum volumegroup inspect 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
 ```
 
 Get all the details of an specific volume group
