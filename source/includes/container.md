@@ -287,9 +287,9 @@ State | Description
 ----- | -----------
 Init | The container object has been created but hasn't being deployed yet. Possible actions in this state: `start`, `terminate`.
 Starting | The container is being deployed (from Init) or started (from Stopped). No actions allowed in this state.
-Running | The container is deployed and running. Possible actions in this state: `stop`, `terminate`.
+Running | The container is deployed and running. Possible actions in this state: `stop`, `redeploy`, `terminate`.
 Stopping | The container is being stopped. No actions allowed in this state.
-Stopped | The container is stopped. Possible actions in this state: `start`, `terminate`.
+Stopped | The container is stopped. Possible actions in this state: `start`, `redeploy`, `terminate`.
 Terminating | The container is being deleted. No actions allowed in this state.
 Terminated | The container has been deleted. No actions allowed in this state.
 
@@ -468,6 +468,40 @@ Stops a running container.
 Parameter | Description
 --------- | ----------- 
 uuid | The UUID of the container to stop
+
+
+
+## Redeploy a container
+
+```python
+import tutum
+
+container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+container.redeploy()
+```
+
+```http
+POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/redeploy/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+```shell
+tutum container redeploy 7eaf7fff
+```
+
+Redeploys a container.
+
+### HTTP Request
+
+`POST /api/v1/container/(uuid)/redeploy/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the container to redeploy
 
 
 
