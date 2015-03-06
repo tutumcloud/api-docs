@@ -83,7 +83,7 @@ destroyed_datetime | The date and time of the `terminate` operation on the stack
 
 State | Description
 ----- | -----------
-Init | The stack has been created and has no deployed services yet. Possible actions in this state: `deploy`, `terminate`.
+Not Running | The stack has been created and has no deployed services yet. Possible actions in this state: `start`, `terminate`.
 Starting | All services for the stack are either starting or already running. No actions allowed in this state.
 Running | All services for the service are deployed and running. Possible actions in this state: `redeploy`, `terminate`.
 Partly running | One or more services of the stack are deployed and running. Possible actions in this state: `redeploy`, `terminate`.
@@ -149,7 +149,7 @@ Content-Type: application/json
 tutum stack create --name hello-world -f tutum.yml
 ```
 
-Creates a new stack without deploying it.
+Creates a new stack without starting it.
 
 ### HTTP Request
 
