@@ -142,7 +142,26 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"name": "my-new-stack", "services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}
+{
+    "name": "my-new-stack",
+    "services": [
+        {
+            "name": "hello-word",
+            "image": "tutum/hello-world",
+            "target_num_containers": 2,
+            "linked_to_service": [
+                {
+                    "to_service": "database",
+                    "name": "DB"
+                }
+            ]
+        },
+        {
+            "name": "database",
+            "image": "tutum/mysql"
+        }
+    ]
+}
 ```
 
 ```shell
@@ -160,7 +179,7 @@ Creates a new stack without starting it.
 Parameter | Description
 --------- | ----------- 
 name | (required) A human-readable name for the stack, i.e. `my-hello-world-stack`
-services | (optional) List of services belonging to the stack. Each service accepts the same parameters as a [Create new service](#create-a-new-service) operation (default: `[]`)
+services | (optional) List of services belonging to the stack. Each service accepts the same parameters as a [Create new service](#create-a-new-service) operation (default: `[]`) plus the ability to refer "links" and "volumes-from" by the name of another service in the stack (see example).
 
 
 
@@ -213,7 +232,25 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}
+{
+    "services": [
+        {
+            "name": "hello-word",
+            "image": "tutum/hello-world",
+            "target_num_containers": 3,
+            "linked_to_service": [
+                {
+                    "to_service": "database",
+                    "name": "DB"
+                }
+            ]
+        },
+        {
+            "name": "database",
+            "image": "tutum/mysql"
+        }
+    ]
+}
 ```
 
 ```shell
@@ -237,7 +274,7 @@ uuid | The UUID of the stack to update
 
 Parameter | Description
 --------- | -----------
-services | (optional) List of services belonging to the stack. Each service accepts the same parameters as a [Update an existing service](#update-an-existing-service) operation (default: `[]`)
+services | (optional) List of services belonging to the stack. Each service accepts the same parameters as a [Update an existing service](#update-an-existing-service) operation (default: `[]`) plus the ability to refer "links" and "volumes-from" by the name of another service in the stack (see example).
 
 
 
