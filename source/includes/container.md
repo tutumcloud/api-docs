@@ -470,6 +470,39 @@ uuid | The UUID of the container to stop
 
 
 
+## Redeploy a container
+
+```python
+import tutum
+
+container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+container.redeploy()
+```
+
+```http
+POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+```shell
+tutum container redeploy 7eaf7fff
+```
+
+Redeploys a container.
+
+### HTTP Request
+
+`POST /api/v1/container/(uuid)/redeploy/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the container to redeploy
+
+
 ## Terminate a container
 
 ```python
