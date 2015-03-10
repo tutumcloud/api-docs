@@ -37,7 +37,8 @@
   ], 
   "container_ports": [
     {
-      "inner_port": 80, 
+      "endpoint_uri": "http://wordpress-stackable.admin.srv.tutum.io:80/",
+      "inner_port": 80,
       "outer_port": 80, 
       "port_name": "http", 
       "protocol": "tcp",
@@ -194,6 +195,7 @@ protocol | The protocol of the port, either `tcp` or `udp`
 inner_port | The published port number inside the container
 outer_port | The published port number in the node public network interface
 port_name | Name of the service associated to this port
+endpoint_uri | The URI of the service endpoint for this port
 published | Whether the port has been published in the host public network interface or not. Non-published ports can only be accessed via links.
 
 
