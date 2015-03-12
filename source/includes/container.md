@@ -285,8 +285,7 @@ value | The value of the environment variable
 
 State | Description
 ----- | -----------
-Init | The container object has been created but hasn't being deployed yet. Possible actions in this state: `start`, `terminate`.
-Starting | The container is being deployed (from Init) or started (from Stopped). No actions allowed in this state.
+Starting | The container is being deployed or started (from Stopped). No actions allowed in this state.
 Running | The container is deployed and running. Possible actions in this state: `stop`, `terminate`.
 Stopping | The container is being stopped. No actions allowed in this state.
 Stopped | The container is stopped. Possible actions in this state: `start`, `terminate`.
@@ -333,7 +332,7 @@ Lists all current and recently terminated containers. Returns a list of `Contain
 
 Parameter | Description
 --------- | ----------- 
-state | Filter by state. Possible values: `Init`, `Starting`, `Running`, `Stopping`, `Stopped`, `Terminating`, `Terminated`
+state | Filter by state. Possible values: `Starting`, `Running`, `Stopping`, `Stopped`, `Terminating`, `Terminated`
 name | Filter by container name
 
 
@@ -469,6 +468,39 @@ Parameter | Description
 --------- | ----------- 
 uuid | The UUID of the container to stop
 
+
+
+## Redeploy a container
+
+```python
+import tutum
+
+container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+container.redeploy()
+```
+
+```http
+POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+```shell
+tutum container redeploy 7eaf7fff
+```
+
+Redeploys a container.
+
+### HTTP Request
+
+`POST /api/v1/container/(uuid)/redeploy/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the container to redeploy
 
 
 ## Terminate a container

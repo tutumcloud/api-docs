@@ -83,7 +83,7 @@ destroyed_datetime | The date and time of the `terminate` operation on the stack
 
 State | Description
 ----- | -----------
-Init | The stack has been created and has no deployed services yet. Possible actions in this state: `deploy`, `terminate`.
+Not Running | The stack has been created and has no deployed services yet. Possible actions in this state: `start`, `terminate`.
 Starting | All services for the stack are either starting or already running. No actions allowed in this state.
 Running | All services for the service are deployed and running. Possible actions in this state: `redeploy`, `terminate`.
 Partly running | One or more services of the stack are deployed and running. Possible actions in this state: `redeploy`, `terminate`.
@@ -142,14 +142,33 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"name": "my-new-stack", "services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}
+{
+    "name": "my-new-stack",
+    "services": [
+        {
+            "name": "hello-word",
+            "image": "tutum/hello-world",
+            "target_num_containers": 2,
+            "linked_to_service": [
+                {
+                    "to_service": "database",
+                    "name": "DB"
+                }
+            ]
+        },
+        {
+            "name": "database",
+            "image": "tutum/mysql"
+        }
+    ]
+}
 ```
 
 ```shell
 tutum stack create --name hello-world -f tutum.yml
 ```
 
-Creates a new stack without deploying it.
+Creates a new stack without starting it.
 
 ### HTTP Request
 
@@ -160,7 +179,7 @@ Creates a new stack without deploying it.
 Parameter | Description
 --------- | ----------- 
 name | (required) A human-readable name for the stack, i.e. `my-hello-world-stack`
-services | (optional) List of services belonging to the stack. Each service accepts the same parameters as a [Create new service](#create-a-new-service) operation (default: `[]`)
+services | (optional) List of services belonging to the stack. Each service accepts the same parameters as a [Create new service](#create-a-new-service) operation (default: `[]`) plus the ability to refer "links" and "volumes-from" by the name of another service in the stack (see example).
 
 
 
@@ -213,7 +232,25 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}
+{
+    "services": [
+        {
+            "name": "hello-word",
+            "image": "tutum/hello-world",
+            "target_num_containers": 3,
+            "linked_to_service": [
+                {
+                    "to_service": "database",
+                    "name": "DB"
+                }
+            ]
+        },
+        {
+            "name": "database",
+            "image": "tutum/mysql"
+        }
+    ]
+}
 ```
 
 ```shell
@@ -237,7 +274,7 @@ uuid | The UUID of the stack to update
 
 Parameter | Description
 --------- | -----------
-services | (optional) List of services belonging to the stack. Each service accepts the same parameters as a [Update an existing service](#update-an-existing-service) operation (default: `[]`)
+services | (optional) List of services belonging to the stack. Each service accepts the same parameters as a [Update an existing service](#update-an-existing-service) operation (default: `[]`) plus the ability to refer "links" and "volumes-from" by the name of another service in the stack (see example).
 
 
 

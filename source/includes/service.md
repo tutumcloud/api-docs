@@ -37,7 +37,8 @@
   ], 
   "container_ports": [
     {
-      "inner_port": 80, 
+      "endpoint_uri": "http://wordpress-stackable.admin.srv.tutum.io:80/",
+      "inner_port": 80,
       "outer_port": 80, 
       "port_name": "http", 
       "protocol": "tcp",
@@ -194,6 +195,7 @@ protocol | The protocol of the port, either `tcp` or `udp`
 inner_port | The published port number inside the container
 outer_port | The published port number in the node public network interface
 port_name | Name of the service associated to this port
+endpoint_uri | The URI of the service endpoint for this port
 published | Whether the port has been published in the host public network interface or not. Non-published ports can only be accessed via links.
 
 
@@ -218,7 +220,7 @@ to_service | The resource URI of the target of the link
 
 State | Description
 ----- | -----------
-Init | The service has been created and has no deployed containers yet. Possible actions in this state: `start`, `terminate`.
+Not running | The service has been created and has no deployed containers yet. Possible actions in this state: `start`, `terminate`.
 Starting | All containers for the service are either starting or already running. No actions allowed in this state.
 Running | All containers for the service are deployed and running. Possible actions in this state: `stop`, `redeploy`, `terminate`.
 Partly running | One or more containers of the service are deployed and running. Possible actions in this state: `stop`, `redeploy`, `terminate`.
@@ -228,7 +230,6 @@ Stopping | All containers for the service are either stopping or already stopped
 Stopped | All containers for the service are stopped. Possible actions in this state: `start`, `redeploy`, `terminate`.
 Terminating | All containers for the service are either being terminated or already terminated. No actions allowed in this state.
 Terminated | The service and all its containers have been terminated. No actions allowed in this state.
-Not running | There are no containers to be deployed for this service. Possible actions in this state: `terminate`.
 
 
 ### Deployment strategies
@@ -269,7 +270,7 @@ Lists all current and recently terminated services. Returns a list of `Service` 
 
 Parameter | Description
 --------- | ----------- 
-state | Filter by state. Possible values: `Init`, `Starting`, `Running`, `Partly running`, `Scaling`, `Redeploying`, `Stopping`, `Stopped`, `Terminating`, `Terminated`, `Not running`
+state | Filter by state. Possible values: `Not running`, `Starting`, `Running`, `Partly running`, `Scaling`, `Redeploying`, `Stopping`, `Stopped`, `Terminating`, `Terminated`
 name | Filter by service name
 
 
@@ -297,7 +298,7 @@ Content-Type: application/json
 tutum service create -t 2 --name my-new-app tutum/hello-world
 ```
 
-Creates a new service without deploying it.
+Creates a new service without starting it.
 
 ### HTTP Request
 
