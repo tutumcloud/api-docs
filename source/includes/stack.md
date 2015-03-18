@@ -168,7 +168,7 @@ Content-Type: application/json
 tutum stack create --name hello-world -f tutum.yml
 ```
 
-Creates a new stack without starting it.
+Creates a new stack without starting it. Note that the JSON syntax is abstracted by both, the Tutum CLI and our UI, in order to use [Stack YAML files](https://support.tutum.co/support/solutions/articles/5000583471).
 
 ### HTTP Request
 
@@ -180,6 +180,29 @@ Parameter | Description
 --------- | ----------- 
 name | (required) A human-readable name for the stack, i.e. `my-hello-world-stack`
 services | (optional) List of services belonging to the stack. Each service accepts the same parameters as a [Create new service](#create-a-new-service) operation (default: `[]`) plus the ability to refer "links" and "volumes-from" by the name of another service in the stack (see example).
+
+
+
+## Export an existing stack
+
+```http
+GET /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/export/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+Get a JSON representation of the stack following the [Stack YAML representation](https://support.tutum.co/support/solutions/articles/5000583471).
+
+### HTTP Request
+
+`GET /api/v1/stack/(uuid)/export/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the stack to retrieve
 
 
 
@@ -213,6 +236,7 @@ Get all the details of an specific stack
 Parameter | Description
 --------- | ----------- 
 uuid | The UUID of the stack to retrieve
+
 
 
 ## Update an existing stack
