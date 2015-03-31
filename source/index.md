@@ -22,7 +22,6 @@ includes:
   - container
   - volumegroup
   - volume
-  - tags
   - webhooks
   - errors
 
