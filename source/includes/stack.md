@@ -418,7 +418,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
-```
+```shell
 tutum stack terminate 46aca402-2109-4a70-a378-760cfed43816
 ```
 
