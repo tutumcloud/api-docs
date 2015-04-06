@@ -31,9 +31,13 @@ search: true
 
 # Introduction
 
-Tutum currently offers an HTTP REST API and a WEBSOCKET STEAM API which is used by both the Web UI and the [CLI](https://github.com/tutumcloud/tutum-cli). In this document you will find all API operations currently supported in the platform and examples on how to execute them using our [Python SDK](https://github.com/tutumcloud/python-tutum).
+Tutum currently offers a **HTTP REST API** and a **Websocket Stream API** which are used by both the [Web UI](https://dashboard.tutum.co/) and the [CLI](https://github.com/tutumcloud/tutum-cli). In this document you will find all API operations currently supported in the platform and examples on how to execute them using our [Python SDK](https://github.com/tutumcloud/python-tutum).
 
 # Authentication
+
+In order to be able to make requests to the Tutum API, you should first obtain an ApiKey for your account. For this, log into Tutum, click on the menu on the upper right corner of the screen, select `Account info` and then select `Api Key`.
+
+## REST API
 
 ```python
 import tutum
@@ -42,24 +46,17 @@ tutum.apikey = "apikey"
 ```
 
 ```http
-GET /api_endpoint_here HTTP/1.1
+GET /api/v1/service/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
 ```shell
-tutum login
-Username:
-Password:
-Email:
+tutum login -u username -p apikey
 ```
 
 > Make sure to replace `username` with your username and `apikey` with your API key.
-
-In order to be able to make requests to the API, you should first obtain an ApiKey for your account. For this, log into Tutum, click on the menu on the upper right corner of the screen, select `Account info` and then select `Api Key`.
-
-### REST API
 
 The Tutum REST API is reachable through the following hostname:
 
@@ -73,16 +70,31 @@ HTTP responses are given in JSON format, so the following `Accept` header is req
 
 `Accept: application/json`
 
-### STREAM API
+## Stream API
 
-The Tutum STREAM API is reachable through the following hostnames:
+```python
+import websocket
+ws = websocket.WebSocketApp('wss://stream.tutum.co/v1/events?user={}&token={}'.format("username", "apikey"))
+```
+
+```http
+GET /v1/events?user=username&token=apikey HTTP/1.1
+Host: stream.tutum.co
+Connection: Upgrade
+Upgrade: websocket
+```
+
+```shell
+tutum login -u username -p apikey
+```
+
+> Make sure to replace `username` with your username and `apikey` with your API key.
+
+The Tutum Stream API is reachable through the following hostname:
 
 `wss://stream.tutum.co/`
 
-The stream api requires to have the endpoint added to the request and then add the user and token as query params to end up with a url like this:
+The Stream API requires authentication details to be passed as query parameters `user` and `token`:
 
 `wss://stream.tutum.co/v1/events?token=apikey&user=username`
-
-
-
 
