@@ -23,8 +23,8 @@ includes:
   - volumegroup
   - volume
   - webhooks
+  - tutum-events
   - errors
-  - streamapi
 
 search: true
 ---
@@ -59,7 +59,9 @@ Email:
 
 In order to be able to make requests to the API, you should first obtain an ApiKey for your account. For this, log into Tutum, click on the menu on the upper right corner of the screen, select `Account info` and then select `Api Key`.
 
-The Tutum HTTP API is reachable through the following hostname:
+### REST API
+
+The Tutum REST API is reachable through the following hostname:
 
 `https://dashboard.tutum.co/`
 
@@ -70,5 +72,17 @@ All requests should be sent to this endpoint with the following `Authorization` 
 HTTP responses are given in JSON format, so the following `Accept` header is required for every API call:
 
 `Accept: application/json`
+
+### STREAM API
+
+The Tutum STREAM API is reachable through the following hostnames:
+
+`wss://stream.tutum.co/`
+
+The stream api requires to have the endpoint added to the request and then add the user and token as query params to end up with a url like this:
+
+`wss://stream.tutum.co/v1/events?token=apikey&user=username`
+
+
 
 

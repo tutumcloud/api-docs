@@ -1,30 +1,4 @@
-# Stream API
-
-Every time an object is changed on Tutum, we push a notification to the Stream API, this way you can track the state of your objects in real time and react to its changes properly. In this section you will find the documentation on how to connect to the Stream API and the different available endpoints.
-
-Soon we will have endpoints for logs per container, docker events per node and docker exec to a particular container in the Stream API.
-
-## Open a web socket
-
-To connect to Tutum Stream API you need to open a websocket to `wss://stream.tutum.co/` plus the endpoint path with your API key as token and user name as parameter on the url. The end url would be `wss://stream.tutum.co/v1/events?token=apikey&user=username`, where the API key and the user are the same as the ones in the [Authentication](#authentication) section.
-
-```
-import websocket
-
-websocket.enableTrace(True)
-userPublicToken = 'apikey';
-username = 'username';
-
-ws = websocket.WebSocketApp('wss://stream.tutum.co/v1/events?token='
-	+ userPublicToken + '&user=' + username,
-	on_message = on_message,
-	on_error = on_error,
-	on_close = on_close)
-ws.on_open = on_open
-ws.run_forever()
-```
-
-## Tutum events
+# Tutum Events
 
 > Example event
 
@@ -36,6 +10,8 @@ ws.run_forever()
   "resource_uri":"/api/v1/action/49f0efe8-a704-4a10-b02f-f96344fabadd/"
 }
 ```
+
+__Available only on the stream api__
 
 ### API endpoint
 
@@ -51,10 +27,11 @@ Once you are connected to the stream endpoint, you need to have a listener to th
 
 Attribute | Description
 --------- | -----------
-Type | Type of object that was modify. For possible values check the [events types](#event-types).
-Action | Action type that was executed to the object. Posible values: `create`, `update` and `delete`.
-Parents | Parents of the object, it's useful to filter containers per service, stack or node. Services in a stack and nodes in a node cluster.
-Resource_uri | REST endpoint of the object so you can request all information of a object that you are interested in.
+type | Type of object that was modify. For possible values check the [events types](#event-types).
+action | Action type that was executed to the object. Posible values: `create`, `update` and `delete`.
+parents | Parents of the object, it's useful to filter containers per service, stack or node. Services in a stack and nodes in a node cluster.
+resource_uri | REST endpoint of the object so you can request all information of a object that you are interested in.
+state | The currect state of the object
 
 ### Events types
 
