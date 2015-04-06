@@ -24,13 +24,14 @@ includes:
   - volume
   - webhooks
   - errors
+  - streamapi
 
 search: true
 ---
 
 # Introduction
 
-Tutum currently offers an HTTP REST API which is used by both the Web UI and the [CLI](https://github.com/tutumcloud/tutum-cli). In this document you will find all API operations currently supported in the platform and examples on how to execute them using our [Python SDK](https://github.com/tutumcloud/python-tutum).
+Tutum currently offers an HTTP REST API and a WEBSOCKET STEAM API which is used by both the Web UI and the [CLI](https://github.com/tutumcloud/tutum-cli). In this document you will find all API operations currently supported in the platform and examples on how to execute them using our [Python SDK](https://github.com/tutumcloud/python-tutum).
 
 # Authentication
 
