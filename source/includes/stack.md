@@ -6,10 +6,6 @@
 
 ```json
 {
-  "actions": [
-    "/api/v1/action/d7c53af7-b9fb-4f29-a661-bf78b4258bfd/",
-    "/api/v1/action/1c2919c5-9371-4b69-baf9-bafbe9679854/"
-  ], 
   "deployed_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
   "destroyed_datetime": null,
   "name": "tutum-app",
@@ -74,7 +70,6 @@ name | A user provided name for the stack.
 state | The state of the stack (see table `Stack states` below)
 synchronized | Flag indicating if the current stack definition is synchronized with their services.
 services | List of servicies belonging to the stack (the full json of each service)
-actions | List of resource URIs of the `Action` objects that apply to the stack
 deployed_datetime | The date and time of the last deployment of the stack (if applicable, `null` otherwise)
 destroyed_datetime | The date and time of the `terminate` operation on the stack (if applicable, `null` otherwise)
 
@@ -418,7 +413,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
-```
+```shell
 tutum stack terminate 46aca402-2109-4a70-a378-760cfed43816
 ```
 
