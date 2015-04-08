@@ -7,12 +7,13 @@
 ```json
 {
   "url": "/api/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/webhook/handler/0224815a-c156-44e4-92d7-997c69354438/call/",
+  "operation": "REDEPLOY",
   "name": "docker_webhook",
   "resource_uri": "/api/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/webhook/handler/0224815a-c156-44e4-92d7-997c69354438/"
 }
 ```
 
-Webhook handlers are URLs that will start a redeploy of the service whenever a `POST` request is sent to them. They require no authorization headers, so they should be treated as access tokens. Webhook handlers can be revoked if they are leaked or no longer used for security purposes. See [Webhook Handlers](https://tutum.freshdesk.com/support/solutions/articles/5000513815) for more information.
+Webhook handlers are URLs that will perform operations in a service whenever a `POST` request is sent to them. They require no authorization headers, so they should be treated as access tokens. Webhook handlers can be revoked if they are leaked or no longer used for security purposes. See [Webhook Handlers](https://tutum.freshdesk.com/support/solutions/articles/5000513815) for more information.
 
 
 ### Attributes
@@ -21,16 +22,17 @@ Attribute | Description
 --------- | -----------
 url | Address to be used to call the webhook handler with a `POST` request
 name | A user provided name for the webhook handler
+operation | The operation that the webhook call performs (see table `Operations` below)
 resource_uri | A unique API endpoint that represents the webhook handler
 
 
-<!--
 ### Operations
 
 Operation | Description
 --------- | -----------
-Redeploy | Performs a `redeploy` service operation: every container with `STOPPED` or `RUNNING` state will be redeployed.
--->
+REDEPLOY | Performs a `redeploy` service operation.
+SCALEUP | Performs a `scale up` service operation.
+
 
 
 ## List all webhooks
@@ -85,7 +87,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"name": "mywebhook_name"}
+{"name": "mywebhook_name", "operation": "REDEPLOY"}
 ```
 
 ```shell
@@ -102,7 +104,8 @@ Creates a new service webhook handler.
 
 Parameter | Description
 --------- | -----------
-name | (optional) A user provided name for the webhook handler 
+name | (optional) A user provided name for the webhook handler
+operation | (optional) The operation to be performed by the webhook (default: "REDEPLOY")
 
 ## Get an existing webhook handler
 
@@ -178,7 +181,7 @@ Host: dashboard.tutum.co
 Accept: application/json
 ```
 
-Executes the webhook and redeploys the associated service.
+Executes the webhook. For `SCALEUP` webhooks, the number of containers to scale up can be passed at the end of the webhook call url, for example `/api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/webhook/handler/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/3/`.
 
 
 ### HTTP Request
