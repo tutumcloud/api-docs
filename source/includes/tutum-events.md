@@ -68,16 +68,14 @@ Action | (object to which the action applies to)
 ## Listen to new Tutum Events
 
 ```python
-import websocket
-import json
-ws = websocket.WebSocketApp('wss://stream.tutum.co/v1/events?user={}&token={}'.format("username", "apikey"))
+import tutum
 
-def process_event(ws, raw_event):
-    event = json.loads(raw_event)
-    print "Received %s %s" % (event["type"], event["action"])
+def process_event(event):
+    print event
 
-ws.on_message = process_event
-ws.run_forever()
+events = tutum.TutumEvents()
+events.on_message(process_event)
+events.run_forever()
 ```
 
 ```http
@@ -85,10 +83,6 @@ GET /v1/events?user=username&token=apikey HTTP/1.1
 Host: stream.tutum.co
 Connection: Upgrade
 Upgrade: websocket
-```
-
-```shell
-# TBD
 ```
 
 
