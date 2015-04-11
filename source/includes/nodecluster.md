@@ -9,6 +9,7 @@
     "current_num_nodes": 1,
     "deployed_datetime": "Tue, 16 Sep 2014 17:01:15 +0000",
     "destroyed_datetime": null,
+    "disk": 60,
     "name": "TestCluster",
     "node_type": "/api/v1/nodetype/digitalocean/512mb/",
     "nodes": [
@@ -39,6 +40,7 @@ resource_uri | A unique API endpoint that represents the node cluster
 name | A user provided name for the node cluster
 state | The state of the node cluster. See the below table for a list of possible states.
 node_type | The resource URI of the node type used for the node cluster
+disk | The size of the disk where images and containers are stored (in GB)
 nodes | A list of resource URIs of the `Node` objects on the node cluster
 region | The resource URI of the `Region` object where the node cluster is deployed
 target_num_nodes | The desired number of nodes for the node cluster
@@ -104,7 +106,7 @@ import tutum
 
 region = tutum.Region.fetch("digitalocean/lon1")
 node_type = tutum.NodeType.fetch("digitalocean/1gb")
-nodecluster = tutum.NodeCluster.create(name="my_cluster", node_type=node_type, region=region)
+nodecluster = tutum.NodeCluster.create(name="my_cluster", node_type=node_type, region=region, disk=60)
 nodecluster.save()
 ```
 
@@ -115,7 +117,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"name": "my_cluster", "region": "/api/v1/region/digitalocean/lon1/", "node_type": "/api/v1/nodetype/digitalocean/1gb/"}
+{"name": "my_cluster", "region": "/api/v1/region/digitalocean/lon1/", "node_type": "/api/v1/nodetype/digitalocean/1gb/", "disk": 60}
 ```
 
 ```shell
@@ -135,7 +137,8 @@ Parameter | Description
 name | (required) A user provided name for the node cluster
 node_type | (required) The resource URI of the node type to be used for the node cluster
 region | (required) The resource URI of the region where the node cluster is to be deployed
-target_num_nodes | (optional) The desired number of nodes for the node cluster (default: 1)
+disk | (optional) The size of the volume to create where images and containers will be stored, in GB (default: `60`). Not available for Digital Ocean.
+target_num_nodes | (optional) The desired number of nodes for the node cluster (default: `1`)
 tags | (optional) List of tags of the node cluster to be used when deploying services see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
 
 
