@@ -130,36 +130,6 @@ Parameter | Description
 uuid | The UUID of the node to retrieve
 
 
-
-## Deploy a node
-
-```python
-import tutum
-
-node = tutum.Node.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-node.deploy()
-```
-
-```http
-POST /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/deploy/ HTTP/1.1
-Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
-Accept: application/json
-```
-
-Deploys and provisions a recently created node in the specified region and cloud provider.
-
-### HTTP Request
-
-`POST /api/v1/node/(uuid)/deploy/`
-
-### Query Parameters
-
-Parameter | Description
---------- | ----------- 
-uuid | The UUID of the node to deploy
-
-
 ## Update a node
 
 ```python
