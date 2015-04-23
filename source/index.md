@@ -98,3 +98,9 @@ The Stream API requires authentication details to be passed as query parameters 
 
 `wss://stream.tutum.co/v1/events?token=apikey&user=username`
 
+If using TUTUM_AUTH from service roles, use the following url:
+
+`wss://stream.tutum.co/v1/events?auth=TUTUM_AUTH`
+
+where `TUTUM_AUTH` is the environment variable injected via [API roles](https://support.tutum.co/support/solutions/articles/5000524639)
+
