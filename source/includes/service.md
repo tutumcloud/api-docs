@@ -274,6 +274,10 @@ tutum service ps
 
 Lists all current and recently terminated services. Returns a list of `Service` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/service/`
@@ -323,6 +327,10 @@ tutum service create -t 2 --name my-new-app tutum/hello-world
 ```
 
 Creates a new service without starting it.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -420,6 +428,10 @@ tutum service inspect 7eaf7fff
 
 Get all the details of an specific service
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/service/(uuid)/`
@@ -464,6 +476,10 @@ tutum service logs 7eaf7fff
 ```
 
 Get the aggregated logs of all the containers of the service.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -525,6 +541,10 @@ tutum tag set -t tag-2 7eaf7fff
 ```
 
 Updates the service details and applies the changes automatically.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -596,6 +616,10 @@ tutum service start 7eaf7fff
 
 Starts all containers in a stopped or partly running service.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/service/(uuid)/start/`
@@ -642,6 +666,10 @@ tutum service stop 7eaf7fff
 ```
 
 Stops all containers in a running or partly running service.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -712,6 +740,10 @@ tutum service redeploy 7eaf7fff
 
 Redeploys all containers in the service with the current service configuration.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/service/(uuid)/redeploy/`
@@ -759,6 +791,10 @@ tutum service terminate 7eaf7fff
 
 Terminate all the containers in a service and the service itself. This is not reversible. All the data stored in all containers of the service will be permanently deleted.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `DELETE /api/v1/service/(uuid)/`
@@ -768,3 +804,20 @@ Terminate all the containers in a service and the service itself. This is not re
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the service to terminate
+
+
+## Streaming logs of a service
+
+### Endpoint Type
+
+Available in Tutum's **STREAM API**
+
+### HTTP Request
+
+`GET /v1/service/(uuid)/logs`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ----------- 
+tail | Amount of lines to be requested at the start of the stream (default: `300`)

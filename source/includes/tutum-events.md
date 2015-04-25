@@ -49,7 +49,6 @@ container | Whenever a `Container` is created or updated
 nodecluster | Whenever a `Node Cluster` is created or updated
 node | Whenever a `Node` is created or updated
 action | Whenever a `Action` is created or updated
-auth | Sent after the websocket is connected successfully
 error | Sent when an error occurs on the websocket connection or as part of the authentication process
 
 

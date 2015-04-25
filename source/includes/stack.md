@@ -122,6 +122,10 @@ tutum stack list
 
 Lists all current and recently terminated stacks. Returns a list of `Stack` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/stack/`
@@ -207,6 +211,10 @@ tutum stack create --name hello-world -f tutum.yml
 
 Creates a new stack without starting it. Note that the JSON syntax is abstracted by both, the Tutum CLI and our UI, in order to use [Stack YAML files](https://support.tutum.co/support/solutions/articles/5000583471).
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/stack/`
@@ -244,6 +252,10 @@ Accept: application/json
 ```
 
 Get a JSON representation of the stack following the [Stack YAML representation](https://support.tutum.co/support/solutions/articles/5000583471).
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -289,6 +301,10 @@ tutum stack inspect 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Get all the details of an specific stack
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -360,6 +376,10 @@ tutum stack update -f tutum.yml 46aca402-2109-4a70-a378-760cfed43816
 
 Updates the details of every service in the stack.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `PATCH /api/v1/stack/(uuid)/`
@@ -415,6 +435,10 @@ tutum stack stop 46aca402-2109-4a70-a378-760cfed43816
 
 Stops the services in the stack.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/stack/(uuid)/stop/`
@@ -461,6 +485,10 @@ tutum stack start 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Starts the services in the stack.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -509,6 +537,10 @@ tutum stack redeploy 46aca402-2109-4a70-a378-760cfed43816
 
 Redeploys all the services in the stack.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/stack/(uuid)/redeploy/`
@@ -555,6 +587,10 @@ tutum stack terminate 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Terminate all the services in a the stack and the stack itself.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 

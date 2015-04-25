@@ -43,6 +43,10 @@ Content-Type: application/json
 
 Creates a new token.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/token/`

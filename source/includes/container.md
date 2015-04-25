@@ -351,6 +351,10 @@ tutum container ps
 
 Lists all current and recently terminated containers. Returns a list of `Container` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/container/`
@@ -398,6 +402,10 @@ tutum container inspect 7eaf7fff
 
 Get all the details of an specific container
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/container/(uuid)/`
@@ -442,6 +450,10 @@ tutum container logs 7eaf7fff
 ```
 
 Get the logs of the specified container.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -491,6 +503,10 @@ tutum container start 7eaf7fff
 
 Starts a stopped container.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/container/(uuid)/start/`
@@ -536,6 +552,10 @@ tutum container stop 7eaf7fff
 ```
 
 Stops a running container.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -585,6 +605,10 @@ tutum container redeploy 7eaf7fff
 
 Redeploys a container.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/container/(uuid)/redeploy/`
@@ -633,6 +657,10 @@ tutum container terminate 7eaf7fff
 
 Terminates the specified container. This is not reversible. All data stored in the container will be permanently deleted.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `DELETE /api/v1/container/(uuid)/`
@@ -642,3 +670,37 @@ Terminates the specified container. This is not reversible. All data stored in t
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the container to terminate
+
+
+## Execute command inside a container
+
+### Endpoint Type
+
+Available in Tutum's **STREAM API**
+
+### HTTP Request
+
+`GET /v1/container/(uuid)/exec`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ----------- 
+command | Command to be executed (default: `sh`)
+
+
+## Streaming logs of a container
+
+### Endpoint Type
+
+Available in Tutum's **STREAM API**
+
+### HTTP Request
+
+`GET /v1/container/(uuid)/logs`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ----------- 
+tail | Amount of lines to be requested at the start of the stream (default: `300`)

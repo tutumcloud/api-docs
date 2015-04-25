@@ -74,6 +74,10 @@ tutum nodecluster nodetype
 
 Lists all node types of all supported cloud providers. Returns a list of `NodeType` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/nodetype/`
@@ -116,6 +120,10 @@ Accept: application/json
 
 
 Get all the details of a specific node type
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 

@@ -73,6 +73,10 @@ tutum volume list
 
 Lists all volumes. Returns a list of `Volume` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/volume/`
@@ -110,6 +114,10 @@ tutum volume inspect 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
 ```
 
 Get all the details of an specific volume
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
