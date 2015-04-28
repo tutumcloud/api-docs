@@ -97,6 +97,18 @@ import tutum
 stacks = tutum.Stack.list()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+stackList, err := tutum.ListStacks()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(stackList)
+```
+
 ```http
 GET /api/v1/stack/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -117,7 +129,7 @@ Lists all current and recently terminated stacks. Returns a list of `Stack` obje
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 name | Filter by stack name
 
 
@@ -128,6 +140,36 @@ import tutum
 
 stack = tutum.Stack.create(name="my-new-stack", services=[{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}])
 stack.save()
+```
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+stack, err := tutum.CreateStack(`{
+    "name": "my-new-stack",
+    "services": [
+        {
+            "name": "hello-word",
+            "image": "tutum/hello-world",
+            "target_num_containers": 2,
+            "linked_to_service": [
+                {
+                    "to_service": "database",
+                    "name": "DB"
+                }
+            ]
+        },
+        {
+            "name": "database",
+            "image": "tutum/mysql"
+        }
+    ]
+}`)
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(stack)
 ```
 
 ```http
@@ -172,13 +214,27 @@ Creates a new stack without starting it. Note that the JSON syntax is abstracted
 ### JSON Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 name | (required) A human-readable name for the stack, i.e. `my-hello-world-stack`
 services | (optional) List of services belonging to the stack. Each service accepts the same parameters as a [Create new service](#create-a-new-service) operation (default: `[]`) plus the ability to refer "links" and "volumes-from" by the name of another service in the stack (see example).
 
 
 
 ## Export an existing stack
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+stack, err := tutum.GetStack("46aca402-2109-4a70-a378-760cfed43816")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = stack.Export(); err != nil {
+   log.Println(err)
+}
+```
 
 ```http
 GET /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/export/ HTTP/1.1
@@ -209,6 +265,18 @@ import tutum
 stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+stack, err := tutum.GetStack("46aca402-2109-4a70-a378-760cfed43816")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(stack)
+```
+
 ```http
 GET /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -229,7 +297,7 @@ Get all the details of an specific stack
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the stack to retrieve
 
 
@@ -242,6 +310,20 @@ import tutum
 stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
 stack.services = {"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}
 stack.save()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+stack, err := tutum.GetStack("46aca402-2109-4a70-a378-760cfed43816")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = stack.Update(`{"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}`); err != nil {
+   log.Println(err)
+}
 ```
 
 ```http
@@ -285,7 +367,7 @@ Updates the details of every service in the stack.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the stack to update
 
 
@@ -304,6 +386,20 @@ import tutum
 
 stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
 stack.stop()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+stack, err := tutum.GetStack("46aca402-2109-4a70-a378-760cfed43816")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = stack.Stop(); err != nil {
+   log.Println(err)
+}
 ```
 
 ```http
@@ -326,7 +422,7 @@ Stops the services in the stack.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the stack to stop
 
 
@@ -339,6 +435,19 @@ stack = tutum.Stack.fetch()
 stack.start()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+stack, err := tutum.GetStack("46aca402-2109-4a70-a378-760cfed43816")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = stack.Start(); err != nil {
+   log.Println(err)
+}
+```
 
 ```http
 POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/start/ HTTP/1.1
@@ -371,6 +480,20 @@ import tutum
 
 stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
 stack.redeploy()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+stack, err := tutum.GetStack("46aca402-2109-4a70-a378-760cfed43816")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = stack.Redeploy(); err != nil {
+   log.Println(err)
+}
 ```
 
 ```http
@@ -406,6 +529,20 @@ stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
 stack.terminate()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+stack, err := tutum.GetStack("46aca402-2109-4a70-a378-760cfed43816")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = stack.Terminate(); err != nil {
+   log.Println(err)
+}
+```
+
 ```http
 DELETE /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -426,5 +563,5 @@ Terminate all the services in a the stack and the stack itself.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the stack to terminate

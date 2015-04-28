@@ -406,13 +406,13 @@ print container.logs
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-logs, err := tutum.GetContainerLogs("447ecddc-2890-4ea2-849b-99392e0dd7a6")
+container, err := tutum.GetContainer("447ecddc-2890-4ea2-849b-99392e0dd7a6")
 
 if err != nil {
 	log.Fatal(err)
 }
 
-log.Println(logs)
+log.Println(container.Logs())
 ```
 
 ```http
@@ -452,13 +452,15 @@ container.start()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-container, err := tutum.StartContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
-  log.Println(err)
+	log.Println(err)
 }
 
-log.Println(container)
+if err = container.Start(); err != nil {
+  log.Println(err)
+}
 ```
 
 ```http
@@ -496,13 +498,15 @@ container.stop()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-container, err := tutum.StopContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
-  log.Println(err)
+	log.Println(err)
 }
 
-log.Println(container)
+if err = container.Stop(); err != nil {
+       log.Println(err)
+   }
 ```
 
 ```http
@@ -542,13 +546,15 @@ container.redeploy()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-container, err := tutum.RedeployContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
-  log.Println(err)
+	log.Println(err)
 }
 
-log.Println(container)
+if err = container.Redeploy(); err != nil {
+       log.Println(err)
+   }
 ```
 
 ```http
@@ -587,13 +593,15 @@ container.delete()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-container, err := tutum.TerminateContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
-  log.Println(err)
+	log.Println(err)
 }
 
-log.Println(container)
+if err = container.Terminate(); err != nil {
+       log.Println(err)
+   }
 ```
 
 

@@ -53,6 +53,18 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+providerList, err := tutum.ListProviders()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(providerList)
+```
+
 ```shell
 tutum nodecluster provider
 ```
@@ -66,7 +78,7 @@ Lists all supported cloud providers. Returns a list of `Provider` objects.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 name | Filter by provider name
 
 
@@ -77,6 +89,18 @@ name | Filter by provider name
 import tutum
 
 provider = tutum.Provider.fetch("digitalocean")
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+provider, err := tutum.GetProvider("digitalocean")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(provider)
 ```
 
 ```http
@@ -96,5 +120,5 @@ Get all the details of a specific provider
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 name | The name of the provider to retrieve

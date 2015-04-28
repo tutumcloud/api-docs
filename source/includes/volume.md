@@ -48,6 +48,18 @@ import tutum
 volumes = tutum.Volume.list()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+volumeList, err := tutum.ListVolumes()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(volumeList)
+```
+
 ```http
 GET /api/v1/volume/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -74,6 +86,18 @@ import tutum
 volume = tutum.Volume.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+volume, err := tutum.GetVolume("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(volume)
+```
+
 ```http
 GET /api/v1/volume/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -94,5 +118,5 @@ Get all the details of an specific volume
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the volume to retrieve

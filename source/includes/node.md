@@ -167,13 +167,15 @@ node.save()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-node, err := tutum.UpdateNode("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce", []byte(`{"tags": [{"name": "tag-1"}]}`))
+node, err := tutum.GetNode("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
-  log.Println(err)
+	log.Println(err)
 }
 
-log.Println(node)
+if err = node.Update(`{"tags": [{"name": "tag-1"}]}`); err != nil {
+			log.Println(err)
+}
 ```
 
 ```http
@@ -221,13 +223,15 @@ node.upgrade_docker()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-node, err := tutum.UpgradeDaemon("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+node, err := tutum.GetNode("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
   log.Println(err)
 }
 
-log.Println(node)
+if err = node.Upgrade(); err != nil {
+       log.Println(err)
+   }
 ```
 
 ```http
@@ -273,13 +277,15 @@ Accept: application/json
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-node, err := tutum.TerminateNode("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+node, err := tutum.GetNode("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
   log.Println(err)
 }
 
-log.Println(node)
+if err = node.Terminate(); err != nil {
+   log.Println(err)
+}
 ```
 
 ```shell

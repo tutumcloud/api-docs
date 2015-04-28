@@ -125,7 +125,7 @@ nodecluster.save()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-nodecluster, err := tutum.CreateNodeCluster([]byte(`{"name": "my_cluster", "region": "/api/v1/region/digitalocean/lon1/", "node_type": "/api/v1/nodetype/digitalocean/1gb/", "disk": 60}`))
+nodecluster, err := tutum.CreateNodeCluster(`{"name": "my_cluster", "region": "/api/v1/region/digitalocean/lon1/", "node_type": "/api/v1/nodetype/digitalocean/1gb/", "disk": 60}`)
 
 if err != nil {
   log.Println(err)
@@ -208,6 +208,49 @@ Parameter | Description
 --------- | -----------
 uuid | The UUID of the node cluster to retrieve
 
+## Deploy a node cluster
+
+```python
+import tutum
+
+nodecluster = tutum.NodeCluster.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+nodecluster.deploy()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+nodecluster, err := tutum.GetNodeCluster("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = nodecluster.Deploy(); err != nil {
+   log.Println(err)
+}
+```
+
+```http
+POST /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/deploy/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+Deploys and provisions a recently created node cluster in the specified region and cloud provider.
+
+### HTTP Request
+
+`POST /api/v1/nodecluster/(uuid)/deploy/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the node cluster to deploy
+
+=======
 ## Update an existing node cluster
 
 ```python
@@ -222,13 +265,15 @@ nodecluster.save()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-nodecluster, err := tutum.UpdateNodeCluster("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce", []byte(`{"target_num_nodes": 3, "tags": [{"name": "tag-1"}]}`))
+nodecluster, err := tutum.GetNodeCluster("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
   log.Println(err)
 }
 
-log.Println(nodecluster)
+if err = nodecluster..Update(`{"target_num_nodes": 3, "tags": [{"name": "tag-1"}]}`); err != nil {
+   log.Println(err)
+}
 ```
 
 ```http
@@ -280,13 +325,15 @@ nodecluster.docker_upgrade()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-nodecluster, err := tutum.UpgradeClusterDaemon("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+nodecluster, err := tutum.GetNodeCluster("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
   log.Println(err)
 }
 
-log.Println(nodecluster)
+if err = nodecluster.Upgrade(); err != nil {
+   log.Println(err)
+}
 ```
 
 ```http
@@ -321,13 +368,15 @@ nodecluster.delete()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-nodecluster, err := tutum.TerminateNodeCluster("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+nodecluster, err := tutum.GetNodeCluster("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
   log.Println(err)
 }
 
-log.Println(nodecluster)
+if err = nodecluster.Terminate(); err != nil {
+   log.Println(err)
+}
 ```
 
 ```http

@@ -49,6 +49,18 @@ import tutum
 nodetypes = tutum.NodeType.list()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+nodetypeList, err := tutum.ListNodeTypes()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(nodetypeList)
+```
+
 ```http
 GET /api/v1/nodetype/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -83,6 +95,18 @@ import tutum
 nodetype = tutum.NodeType.fetch("digitalocean/1gb")
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+nodetype, err := tutum.GetNodeType("digitalocean","1gb")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(nodetype)
+```
+
 ```http
 GET /api/v1/nodetype/digitalocean/1gb/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -100,7 +124,6 @@ Get all the details of a specific node type
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 name | The name of the node type to retrieve
 provider.name | The name of the provider of the node type
-
