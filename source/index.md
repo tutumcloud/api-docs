@@ -3,6 +3,7 @@ title: tutum API reference
 
 language_tabs:
   - http
+  - go
   - python
   - shell
 
@@ -103,4 +104,3 @@ If using TUTUM_AUTH from service roles, use the following url:
 `wss://stream.tutum.co/v1/events?auth=TUTUM_AUTH`
 
 where `TUTUM_AUTH` is the environment variable injected via [API roles](https://support.tutum.co/support/solutions/articles/5000524639)
-

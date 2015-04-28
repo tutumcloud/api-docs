@@ -70,6 +70,18 @@ import tutum
 nodes = tutum.Node.list()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+nodeList, err := tutum.ListNodes()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(nodeList)
+```
+
 ```http
 GET /api/v1/node/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -90,7 +102,7 @@ Lists all current and recently terminated nodes. Returns a list of `Node` object
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 state | Filter by state. Possible values: `Init`, `Deploying`, `Provisioning`, `Deployed`, `Terminating`, `Terminated`
 node_cluster | Filter by node cluster (resource URI)
 node_type | Filter by node type (resource URI)
@@ -104,6 +116,18 @@ region | Filter by region (resource URI)
 import tutum
 
 node = tutum.Node.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+node, err := tutum.GetNode("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(node)
 ```
 
 ```http
@@ -126,7 +150,7 @@ Get all the details of an specific node
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the node to retrieve
 
 
@@ -138,6 +162,18 @@ import tutum
 node = tutum.Node.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 node.tags.add(["tag-1"])
 node.save()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+node, err := tutum.UpdateNode("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce", []byte(`{"tags": [{"name": "tag-1"}]}`))
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(node)
 ```
 
 ```http
@@ -163,13 +199,13 @@ Replaces the old tags in the node for the new list provided.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the node to retrieve
 
 ### JSON Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 tags | (optional) List of tags the node will have. This operation replaces the tag list.
 
 
@@ -180,6 +216,18 @@ import tutum
 
 node = tutum.Node.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 node.upgrade_docker()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+node, err := tutum.UpgradeDaemon("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(node)
 ```
 
 ```http
@@ -222,6 +270,18 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+node, err := tutum.TerminateNode("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(node)
+```
+
 ```shell
 tutum node rm 7eaf7fff
 ```
@@ -235,8 +295,5 @@ Terminates the specified node. For security reasons, only nodes with no running 
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the node to terminate
-
-
-
