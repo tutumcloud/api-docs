@@ -174,36 +174,6 @@ Parameter | Description
 uuid | The UUID of the node cluster to retrieve
 
 
-## Deploy a node cluster
-
-```python
-import tutum
-
-nodecluster = tutum.NodeCluster.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-nodecluster.deploy()
-```
-
-```http
-POST /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/deploy/ HTTP/1.1
-Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
-Accept: application/json
-```
-
-Deploys and provisions a recently created node cluster in the specified region and cloud provider.
-
-### HTTP Request
-
-`POST /api/v1/nodecluster/(uuid)/deploy/`
-
-### Query Parameters
-
-Parameter | Description
---------- | ----------- 
-uuid | The UUID of the node cluster to deploy
-
-
-
 ## Update an existing node cluster
 
 ```python
