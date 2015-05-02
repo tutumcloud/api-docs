@@ -85,6 +85,10 @@ Connection: Upgrade
 Upgrade: websocket
 ```
 
+```shell
+tutum event
+```
+
 
 ### Websocket Request
 
