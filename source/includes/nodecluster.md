@@ -250,7 +250,6 @@ Parameter | Description
 --------- | -----------
 uuid | The UUID of the node cluster to deploy
 
-=======
 ## Update an existing node cluster
 
 ```python
