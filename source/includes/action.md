@@ -64,6 +64,17 @@ import tutum
 
 actions = tutum.Action.list()
 ```
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+actionList, err := tutum.ListActions()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(actionList)
+```
 
 ```http
 GET /api/v1/action/ HTTP/1.1
@@ -99,6 +110,18 @@ import tutum
 action = tutum.Action.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+action, err := tutum.GetAction("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(action)
+```
+
 ```http
 GET /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -115,6 +138,5 @@ Get all the details of an specific action
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the action to retrieve
-

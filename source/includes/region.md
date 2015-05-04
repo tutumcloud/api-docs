@@ -56,6 +56,18 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+regionList, err := tutum.ListRegions()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(regionList)
+```
+
 ```shell
 tutum nodecluster region
 ```
@@ -83,6 +95,18 @@ import tutum
 region = tutum.Region.fetch("digitalocean/lon1")
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+region, err := tutum.GetRegion("digitalocean","lon1")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(region)
+```
+
 ```http
 GET /api/v1/region/digitalocean/lon1/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -100,6 +124,6 @@ Get all the details of a specific region
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 name | The name of the region to retrieve
 provider.name | The name of the provider of the region

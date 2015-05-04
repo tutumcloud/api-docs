@@ -50,6 +50,24 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("61a29874-9134-48f9-b460-f37d4bec4826")
+
+	if err != nil {
+		log.Println(err)
+	}
+
+  webhook, err := service.ListWebhooks()
+
+  if err != nil {
+    log.Println(err)
+  }
+
+	log.Println(webhook)
+```
+
 ```shell
 tutum webhook-handler list 61a29874-9134-48f9-b460-f37d4bec4826
 ```
@@ -63,7 +81,7 @@ Lists all current webhook handlers the service has associated to. Returns a list
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the service the webhooks are associated to  
 
 
@@ -76,6 +94,18 @@ service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
 webhook = tutum.WebhookHandler.fetch(service)
 webhook.add("mywebhook_name")
 webhook.save()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("61a29874-9134-48f9-b460-f37d4bec4826")
+
+if err != nil {
+  log.Println(err)
+}
+
+service.CreateWebhook(`{"name": "mywebhook_name"}`)
 ```
 
 ```http
@@ -102,10 +132,27 @@ Creates a new service webhook handler.
 
 Parameter | Description
 --------- | -----------
-name | (optional) A user provided name for the webhook handler 
+name | (optional) A user provided name for the webhook handler
 
 ## Get an existing webhook handler
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("61a29874-9134-48f9-b460-f37d4bec4826")
+
+if err != nil {
+  log.Println(err)
+}
+
+webhook, err := service.GetWebhook("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(webhook)
+```
 
 ```http
 GET /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/webhook/handler/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
@@ -114,7 +161,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
-Get all the details of an specific webhook handler 
+Get all the details of an specific webhook handler
 
 ### HTTP Request
 
@@ -123,7 +170,7 @@ Get all the details of an specific webhook handler
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the service the webhooks are associated to  
 webhook_uuid | The UUID of the webhook handler to retrieve
 
@@ -135,6 +182,18 @@ import tutum
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
 webhook = tutum.WebhookHandler.fetch(service)
 webhook.delete("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("61a29874-9134-48f9-b460-f37d4bec4826")
+
+if err != nil {
+  log.Println(err)
+}
+
+service.DeleteWebhook("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```http
@@ -157,7 +216,7 @@ Deletes specific webhook handler. It will be no longer available to be called.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the associated service
 webhook_uuid | The UUID of the webhook handler to delete
 
@@ -170,6 +229,18 @@ import tutum
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
 webhook = tutum.WebhookHandler.fetch(service)
 webhook.call("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("61a29874-9134-48f9-b460-f37d4bec4826")
+
+if err != nil {
+  log.Println(err)
+}
+
+service.CallWebhook("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```http
@@ -188,6 +259,6 @@ Executes the webhook and redeploys the associated service.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the associated service
 webhook_uuid | The UUID of the webhook handler to call

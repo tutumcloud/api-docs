@@ -31,31 +31,31 @@
   ],
   "container_envvars": [
     {
-      "key": "DB_PASS", 
+      "key": "DB_PASS",
       "value": "test"
     }
-  ], 
+  ],
   "container_ports": [
     {
       "endpoint_uri": "http://wordpress-stackable.admin.srv.tutum.io:80/",
       "inner_port": 80,
-      "outer_port": 80, 
-      "port_name": "http", 
+      "outer_port": 80,
+      "port_name": "http",
       "protocol": "tcp",
       "published": true
     }
-  ], 
+  ],
   "containers": [
-    "/api/v1/container/6f8ee454-9dc3-4387-80c3-57aac1be3cc6/", 
+    "/api/v1/container/6f8ee454-9dc3-4387-80c3-57aac1be3cc6/",
     "/api/v1/container/fdf9c116-7c08-4a60-b0ce-c54ca72c2f25/"
-  ], 
-  "cpu_shares": 100, 
-  "current_num_containers": 2, 
-  "deployed_datetime": "Mon, 13 Oct 2014 11:01:43 +0000", 
+  ],
+  "cpu_shares": 100,
+  "current_num_containers": 2,
+  "deployed_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
   "deployment_strategy": "EMPTIEST_NODE",
-  "destroyed_datetime": null, 
-  "entrypoint": "", 
-  "image_name": "tutum/wordpress-stackable:latest", 
+  "destroyed_datetime": null,
+  "entrypoint": "",
+  "image_name": "tutum/wordpress-stackable:latest",
   "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
   "link_variables": {
     "WORDPRESS_STACKABLE_1_ENV_DB_HOST": "**LinkMe**",
@@ -99,28 +99,28 @@
     "WORDPRESS_STACKABLE_PORT_80_TCP_PROTO": "tcp",
     "WORDPRESS_STACKABLE_TUTUM_API_URL": "https://app-test.tutum.co/api/v1/service/adeebc1b-1b81-4af0-b8f2-cefffc69d7fb/"
   },
-  "linked_from_service": [], 
+  "linked_from_service": [],
   "linked_to_service": [
     {
       "from_service": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
-      "name": "DB", 
+      "name": "DB",
       "to_service": "/api/v1/service/72f175bd-390b-46e3-9463-830aca32ce3e/"
     }
-  ], 
-  "memory": 2048, 
-  "name": "wordpress-stackable", 
+  ],
+  "memory": 2048,
+  "name": "wordpress-stackable",
   "privileged": false,
   "public_dns": "wordpress-stackable.admin.svc.tutum.io",
-  "resource_uri": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/", 
-  "roles": ["global"], 
-  "run_command": "/run-wordpress.sh", 
-  "running_num_containers": 1, 
-  "sequential_deployment": false, 
-  "started_datetime": "Mon, 13 Oct 2014 11:01:43 +0000", 
-  "state": "Partly running", 
+  "resource_uri": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
+  "roles": ["global"],
+  "run_command": "/run-wordpress.sh",
+  "running_num_containers": 1,
+  "sequential_deployment": false,
+  "started_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
+  "state": "Partly running",
   "stack": "/api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/",
   "stopped_datetime": null,
-  "stopped_num_containers": 0, 
+  "stopped_num_containers": 0,
   "synchronized": true,
   "tags": [
         {"name": "tag_one"},
@@ -249,6 +249,18 @@ import tutum
 services = tutum.Service.list()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+serviceList, err := tutum.ListServices()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(serviceList)
+```
+
 ```http
 GET /api/v1/service/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -269,7 +281,7 @@ Lists all current and recently terminated services. Returns a list of `Service` 
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 state | Filter by state. Possible values: `Not running`, `Starting`, `Running`, `Partly running`, `Scaling`, `Redeploying`, `Stopping`, `Stopped`, `Terminating`, `Terminated`
 name | Filter by service name
 
@@ -282,6 +294,18 @@ import tutum
 
 service = tutum.Service.create(image="tutum/hello-world", name="my-new-app", target_num_containers=2)
 service.save()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.CreateService(`{"image": "tutum/hello-world", "name": "my-new-app", "target_num_containers": 2}`)
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(service)
 ```
 
 ```http
@@ -307,7 +331,7 @@ Creates a new service without starting it.
 ### JSON Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 image | (required) The image used to deploy this service in docker format, i.e. `tutum/hello-world`
 name | (optional) A human-readable name for the service, i.e. `my-hello-world-app` (default: `image` without namespace)
 target_num_containers | (optional) The number of containers to run for this service initially (default: 1)
@@ -371,6 +395,18 @@ import tutum
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(service)
+```
+
 ```http
 GET /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -391,7 +427,7 @@ Get all the details of an specific service
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the service to retrieve
 
 
@@ -402,6 +438,18 @@ import tutum
 
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 print service.logs
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(service.Logs())
 ```
 
 ```http
@@ -424,7 +472,7 @@ Get the aggregated logs of all the containers of the service.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the service to retrieve logs
 
 
@@ -440,6 +488,20 @@ service.tags.append({"name":"tag-1"})
 service.save()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = service.Update(`{"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}`); err != nil {
+   log.Println(err)
+}
+```
+
 ```http
 PATCH /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -448,9 +510,9 @@ Accept: application/json
 Content-Type: application/json
 
 {"autorestart": "ON_FAILURE", "autodestroy": "OFF", "container_envvars": [{"key": "DB_PASSWORD", "value": "mypass"}],
-"container_ports": [{"protocol": "tcp", "inner_port": 80, "outer_port": 80}], "cpu_shares": 512, 
-"entrypoint": "/usr/sbin/sshd", "image": "tutum/hello-world", 
-"linked_to_service": [{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}], 
+"container_ports": [{"protocol": "tcp", "inner_port": 80, "outer_port": 80}], "cpu_shares": 512,
+"entrypoint": "/usr/sbin/sshd", "image": "tutum/hello-world",
+"linked_to_service": [{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}],
 "memory": 2048, "privileged": True, "roles": ["global"], "run_command": "/run.sh", "sequential_deployment": False,
 "tags": [{"name": "tag-1"}], "target_num_containers": 3, "autoredeploy": False}
 
@@ -471,7 +533,7 @@ Updates the service details and applies the changes automatically.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the service to update
 
 
@@ -507,6 +569,20 @@ service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.start()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = service.Start(); err != nil {
+   log.Println(err)
+}
+```
+
 ```http
 POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -527,7 +603,7 @@ Starts all containers in a stopped or partly running service.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the service to start
 
 
@@ -538,6 +614,20 @@ import tutum
 
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.stop()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = service.Stop(); err != nil {
+   log.Println(err)
+}
 ```
 
 ```http
@@ -560,7 +650,7 @@ Stops all containers in a running or partly running service.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the service to stop
 
 
@@ -571,6 +661,20 @@ import tutum
 
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.redeploy()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = service.Redeploy(); err != nil {
+   log.Println(err)
+}
 ```
 
 ```http
@@ -593,7 +697,7 @@ Redeploys all containers in the service with the current service configuration.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the service to redeploy
 
 
@@ -604,6 +708,20 @@ import tutum
 
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 service.delete()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+service, err := tutum.GetService("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+if err = service.Terminate(); err != nil {
+   log.Println(err)
+}
 ```
 
 ```http
@@ -626,8 +744,5 @@ Terminate all the containers in a service and the service itself. This is not re
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the service to terminate
-
-
-

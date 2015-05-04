@@ -57,6 +57,18 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+volumeGroupList, err := tutum.ListVolumeGroups()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(volumeGroupList)
+```
+
 ```shell
 tutum volumegroup list
 ```
@@ -74,6 +86,18 @@ Lists all volume groups. Returns a list of `VolumeGroup` objects.
 import tutum
 
 volumegroup = tutum.VolumeGroup.inspect("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+volumeGroup, err := tutum.GetVolumeGroup("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(volumeGroup)
 ```
 
 ```http
@@ -96,5 +120,5 @@ Get all the details of an specific volume group
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the volume group to retrieve

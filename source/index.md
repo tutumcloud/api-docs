@@ -3,6 +3,7 @@ title: tutum API reference
 
 language_tabs:
   - http
+  - go
   - python
   - shell
 
@@ -31,7 +32,7 @@ search: true
 
 # Introduction
 
-Tutum currently offers a **HTTP REST API** and a **Websocket Stream API** which are used by both the [Web UI](https://dashboard.tutum.co/) and the [CLI](https://github.com/tutumcloud/tutum-cli). In this document you will find all API operations currently supported in the platform and examples on how to execute them using our [Python SDK](https://github.com/tutumcloud/python-tutum).
+Tutum currently offers a **HTTP REST API** and a **Websocket Stream API** which are used by both the [Web UI](https://dashboard.tutum.co/) and the [CLI](https://github.com/tutumcloud/tutum-cli). In this document you will find all API operations currently supported in the platform and examples on how to execute them using our [Python SDK](https://github.com/tutumcloud/python-tutum) and [Go SDK](https://github.com/tutumcloud/go-tutum).
 
 # Authentication
 
@@ -43,6 +44,13 @@ In order to be able to make requests to the Tutum API, you should first obtain a
 import tutum
 tutum.user = "username"
 tutum.apikey = "apikey"
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+tutum.User = "username"
+tutum.ApiKey = "apikey"
 ```
 
 ```http
@@ -77,6 +85,19 @@ import websocket
 ws = websocket.WebSocketApp('wss://stream.tutum.co/v1/events?user={}&token={}'.format("username", "apikey"))
 ```
 
+```go
+import "golang.org/x/net/websocket"
+
+var StreamUrl = "wss://stream.tutum.co:443/v1/events?token=" + ApiKey + "&user=" + User
+var origin = "http://localhost"
+
+ws, err := websocket.Dial(StreamUrl, "", origin)
+if err != nil {
+  log.Println(err)
+}
+
+```
+
 ```http
 GET /v1/events?user=username&token=apikey HTTP/1.1
 Host: stream.tutum.co
@@ -103,4 +124,3 @@ If using TUTUM_AUTH from service roles, use the following url:
 `wss://stream.tutum.co/v1/events?auth=TUTUM_AUTH`
 
 where `TUTUM_AUTH` is the environment variable injected via [API roles](https://support.tutum.co/support/solutions/articles/5000524639)
-

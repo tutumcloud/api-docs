@@ -311,6 +311,18 @@ import tutum
 containers = tutum.Container.list()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+containerList, err := tutum.ListContainers()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(containerList)
+```
+
 ```http
 GET /api/v1/container/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -331,7 +343,7 @@ Lists all current and recently terminated containers. Returns a list of `Contain
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 state | Filter by state. Possible values: `Starting`, `Running`, `Stopping`, `Stopped`, `Terminating`, `Terminated`
 name | Filter by container name
 
@@ -344,6 +356,19 @@ import tutum
 
 container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(container)
+```
+
 
 ```http
 GET /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
@@ -365,7 +390,7 @@ Get all the details of an specific container
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the container to retrieve
 
 
@@ -376,6 +401,18 @@ import tutum
 
 container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 print container.logs
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+container, err := tutum.GetContainer("447ecddc-2890-4ea2-849b-99392e0dd7a6")
+
+if err != nil {
+	log.Fatal(err)
+}
+
+log.Println(container.Logs())
 ```
 
 ```http
@@ -398,7 +435,7 @@ Get the logs of the specified container.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the container to retrieve logs
 
 
@@ -410,6 +447,20 @@ import tutum
 
 container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 container.start()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+	log.Println(err)
+}
+
+if err = container.Start(); err != nil {
+  log.Println(err)
+}
 ```
 
 ```http
@@ -432,7 +483,7 @@ Starts a stopped container.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the container to start
 
 
@@ -443,6 +494,19 @@ import tutum
 
 container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 container.stop()
+```
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+	log.Println(err)
+}
+
+if err = container.Stop(); err != nil {
+       log.Println(err)
+   }
 ```
 
 ```http
@@ -465,7 +529,7 @@ Stops a running container.
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the container to stop
 
 
@@ -477,6 +541,20 @@ import tutum
 
 container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 container.redeploy()
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+	log.Println(err)
+}
+
+if err = container.Redeploy(); err != nil {
+       log.Println(err)
+   }
 ```
 
 ```http
@@ -512,6 +590,21 @@ container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 container.delete()
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+	log.Println(err)
+}
+
+if err = container.Terminate(); err != nil {
+       log.Println(err)
+   }
+```
+
+
 ```http
 DELETE /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -532,8 +625,5 @@ Terminates the specified container. This is not reversible. All data stored in t
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the container to terminate
-
-
-

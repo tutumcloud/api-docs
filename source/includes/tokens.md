@@ -20,6 +20,18 @@ token | Value of the token
 
 ## Create a new token
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+token, err := tutum.CreateToken()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(token)
+```
+
 ```http
 POST /api/v1/token/ HTTP/1.1
 Host: dashboard.tutum.co

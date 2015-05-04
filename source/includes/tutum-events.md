@@ -77,7 +77,16 @@ events = tutum.TutumEvents()
 events.on_message(process_event)
 events.run_forever()
 ```
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
 
+c := make(chan tutum.Event)
+go tutum.TutumEvents(c)
+for {
+	event := <-c
+	log.Println(event)
+}
+```
 ```http
 GET /v1/events?user=username&token=apikey HTTP/1.1
 Host: stream.tutum.co
@@ -99,7 +108,6 @@ Listens for new Tutum Events
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 user | The username to authenticate as
 token | The API Key to authenticate with
-
