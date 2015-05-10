@@ -1,4 +1,4 @@
 api-docs:
-  image: tutum/api-docs:latest
+  image: tutum/api-docs:staging
   ports:
     - "4567:4567"
