@@ -21,7 +21,7 @@ Triggers are URLs that will start a redeploy of the service whenever a `POST` re
 Attribute | Description
 --------- | -----------
 url | Address to be used to call the trigger with a `POST` request
-name | A user provided name for the trigger 
+name | A user provided name for the trigger
 operation | The operation that the trigger call performs (see table `Operations` below)
 resource_uri | A unique API endpoint that represents the trigger
 
@@ -61,13 +61,13 @@ service, err := tutum.GetService("61a29874-9134-48f9-b460-f37d4bec4826")
 		log.Println(err)
 	}
 
-  webhook, err := service.ListWebhooks()
+trigger, err := service.ListTriggers()
 
   if err != nil {
     log.Println(err)
   }
 
-	log.Println(webhook)
+	log.Println(trigger)
 ```
 
 ```shell
@@ -107,7 +107,7 @@ if err != nil {
   log.Println(err)
 }
 
-service.CreateWebhook(`{"name": "mywebhook_name"}`)
+service.CreateTrigger(`{"name": "mytrigger_name", "operation": "REDEPLOY"}`)
 ```
 
 ```http
@@ -148,13 +148,13 @@ if err != nil {
   log.Println(err)
 }
 
-webhook, err := service.GetWebhook("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+trigger, err := service.GetTrigger("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 
 if err != nil {
   log.Println(err)
 }
 
-log.Println(webhook)
+log.Println(trigger)
 ```
 
 ```http
@@ -196,7 +196,7 @@ if err != nil {
   log.Println(err)
 }
 
-service.DeleteWebhook("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+service.DeleteTrigger("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```http
@@ -243,7 +243,7 @@ if err != nil {
   log.Println(err)
 }
 
-service.CallWebhook("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+service.CallTrigger("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```http
