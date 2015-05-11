@@ -6,13 +6,22 @@
 
 ```json
 {
+	"cpu": 1,
+	"current_num_containers": 4,
 	"deployed_datetime": "Tue, 16 Sep 2014 17:01:15 +0000",
 	"destroyed_datetime": null,
+	"disk": 60,
 	"docker_execdriver": "native-0.2",
-	"docker_graphdriver": "devicemapper",
-	"docker_version": "1.1.2",
+	"docker_graphdriver": "aufs",
+	"docker_version": "1.5.0",
 	"external_fqdn": "fc1a5bb9-user.node.tutum.io",
 	"last_seen": "Thu, 25 Sep 2014 13:14:44 +0000",
+	"memory": 1792,
+	"last_metric": {
+		"cpu": 1.3278507035616,
+		"disk": 462479360,
+		"memory": 763170816
+	},
 	"node_cluster": "/api/v1/nodecluster/d787a4b7-d525-4061-97a0-f423e8f1d229/",
 	"node_type": "/api/v1/nodetype/testing-provider/testing-type/",
 	"public_ip": "10.45.2.11",
@@ -43,6 +52,11 @@ region | The resource URI of the region where the node is deployed
 docker_execdriver | Docker's execution driver used in the node
 docker_graphdriver | Docker's storage driver used in the node
 docker_version | Docker's version used in the node
+cpu | Node number of CPUs
+disk | Node storage size in GB
+memory | Node memory in MB
+last_metric | Last reported metric from the node (see table `Node Last Metric attributes` below for more information)
+current_num_containers | The actual number of containers deployed in this node
 last_seen | Date and time of the last time the node was contacted by Tutum
 public_ip | The public IP allocated to the node
 deployed_datetime | The date and time when this node cluster was deployed
@@ -60,6 +74,14 @@ Provisioning | Our agent is being installed and configured on the node. No actio
 Deployed | The node is deployed and provisioned and is ready to deploy containers. Possible actions in this state: `terminate`.
 Terminating | The node is being terminated in the cloud provider. No actions allowed in this state.
 Terminated | The node has been terminated and is no longer present in the cloud provider. No actions allowed in this state.
+
+### Node Last Metric attributes
+
+Attribute | Description
+--------- | -----------
+cpu       | CPU percentage usage
+memory    | Memory usage in bytes
+disk      | Disk storage usage in bytes
 
 
 ## List all nodes
