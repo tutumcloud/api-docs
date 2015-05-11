@@ -1,39 +1,41 @@
-# Webhook handlers
+# Trigger
 
-## Service Webhooks handlers
+## Service triggers
 
 > Example
 
 ```json
 {
-  "url": "/api/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/webhook/handler/0224815a-c156-44e4-92d7-997c69354438/call/",
-  "name": "docker_webhook",
-  "resource_uri": "/api/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/webhook/handler/0224815a-c156-44e4-92d7-997c69354438/"
+  "url": "/api/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/trigger/0224815a-c156-44e4-92d7-997c69354438/call/",
+  "operation": "REDEPLOY",
+  "name": "docker_trigger",
+  "resource_uri": "/api/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/trigger/0224815a-c156-44e4-92d7-997c69354438/"
 }
 ```
 
-Webhook handlers are URLs that will start a redeploy of the service whenever a `POST` request is sent to them. They require no authorization headers, so they should be treated as access tokens. Webhook handlers can be revoked if they are leaked or no longer used for security purposes. See [Webhook Handlers](https://tutum.freshdesk.com/support/solutions/articles/5000513815) for more information.
+Triggers are URLs that will start a redeploy of the service whenever a `POST` request is sent to them. They require no authorization headers, so they should be treated as access tokens. Triggers can be revoked if they are leaked or no longer used for security purposes. See [Triggers](https://tutum.freshdesk.com/support/solutions/articles/5000513815) for more information.
 
 
 ### Attributes
 
 Attribute | Description
 --------- | -----------
-url | Address to be used to call the webhook handler with a `POST` request
-name | A user provided name for the webhook handler
-resource_uri | A unique API endpoint that represents the webhook handler
+url | Address to be used to call the trigger with a `POST` request
+name | A user provided name for the trigger 
+operation | The operation that the trigger call performs (see table `Operations` below)
+resource_uri | A unique API endpoint that represents the trigger
 
 
-<!--
 ### Operations
 
 Operation | Description
 --------- | -----------
-Redeploy | Performs a `redeploy` service operation: every container with `STOPPED` or `RUNNING` state will be redeployed.
--->
+REDEPLOY | Performs a `redeploy` service operation.
+SCALEUP | Performs a `scale up` service operation.
 
 
-## List all webhooks
+
+## List all triggers
 
 ```python
 import tutum
@@ -44,7 +46,7 @@ webhook.list()
 ```
 
 ```http
-GET /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/webhook/handler/ HTTP/1.1
+GET /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
@@ -72,20 +74,20 @@ service, err := tutum.GetService("61a29874-9134-48f9-b460-f37d4bec4826")
 tutum webhook-handler list 61a29874-9134-48f9-b460-f37d4bec4826
 ```
 
-Lists all current webhook handlers the service has associated to. Returns a list of `Service Webhook Handler` objects.
+Lists all current triggers the service has associated to. Returns a list of `Service Trigger` objects.
 
 ### HTTP Request
 
-`GET /api/v1/service/(uuid)/webhook/handler/`
+`GET /api/v1/service/(uuid)/trigger/`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-uuid | The UUID of the service the webhooks are associated to  
+uuid | The UUID of the service the triggers are associated to  
 
 
-## Create a new webhook handler
+## Create a new trigger
 
 ```python
 import tutum
@@ -109,32 +111,33 @@ service.CreateWebhook(`{"name": "mywebhook_name"}`)
 ```
 
 ```http
-POST /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/webhook/handler/ HTTP/1.1
+POST /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"name": "mywebhook_name"}
+{"name": "mytrigger_name", "operation": "REDEPLOY"}
 ```
 
 ```shell
 tutum webhook-handler create --name mywebhook_name 61a29874-9134-48f9-b460-f37d4bec4826
 ```
 
-Creates a new service webhook handler.
+Creates a new service trigger.
 
 ### HTTP Request
 
-`POST /api/v1/service/(uuid)/webhook/handler/`
+`POST /api/v1/service/(uuid)/trigger/`
 
 ### JSON Parameters
 
 Parameter | Description
 --------- | -----------
-name | (optional) A user provided name for the webhook handler
+name      | (optional) A user provided name for the trigger
+operation | (optional) The operation to be performed by the trigger (default: "REDEPLOY")
 
-## Get an existing webhook handler
+## Get an existing trigger
 
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
@@ -155,26 +158,26 @@ log.Println(webhook)
 ```
 
 ```http
-GET /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/webhook/handler/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+GET /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
-Get all the details of an specific webhook handler
+Get all the details of an specific trigger
 
 ### HTTP Request
 
-`GET /api/v1/service/(uuid)/webhook/handler/(webhook_uuid)/`
+`GET /api/v1/service/(uuid)/trigger/(trigger_uuid)/`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-uuid | The UUID of the service the webhooks are associated to  
-webhook_uuid | The UUID of the webhook handler to retrieve
+uuid | The UUID of the service the triggers are associated to  
+trigger_uuid | The UUID of the trigger to retrieve
 
-## Delete a webhook handler
+## Delete a trigger
 
 ```python
 import tutum
@@ -197,7 +200,7 @@ service.DeleteWebhook("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```http
-DELETE /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/webhook/handler/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+DELETE /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
@@ -207,21 +210,21 @@ Accept: application/json
 tutum webhook-handler rm 61a29874-9134-48f9-b460-f37d4bec4826 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
 ```
 
-Deletes specific webhook handler. It will be no longer available to be called.
+Deletes specific trigger. It will be no longer available to be called.
 
 ### HTTP Request
 
-`DELETE /api/v1/service/(uuid)/webhook/handler/(webhook_uuid)/`
+`DELETE /api/v1/service/(uuid)/trigger/(trigger_uuid)/`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the associated service
-webhook_uuid | The UUID of the webhook handler to delete
+trigger_uuid | The UUID of the trigger to delete
 
 
-## Call a webhook handler
+## Call a trigger
 
 ```python
 import tutum
@@ -244,21 +247,25 @@ service.CallWebhook("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```http
-POST /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/webhook/handler/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/ HTTP/1.1
+POST /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/ HTTP/1.1
 Host: dashboard.tutum.co
 Accept: application/json
 ```
 
-Executes the webhook and redeploys the associated service.
+Executes the trigger. For `SCALEUP` triggers, the number of containers to scale up can be passed at the end of the trigger call url, for example `/api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/3/`.
 
 
 ### HTTP Request
 
-`POST /api/v1/service/(uuid)/webhook/handler/(webhook_uuid)/call/`
+`POST /api/v1/service/(uuid)/trigger/(trigger_uuid)/call/`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the associated service
-webhook_uuid | The UUID of the webhook handler to call
+trigger_uuid | The UUID of the trigger to call
+
+
+# Backwards compatibility
+Tutum API maintains the old "webhook handler" endpoints, but they will be deprecated soon so please update your external services to use the new endpoints.
