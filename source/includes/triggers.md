@@ -7,6 +7,7 @@
 ```json
 {
   "url": "/api/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/trigger/0224815a-c156-44e4-92d7-997c69354438/call/",
+  "operation": "REDEPLOY",
   "name": "docker_trigger",
   "resource_uri": "/api/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/trigger/0224815a-c156-44e4-92d7-997c69354438/"
 }
@@ -21,16 +22,17 @@ Attribute | Description
 --------- | -----------
 url | Address to be used to call the trigger with a `POST` request
 name | A user provided name for the trigger 
+operation | The operation that the trigger call performs (see table `Operations` below)
 resource_uri | A unique API endpoint that represents the trigger
 
 
-<!--
 ### Operations
 
 Operation | Description
 --------- | -----------
-Redeploy | Performs a `redeploy` service operation: every container with `STOPPED` or `RUNNING` state will be redeployed.
--->
+REDEPLOY | Performs a `redeploy` service operation.
+SCALEUP | Performs a `scale up` service operation.
+
 
 
 ## List all triggers
@@ -115,7 +117,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
-{"name": "mytrigger_name"}
+{"name": "mytrigger_name", "operation": "REDEPLOY"}
 ```
 
 ```shell
@@ -132,7 +134,8 @@ Creates a new service trigger.
 
 Parameter | Description
 --------- | -----------
-name | (optional) A user provided name for the trigger
+name      | (optional) A user provided name for the trigger
+operation | (optional) The operation to be performed by the trigger (default: "REDEPLOY")
 
 ## Get an existing trigger
 
@@ -249,7 +252,7 @@ Host: dashboard.tutum.co
 Accept: application/json
 ```
 
-Executes the trigger and redeploys the associated service.
+Executes the trigger. For `SCALEUP` triggers, the number of containers to scale up can be passed at the end of the trigger call url, for example `/api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/3/`.
 
 
 ### HTTP Request
