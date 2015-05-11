@@ -81,10 +81,17 @@ events.run_forever()
 import "github.com/tutumcloud/go-tutum/tutum"
 
 c := make(chan tutum.Event)
-go tutum.TutumEvents(c)
+e := make(chan error)
+
+go tutum.TutumEvents(c, e)
+
 for {
-	event := <-c
-	log.Println(event)
+	select {
+		case event := <-c:
+			log.Println(event)
+		case err := <-e:
+			log.Println(err)
+	}
 }
 ```
 ```http
