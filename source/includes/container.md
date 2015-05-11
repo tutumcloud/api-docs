@@ -155,6 +155,11 @@
     "exit_code_msg": null,
     "image_name": "tutum/wordpress-stackable:latest",
     "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
+    "last_metric": {
+        "cpu": 1.3278507035616,
+        "disk": 462479360,
+        "memory": 763170816
+    },
     "linked_to_container": [
     	{
     		"endpoints": {
@@ -241,6 +246,7 @@ entrypoint | Entrypoint used on the container on launch
 run_command | Run command used on the container on launch
 cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 memory | The memory limit of the container in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+last_metric | Last reported metric for the container (see table `Container Last Metric attributes` below for more information)
 autorestart | Whether to restart the container automatically if it stops (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the container automatically if it stops (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
 roles | List of Tutum roles asigned to this container (see [API roles](https://support.tutum.co/support/solutions/articles/5000524639) for more information))
@@ -291,6 +297,15 @@ Stopping | The container is being stopped. No actions allowed in this state.
 Stopped | The container is stopped. Possible actions in this state: `start`, `terminate`.
 Terminating | The container is being deleted. No actions allowed in this state.
 Terminated | The container has been deleted. No actions allowed in this state.
+
+
+### Container Last Metric attributes
+
+Attribute | Description
+--------- | -----------
+cpu       | CPU percentage usage
+memory    | Memory usage in bytes
+disk      | Disk storage usage in bytes
 
 
 ### Container Link attributes

@@ -654,6 +654,28 @@ Parameter | Description
 uuid | The UUID of the service to stop
 
 
+## Scale a service
+
+```http
+POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/scale/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+Scales the service to its current `target_num_containers` field.
+
+### HTTP Request
+
+`POST /api/v1/service/(uuid)/scale/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the service to scale
+
+
 ## Redeploy a service
 
 ```python

@@ -23,7 +23,7 @@ includes:
   - container
   - volumegroup
   - volume
-  - webhooks
+  - triggers 
   - tutum-events
   - errors
 
