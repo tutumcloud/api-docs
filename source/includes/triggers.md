@@ -266,6 +266,3 @@ Parameter | Description
 uuid | The UUID of the associated service
 trigger_uuid | The UUID of the trigger to call
 
-
-# Backwards compatibility
-Tutum API maintains the old "webhook handler" endpoints, but they will be deprecated soon so please update your external services to use the new endpoints.
