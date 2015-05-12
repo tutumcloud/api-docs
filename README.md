@@ -1,5 +1,7 @@
-api-docs
-========
+tutum/api-docs
+==============
+
+[![Deploy to Tutum](https://s.tutum.co/deploy-to-tutum.svg)](https://dashboard.tutum.co/stack/deploy/)
 
 Tutum API documentation available at [https://docs.tutum.co/v2/api](https://docs.tutum.co/v2/api)
 
