@@ -465,10 +465,10 @@ log.Println(service.Logs())
 ```
 
 ```http
-GET /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
-Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
-Accept: application/json
+GET /v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/?user=username&token=apikey HTTP/1.1
+Host: stream.tutum.co
+Connection: Upgrade
+Upgrade: websocket
 ```
 
 ```shell
@@ -479,18 +479,18 @@ Get the aggregated logs of all the containers of the service.
 
 ### Endpoint Type
 
-Available in Tutum's **REST API**
+Available in Tutum's **STREAM API**
 
 ### HTTP Request
 
-`GET /api/v1/service/(uuid)/logs/`
+`GET /v1/service/(uuid)/logs/`
 
 ### Query Parameters
 
 Parameter | Description
---------- | -----------
+--------- | ----------- 
 uuid | The UUID of the service to retrieve logs
-
+tail | Number of lines to show from the end of the logs (default: `300`)
 
 
 ## Update an existing service
@@ -693,6 +693,10 @@ Accept: application/json
 
 Scales the service to its current `target_num_containers` field.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/service/(uuid)/scale/`
@@ -805,19 +809,3 @@ Parameter | Description
 --------- | -----------
 uuid | The UUID of the service to terminate
 
-
-## Streaming logs of a service
-
-### Endpoint Type
-
-Available in Tutum's **STREAM API**
-
-### HTTP Request
-
-`GET /v1/service/(uuid)/logs`
-
-### Query Parameters
-
-Parameter | Description
---------- | ----------- 
-tail | Amount of lines to be requested at the start of the stream (default: `300`)
