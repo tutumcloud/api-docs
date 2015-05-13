@@ -76,6 +76,10 @@ tutum webhook-handler list 61a29874-9134-48f9-b460-f37d4bec4826
 
 Lists all current triggers the service has associated to. Returns a list of `Service Trigger` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/service/(uuid)/trigger/`
@@ -126,6 +130,10 @@ tutum webhook-handler create --name mywebhook_name 61a29874-9134-48f9-b460-f37d4
 
 Creates a new service trigger.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/service/(uuid)/trigger/`
@@ -165,6 +173,10 @@ Accept: application/json
 ```
 
 Get all the details of an specific trigger
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -212,6 +224,10 @@ tutum webhook-handler rm 61a29874-9134-48f9-b460-f37d4bec4826 7eaf7fff-882c-4f3d
 
 Deletes specific trigger. It will be no longer available to be called.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `DELETE /api/v1/service/(uuid)/trigger/(trigger_uuid)/`
@@ -254,6 +270,9 @@ Accept: application/json
 
 Executes the trigger. For `SCALEUP` triggers, the number of containers to scale up can be passed at the end of the trigger call url, for example `/api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/3/`.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 

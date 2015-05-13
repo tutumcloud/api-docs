@@ -97,6 +97,10 @@ tutum nodecluster list
 
 Lists all current and recently terminated node clusters. Returns a list of `NodeCluster` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/nodecluster/`
@@ -150,6 +154,10 @@ tutum nodecluster create my_cluster digitalocean lon1 1gb
 
 Creates a new node cluster without deploying it.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/nodecluster/`
@@ -198,6 +206,10 @@ tutum nodecluster inspect 7eaf7fff
 
 Get all the details of an specific node cluster
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/nodecluster/(uuid)/`
@@ -239,6 +251,10 @@ Accept: application/json
 ```
 
 Deploys and provisions a recently created node cluster in the specified region and cloud provider.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -293,6 +309,10 @@ tutum tag set -t tag-2 7eaf7fff
 
 Updates the node cluster details and applies the changes automatically.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `PATCH /api/v1/nodecluster/(uuid)/`
@@ -344,6 +364,10 @@ Accept: application/json
 
 Upgrades the Docker Daemon of all the nodes in the cluster.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/nodecluster/(uuid)/docker-upgrade/`
@@ -390,6 +414,10 @@ tutum nodecluster rm 7eaf7fff
 ```
 
 Terminates all the nodes in a node cluster and the node cluster itself. This is not reversible.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
