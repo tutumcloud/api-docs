@@ -351,6 +351,10 @@ tutum container ps
 
 Lists all current and recently terminated containers. Returns a list of `Container` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/container/`
@@ -398,6 +402,10 @@ tutum container inspect 7eaf7fff
 
 Get all the details of an specific container
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/container/(uuid)/`
@@ -431,10 +439,10 @@ log.Println(container.Logs())
 ```
 
 ```http
-GET /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
-Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
-Accept: application/json
+GET /v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/?user=username&token=apikey HTTP/1.1
+Host: stream.tutum.co
+Connection: Upgrade
+Upgrade: websocket
 ```
 
 ```shell
@@ -443,16 +451,20 @@ tutum container logs 7eaf7fff
 
 Get the logs of the specified container.
 
+### Endpoint Type
+
+Available in Tutum's **STREAM API**
+
 ### HTTP Request
 
-`GET /api/v1/container/(uuid)/logs/`
+`GET /v1/container/(uuid)/logs/`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the container to retrieve logs
-
+tail | Number of lines to show from the end of the logs (default: `300`)
 
 
 ## Start a container
@@ -490,6 +502,10 @@ tutum container start 7eaf7fff
 ```
 
 Starts a stopped container.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -536,6 +552,10 @@ tutum container stop 7eaf7fff
 ```
 
 Stops a running container.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -585,6 +605,10 @@ tutum container redeploy 7eaf7fff
 
 Redeploys a container.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/container/(uuid)/redeploy/`
@@ -633,6 +657,10 @@ tutum container terminate 7eaf7fff
 
 Terminates the specified container. This is not reversible. All data stored in the container will be permanently deleted.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `DELETE /api/v1/container/(uuid)/`
@@ -642,3 +670,31 @@ Terminates the specified container. This is not reversible. All data stored in t
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the container to terminate
+
+
+## Execute command inside a container
+
+```http
+GET /v1/container/(uuid)/exec/?user=username&token=apikey HTTP/1.1
+Host: stream.tutum.co
+Connection: Upgrade
+Upgrade: websocket
+```
+
+Executes a command inside the specified running container, creating a bi-directional stream for the process' standard input and output
+
+### Endpoint Type
+
+Available in Tutum's **STREAM API**
+
+### HTTP Request
+
+`GET /v1/container/(uuid)/exec/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the container where the command will be executed
+command | Command to be executed (default: `sh`)
+

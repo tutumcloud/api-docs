@@ -71,6 +71,10 @@ tutum nodecluster provider
 
 Lists all supported cloud providers. Returns a list of `Provider` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/provider/`
@@ -112,6 +116,10 @@ Accept: application/json
 
 
 Get all the details of a specific provider
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 

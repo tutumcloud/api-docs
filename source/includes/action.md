@@ -86,6 +86,10 @@ Accept: application/json
 
 Lists all actions in chronological order. Returns a list of `Action` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/action/`
@@ -130,6 +134,10 @@ Accept: application/json
 ```
 
 Get all the details of an specific action
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
