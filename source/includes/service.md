@@ -461,7 +461,13 @@ if err != nil {
   log.Println(err)
 }
 
-log.Println(service.Logs())
+c := make(chan string)
+
+go service.Logs(c)
+	for {
+		s := <-c
+		log.Println(s)
+	}
 ```
 
 ```http
@@ -488,7 +494,7 @@ Available in Tutum's **STREAM API**
 ### Query Parameters
 
 Parameter | Description
---------- | ----------- 
+--------- | -----------
 uuid | The UUID of the service to retrieve logs
 tail | Number of lines to show from the end of the logs (default: `300`)
 
@@ -808,4 +814,3 @@ Available in Tutum's **REST API**
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the service to terminate
-

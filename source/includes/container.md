@@ -434,8 +434,13 @@ container, err := tutum.GetContainer("447ecddc-2890-4ea2-849b-99392e0dd7a6")
 if err != nil {
 	log.Fatal(err)
 }
+c := make(chan string)
 
-log.Println(container.Logs())
+go container.Logs(c)
+	for {
+		s := <-c
+		log.Println(s)
+	}
 ```
 
 ```http
@@ -697,4 +702,3 @@ Parameter | Description
 --------- | -----------
 uuid | The UUID of the container where the command will be executed
 command | Command to be executed (default: `sh`)
-
