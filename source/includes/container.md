@@ -679,6 +679,21 @@ uuid | The UUID of the container to terminate
 
 ## Execute command inside a container
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+c := make(chan string)
+
+container.Exec("ls", c)
+
+```
+
 ```http
 GET /v1/container/(uuid)/exec/?user=username&token=apikey HTTP/1.1
 Host: stream.tutum.co
