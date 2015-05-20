@@ -690,11 +690,24 @@ uuid | The UUID of the service to stop
 
 ## Scale a service
 
+```python
+import tutum
+
+service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+service.target_num_containers = 3
+service.save()
+service.scale()
+```
+
 ```http
 POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/scale/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```shell
+tutum service scale 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce 3
 ```
 
 Scales the service to its current `target_num_containers` field.
