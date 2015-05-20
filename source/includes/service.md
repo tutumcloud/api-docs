@@ -461,7 +461,7 @@ if err != nil {
   log.Println(err)
 }
 
-c := make(chan string)
+c := make(chan Logs)
 
 go service.Logs(c)
 	for {

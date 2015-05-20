@@ -434,7 +434,7 @@ container, err := tutum.GetContainer("447ecddc-2890-4ea2-849b-99392e0dd7a6")
 if err != nil {
 	log.Fatal(err)
 }
-c := make(chan string)
+c := make(chan tutum.Logs)
 
 go container.Logs(c)
 	for {
