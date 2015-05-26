@@ -203,7 +203,7 @@ if err != nil {
 	log.Println(err)
 }
 
-if err = node.Update(`{"tags": [{"name": "tag-1"}]}`); err != nil {
+if err = node.Update(tutum.Node{Tags: []string{{Name: "tag-1"}}}); err != nil {
 			log.Println(err)
 }
 ```
