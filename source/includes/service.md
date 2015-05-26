@@ -448,8 +448,11 @@ uuid | The UUID of the service to retrieve
 ```python
 import tutum
 
+def log_handler(message):
+	print message
+
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-print service.logs
+service.logs(log_handler)
 ```
 
 ```go

@@ -58,7 +58,7 @@
 }
 ```
 
-A stack is a close related group of services.
+A stack is a logical grouping of closely related services, that may be linked with one another.
 
 ### Attributes
 
