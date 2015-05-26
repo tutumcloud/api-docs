@@ -129,7 +129,7 @@ nodecluster.save()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-nodecluster, err := tutum.CreateNodeCluster(`{"name": "my_cluster", "region": "/api/v1/region/digitalocean/lon1/", "node_type": "/api/v1/nodetype/digitalocean/1gb/", "disk": 60}`)
+nodecluster, err := tutum.CreateNodeCluster(tutum.NodeCreateRequest{Name: "my_cluster", Region: "/api/v1/region/digitalocean/lon1/", NodeType: "/api/v1/nodetype/digitalocean/1gb/", Target_num_nodes: 2})
 
 if err != nil {
   log.Println(err)
@@ -286,7 +286,7 @@ if err != nil {
   log.Println(err)
 }
 
-if err = nodecluster..Update(`{"target_num_nodes": 3, "tags": [{"name": "tag-1"}]}`); err != nil {
+if err = nodecluster.Update(tutum.NodeCreateRequest{Target_num_nodes: 4}); err != nil {
    log.Println(err)
 }
 ```

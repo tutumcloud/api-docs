@@ -148,26 +148,7 @@ stack.save()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-stack, err := tutum.CreateStack(`{
-    "name": "my-new-stack",
-    "services": [
-        {
-            "name": "hello-word",
-            "image": "tutum/hello-world",
-            "target_num_containers": 2,
-            "linked_to_service": [
-                {
-                    "to_service": "database",
-                    "name": "DB"
-                }
-            ]
-        },
-        {
-            "name": "database",
-            "image": "tutum/mysql"
-        }
-    ]
-}`)
+stack, err := tutum.CreateStack(tutum.StackCreateRequest{Name: "my-new-stack", Services: []tutum.ServiceCreateRequest{{Image: "tutum/hello-world", Name: "test", Target_num_containers: 2}}})
 
 if err != nil {
   log.Println(err)
@@ -337,7 +318,7 @@ if err != nil {
   log.Println(err)
 }
 
-if err = stack.Update(`{"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}`); err != nil {
+if err = stack.Update(tutum.StackCreateRequest{Services: []tutum.ServiceCreateRequest{{Name: "hello-world", Image: "tutum/hello-world", Target_num_containers: 2}}}); err != nil {
    log.Println(err)
 }
 ```

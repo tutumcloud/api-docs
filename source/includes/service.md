@@ -303,7 +303,7 @@ service.save()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-service, err := tutum.CreateService(`{"image": "tutum/hello-world", "name": "my-new-app", "target_num_containers": 2}`)
+service, err := tutum.CreateService(tutum.ServiceCreateRequest{Image: "tutum/hello-world",  Name: "my-new-app", Target_num_containers: 2})
 
 if err != nil {
   log.Println(err)
@@ -519,7 +519,7 @@ if err != nil {
   log.Println(err)
 }
 
-if err = service.Update(`{"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}`); err != nil {
+if err = service.Update(tutum.ServiceCreateRequest{Target_num_containers: 3}); err != nil {
    log.Println(err)
 }
 ```
