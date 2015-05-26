@@ -74,6 +74,10 @@ tutum nodecluster region
 
 Lists all regions of all supported cloud providers. Returns a list of `Region` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/region/`
@@ -116,6 +120,10 @@ Accept: application/json
 
 
 Get all the details of a specific region
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 

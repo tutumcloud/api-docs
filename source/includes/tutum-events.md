@@ -16,8 +16,6 @@
 }
 ```
 
-__Available only on the Stream API__
-
 Tutum events are generated every time any of the following objects is created or changes state:
 
 * Stack
@@ -49,7 +47,6 @@ container | Whenever a `Container` is created or updated
 nodecluster | Whenever a `Node Cluster` is created or updated
 node | Whenever a `Node` is created or updated
 action | Whenever a `Action` is created or updated
-auth | Sent after the websocket is connected successfully
 error | Sent when an error occurs on the websocket connection or as part of the authentication process
 
 
@@ -77,6 +74,7 @@ events = tutum.TutumEvents()
 events.on_message(process_event)
 events.run_forever()
 ```
+
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
@@ -94,8 +92,9 @@ for {
 	}
 }
 ```
+
 ```http
-GET /v1/events?user=username&token=apikey HTTP/1.1
+GET /v1/events/?user=username&token=apikey HTTP/1.1
 Host: stream.tutum.co
 Connection: Upgrade
 Upgrade: websocket
@@ -105,12 +104,15 @@ Upgrade: websocket
 tutum event
 ```
 
-
-### Websocket Request
-
-`GET /v1/events`
-
 Listens for new Tutum Events
+
+### Endpoint Type
+
+Available in Tutum's **STREAM API**
+
+### HTTP Request
+
+`GET /v1/events/`
 
 ### Query Parameters
 

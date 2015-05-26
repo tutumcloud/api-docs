@@ -41,8 +41,8 @@ SCALEUP | Performs a `scale up` service operation.
 import tutum
 
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
-webhook = tutum.WebhookHandler.fetch(service)
-webhook.list()
+trigger = tutum.Trigger.fetch(service)
+trigger.list()
 ```
 
 ```http
@@ -71,10 +71,14 @@ trigger, err := service.ListTriggers()
 ```
 
 ```shell
-tutum webhook-handler list 61a29874-9134-48f9-b460-f37d4bec4826
+tutum trigger list 61a29874-9134-48f9-b460-f37d4bec4826
 ```
 
 Lists all current triggers the service has associated to. Returns a list of `Service Trigger` objects.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -93,9 +97,9 @@ uuid | The UUID of the service the triggers are associated to
 import tutum
 
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
-webhook = tutum.WebhookHandler.fetch(service)
-webhook.add("mywebhook_name")
-webhook.save()
+trigger = tutum.Trigger.fetch(service)
+trigger.add(name="mytrigger_name", operation="REDEPLOY")
+trigger.save()
 ```
 
 ```go
@@ -121,10 +125,14 @@ Content-Type: application/json
 ```
 
 ```shell
-tutum webhook-handler create --name mywebhook_name 61a29874-9134-48f9-b460-f37d4bec4826
+tutum trigger create --name mytrigger_name --operation REDEPLOY 61a29874-9134-48f9-b460-f37d4bec4826
 ```
 
 Creates a new service trigger.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -138,6 +146,13 @@ name      | (optional) A user provided name for the trigger
 operation | (optional) The operation to be performed by the trigger (default: "REDEPLOY")
 
 ## Get an existing trigger
+```python
+import tutum
+
+service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
+trigger = tutum.Trigger.fetch(service)
+```
+
 
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
@@ -166,6 +181,10 @@ Accept: application/json
 
 Get all the details of an specific trigger
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/service/(uuid)/trigger/(trigger_uuid)/`
@@ -183,8 +202,8 @@ trigger_uuid | The UUID of the trigger to retrieve
 import tutum
 
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
-webhook = tutum.WebhookHandler.fetch(service)
-webhook.delete("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+trigger = tutum.Trigger.fetch(service)
+trigger.delete("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```go
@@ -207,10 +226,14 @@ Accept: application/json
 ```
 
 ```shell
-tutum webhook-handler rm 61a29874-9134-48f9-b460-f37d4bec4826 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
+tutum trigger rm 61a29874-9134-48f9-b460-f37d4bec4826 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
 ```
 
 Deletes specific trigger. It will be no longer available to be called.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -230,8 +253,8 @@ trigger_uuid | The UUID of the trigger to delete
 import tutum
 
 service = tutum.Service.fetch('61a29874-9134-48f9-b460-f37d4bec4826')
-webhook = tutum.WebhookHandler.fetch(service)
-webhook.call("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+trigger = tutum.Trigger.fetch(service)
+trigger.call("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```go
@@ -254,6 +277,9 @@ Accept: application/json
 
 Executes the trigger. For `SCALEUP` triggers, the number of containers to scale up can be passed at the end of the trigger call url, for example `/api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/3/`.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 

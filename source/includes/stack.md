@@ -58,7 +58,7 @@
 }
 ```
 
-A stack is a close related group of services.
+A stack is a logical grouping of closely related services, that may be linked with one another.
 
 ### Attributes
 
@@ -122,6 +122,10 @@ tutum stack list
 
 Lists all current and recently terminated stacks. Returns a list of `Stack` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/stack/`
@@ -144,26 +148,7 @@ stack.save()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-stack, err := tutum.CreateStack(`{
-    "name": "my-new-stack",
-    "services": [
-        {
-            "name": "hello-word",
-            "image": "tutum/hello-world",
-            "target_num_containers": 2,
-            "linked_to_service": [
-                {
-                    "to_service": "database",
-                    "name": "DB"
-                }
-            ]
-        },
-        {
-            "name": "database",
-            "image": "tutum/mysql"
-        }
-    ]
-}`)
+stack, err := tutum.CreateStack(tutum.StackCreateRequest{Name: "my-new-stack", Services: []tutum.ServiceCreateRequest{{Image: "tutum/hello-world", Name: "test", Target_num_containers: 2}}})
 
 if err != nil {
   log.Println(err)
@@ -207,6 +192,10 @@ tutum stack create --name hello-world -f tutum.yml
 
 Creates a new stack without starting it. Note that the JSON syntax is abstracted by both, the Tutum CLI and our UI, in order to use [Stack YAML files](https://support.tutum.co/support/solutions/articles/5000583471).
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/stack/`
@@ -244,6 +233,10 @@ Accept: application/json
 ```
 
 Get a JSON representation of the stack following the [Stack YAML representation](https://support.tutum.co/support/solutions/articles/5000583471).
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -290,6 +283,10 @@ tutum stack inspect 46aca402-2109-4a70-a378-760cfed43816
 
 Get all the details of an specific stack
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/stack/(uuid)/`
@@ -321,7 +318,7 @@ if err != nil {
   log.Println(err)
 }
 
-if err = stack.Update(`{"services": [{"name": "hello-word", "image": "tutum/hello-world", "target_num_containers": 2}]}`); err != nil {
+if err = stack.Update(tutum.StackCreateRequest{Services: []tutum.ServiceCreateRequest{{Name: "hello-world", Image: "tutum/hello-world", Target_num_containers: 2}}}); err != nil {
    log.Println(err)
 }
 ```
@@ -359,6 +356,10 @@ tutum stack update -f tutum.yml 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Updates the details of every service in the stack.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -415,6 +416,10 @@ tutum stack stop 46aca402-2109-4a70-a378-760cfed43816
 
 Stops the services in the stack.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/stack/(uuid)/stop/`
@@ -461,6 +466,10 @@ tutum stack start 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Starts the services in the stack.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -509,6 +518,10 @@ tutum stack redeploy 46aca402-2109-4a70-a378-760cfed43816
 
 Redeploys all the services in the stack.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/stack/(uuid)/redeploy/`
@@ -555,6 +568,10 @@ tutum stack terminate 46aca402-2109-4a70-a378-760cfed43816
 ```
 
 Terminate all the services in a the stack and the stack itself.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 

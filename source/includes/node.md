@@ -117,6 +117,10 @@ tutum node list
 
 Lists all current and recently terminated nodes. Returns a list of `Node` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/node/`
@@ -165,6 +169,10 @@ tutum node inspect 7eaf7fff
 
 Get all the details of an specific node
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/node/(uuid)/`
@@ -195,7 +203,7 @@ if err != nil {
 	log.Println(err)
 }
 
-if err = node.Update(`{"tags": [{"name": "tag-1"}]}`); err != nil {
+if err = node.Update(tutum.Node{Tags: []string{{Name: "tag-1"}}}); err != nil {
 			log.Println(err)
 }
 ```
@@ -215,6 +223,10 @@ tutum tag set -t tag-2 7eaf7fff
 ```
 
 Replaces the old tags in the node for the new list provided.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
@@ -269,6 +281,10 @@ tutum node upgrade 7eaf7fff
 
 Upgrades the docker daemon of the node. This will restart your containers on that node. See [Docker upgrade](https://support.tutum.co/support/solutions/articles/5000515535) for more information.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `POST /api/v1/node/(uuid)/docker-upgrade/`
@@ -315,6 +331,10 @@ tutum node rm 7eaf7fff
 ```
 
 Terminates the specified node. For security reasons, only nodes with no running containers can be terminated, otherwise the API call will fail.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 

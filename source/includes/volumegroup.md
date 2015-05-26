@@ -75,6 +75,10 @@ tutum volumegroup list
 
 Lists all volume groups. Returns a list of `VolumeGroup` objects.
 
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
 ### HTTP Request
 
 `GET /api/v1/volumegroup/`
@@ -112,6 +116,10 @@ tutum volumegroup inspect 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
 ```
 
 Get all the details of an specific volume group
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
 
 ### HTTP Request
 
