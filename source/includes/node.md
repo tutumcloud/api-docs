@@ -29,8 +29,8 @@
 	"resource_uri": "/api/v1/node/fc1a5bb9-17f5-4819-b667-8c7cd819e949/",
 	"state": "Deployed",
 	"tags": [
-		{"name": "tag_one"},
-		{"name": "tag-two"}
+		{"name": "tag_one", "origin": "user"},
+		{"name": "tag-two", "origin": "user"}
 	],
 	"tunnel": "https://tunnel01.tutum.co:12345",
 	"uuid": "fc1a5bb9-17f5-4819-b667-8c7cd819e949"
@@ -244,7 +244,7 @@ uuid | The UUID of the node to retrieve
 
 Parameter | Description
 --------- | -----------
-tags | (optional) List of tags the node will have. This operation replaces the tag list.
+tags | (optional) List of tags the node will have. This operation replaces the user tag list.
 
 
 ## Upgrade Docker Daemon
