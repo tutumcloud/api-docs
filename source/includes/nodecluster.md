@@ -19,9 +19,9 @@
     "resource_uri": "/api/v1/nodecluster/5516df0b-721e-4470-b350-741ff22e63a0/",
     "state": "Deployed",
     "tags": [
-        {"name": "tag_one"},
-        {"name": "tag-two"},
-        {"name": "tagthree3"}
+        {"name": "tag_one", "origin": "user"},
+        {"name": "tag-two", "origin": "user"},
+        {"name": "tagthree3", "origin": "user"}
     ],
     "target_num_nodes": 2,
     "uuid": "5516df0b-721e-4470-b350-741ff22e63a0"
@@ -329,7 +329,7 @@ uuid | The UUID of the node cluster to update
 Parameter | Description
 --------- | -----------
 target_num_nodes | (optional) The number of nodes to scale this node cluster to
-tags | (optional) List of tags the node cluster (and nodes within the node cluster) will have. This operation replaces the tag list.
+tags | (optional) List of tags the node cluster (and nodes within the node cluster) will have. This operation replaces the user tag list.
 
 
 ## Upgrade Docker Daemon
