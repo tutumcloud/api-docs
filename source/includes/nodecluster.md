@@ -329,7 +329,7 @@ uuid | The UUID of the node cluster to update
 Parameter | Description
 --------- | -----------
 target_num_nodes | (optional) The number of nodes to scale this node cluster to
-tags | (optional) List of tags the node cluster (and nodes within the node cluster) will have. This operation replaces the tag list.
+tags | (optional) List of tags the node cluster (and nodes within the node cluster) will have. This operation replaces the user tag list.
 
 
 ## Upgrade Docker Daemon
