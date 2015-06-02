@@ -11,7 +11,7 @@
 }
 ```
 
-Tags help to identify the nodes when deploying services
+Tags are used to target the deployment of services to a specific set of nodes. [Learn more](https://support.tutum.co/support/solutions/articles/5000508859)
 
 ### Attributes
 
@@ -19,6 +19,7 @@ Attribute | Description
 --------- | -----------
 name | Name of the tag
 origin | Possible values: `user`, `tutum`
+
 
 ## List all node tags
 
@@ -29,7 +30,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
-Lists all node tags. Returns a list of `NodeTag` objects.
+Lists all tags used by all nodes. Returns a list of `Tag` objects.
 
 ### Endpoint Type
 
