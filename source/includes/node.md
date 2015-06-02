@@ -244,7 +244,7 @@ uuid | The UUID of the node to retrieve
 
 Parameter | Description
 --------- | -----------
-tags | (optional) List of tags the node will have. This operation replaces the tag list.
+tags | (optional) List of tags the node will have. This operation replaces the user tag list.
 
 
 ## Upgrade Docker Daemon
