@@ -7,8 +7,10 @@
 ```json
 {
     "action": "Cluster Create",
+    "body": "{\"image_tag\": \"/api/v1/image/tutum/ubuntu-quantal/tag/latest/\", \"name\": \"test_cluster\"}",
     "end_date": "Wed, 17 Sep 2014 08:26:22 +0000",
     "ip": "56.78.90.12",
+    "is_user_action": true,
     "location": "New York, USA",
     "logs": "",
     "method": "POST",
@@ -18,8 +20,7 @@
     "start_date": "Wed, 17 Sep 2014 08:26:22 +0000",
     "state": "Success",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.78.2 (KHTML, like Gecko) Version/7.0.6 Safari/537.78.2",
-    "uuid": "6246c558-976c-4df6-ba60-eb1a344a17af",
-    "body": "{\"image_tag\": \"/api/v1/image/tutum/ubuntu-quantal/tag/latest/\", \"name\": \"test_cluster\"}"
+    "uuid": "6246c558-976c-4df6-ba60-eb1a344a17af"
 }
 ```
 
@@ -46,6 +47,7 @@ ip | IP address of the user that performed the API call
 location | Geographic location of the IP address of the user that performed the API call
 logs | Logs produced as a result of the operation
 body | Data of the API call
+is_user_action | If the action has been triggered by the user
 
 
 ### Action states

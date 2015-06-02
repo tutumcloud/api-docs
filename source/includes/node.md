@@ -32,6 +32,7 @@
 		{"name": "tag_one"},
 		{"name": "tag-two"}
 	],
+	"tunnel": "https://tunnel01.tutum.co:12345",
 	"uuid": "fc1a5bb9-17f5-4819-b667-8c7cd819e949"
 }
 ```
@@ -59,6 +60,7 @@ last_metric | Last reported metric from the node (see table `Node Last Metric at
 current_num_containers | The actual number of containers deployed in this node
 last_seen | Date and time of the last time the node was contacted by Tutum
 public_ip | The public IP allocated to the node
+tunnel | If the node does not accept incoming connections to port 2375, the address of the reverse tunnel to access the docker daemon, or `null` otherwise
 deployed_datetime | The date and time when this node cluster was deployed
 destroyed_datetime | The date and time when this node cluster was terminated (if applicable)
 tags | List of tags to identify the node when deploying services (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
@@ -242,7 +244,7 @@ uuid | The UUID of the node to retrieve
 
 Parameter | Description
 --------- | -----------
-tags | (optional) List of tags the node will have. This operation replaces the tag list.
+tags | (optional) List of tags the node will have. This operation replaces the user tag list.
 
 
 ## Upgrade Docker Daemon
