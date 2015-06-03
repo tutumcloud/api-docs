@@ -70,10 +70,10 @@ tags | List of tags to identify the node when deploying services (see [Tags](htt
 
 State | Description
 ----- | -----------
-Init | The node has been created and has not been deployed yet. Possible actions in this state: `deploy`, `terminate`.
 Deploying | The node is being deployed in the cloud provider. No actions allowed in this state.
-Provisioning | Our agent is being installed and configured on the node. No actions allowed in this state.
-Deployed | The node is deployed and provisioned and is ready to deploy containers. Possible actions in this state: `terminate`.
+Deployed | The node is deployed and provisioned and is ready to deploy containers. Possible actions in this state: `terminate`, `docker-upgrade`.
+Unreachable | The node is deployed but Tutum cannot connect to the docker daemon. Possible actions in this state: `health-check` and `terminate`.
+Upgrading | The node docker daemon is being upgraded. No actions allowed in this state.
 Terminating | The node is being terminated in the cloud provider. No actions allowed in this state.
 Terminated | The node has been terminated and is no longer present in the cloud provider. No actions allowed in this state.
 
@@ -131,7 +131,7 @@ Available in Tutum's **REST API**
 
 Parameter | Description
 --------- | -----------
-state | Filter by state. Possible values: `Init`, `Deploying`, `Provisioning`, `Deployed`, `Terminating`, `Terminated`
+state | Filter by state. Possible values: `Deploying`, `Deployed`, `Unreachable`, `Upgrading`, `Terminating`, `Terminated`
 node_cluster | Filter by node cluster (resource URI)
 node_type | Filter by node type (resource URI)
 region | Filter by region (resource URI)
@@ -296,6 +296,32 @@ Available in Tutum's **REST API**
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the node to upgrade
+
+
+## Health-Check a node
+
+```http
+POST /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/health-check/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+If a node is `Unreachable`, checks if it becomes available again by checking the node docker daemon connectivity.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
+### HTTP Request
+
+`POST /api/v1/node/(uuid)/health-check/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the node to health-check
 
 
 ## Terminate a node
