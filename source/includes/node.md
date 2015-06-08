@@ -298,7 +298,7 @@ Parameter | Description
 uuid | The UUID of the node to upgrade
 
 
-## Health-Check a node
+## Perform a health check of a node
 
 ```http
 POST /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/health-check/ HTTP/1.1
@@ -307,7 +307,7 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
-If a node is `Unreachable`, checks if it becomes available again by checking the node docker daemon connectivity.
+Tests connectivity between Tutum and the node. Updates the node status to `Deployed` if the check was successful, or to `Unreachable` otherwise.
 
 ### Endpoint Type
 
@@ -321,7 +321,7 @@ Available in Tutum's **REST API**
 
 Parameter | Description
 --------- | -----------
-uuid | The UUID of the node to health-check
+uuid | The UUID of the node to perform the health check to
 
 
 ## Terminate a node

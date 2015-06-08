@@ -1,4 +1,4 @@
-# Node Cluster
+# Node Clusters
 
 ## Node Cluster
 
