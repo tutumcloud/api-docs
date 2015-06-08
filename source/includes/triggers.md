@@ -111,7 +111,13 @@ if err != nil {
   log.Println(err)
 }
 
-service.CreateTrigger(`{"name": "mytrigger_name", "operation": "REDEPLOY"}`)
+trigger, err := service.CreateTrigger(tutum.TriggerCreateRequest{Name: "test-trigger", Operation: "REDEPLOY"})
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(trigger)
 ```
 
 ```http
@@ -291,4 +297,3 @@ Parameter | Description
 --------- | -----------
 uuid | The UUID of the associated service
 trigger_uuid | The UUID of the trigger to call
-
