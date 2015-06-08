@@ -419,6 +419,17 @@ uuid | The UUID of the container to retrieve
 
 ## Get the logs of a container
 
+> Example log line
+
+```json
+{
+    "type": "log",
+    "log": "Log line from the container",
+    "streamType": "stdout",
+    "timestamp": 1433779324
+}
+```
+
 ```python
 import tutum
 

@@ -445,6 +445,18 @@ uuid | The UUID of the service to retrieve
 
 ## Get the logs of a service
 
+> Example log line
+
+```json
+{
+    "type": "log",
+    "source": "wordpress-stackable-1",
+    "log": "Log line from the container indicated by 'source'",
+    "streamType": "stdout",
+    "timestamp": 1433779324
+}
+```
+
 ```python
 import tutum
 
