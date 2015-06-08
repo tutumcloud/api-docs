@@ -549,7 +549,7 @@ tutum tag add -t tag-1 7eaf7fff
 tutum tag set -t tag-2 7eaf7fff
 ```
 
-Updates the service details and applies the changes automatically.
+Updates the service details.
 
 ### Endpoint Type
 
