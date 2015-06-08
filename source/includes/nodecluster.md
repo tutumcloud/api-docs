@@ -1,4 +1,4 @@
-# Node Cluster
+# Node Clusters
 
 ## Node Cluster
 
@@ -169,7 +169,7 @@ Parameter | Description
 name | (required) A user provided name for the node cluster
 node_type | (required) The resource URI of the node type to be used for the node cluster
 region | (required) The resource URI of the region where the node cluster is to be deployed
-disk | (optional) The size of the volume to create where images and containers will be stored, in GB (default: `60`). Not available for Digital Ocean.
+disk | (optional) The size of the volume to create where images and containers will be stored, in GB (default: `60`). Not available for Digital Ocean. To create Softlayer nodes you must select one of the following sizes (in GBs): 10, 20, 25, 30, 40, 50, 75, 100, 125, 150, 175, 200, 250, 300, 350, 400, 500, 750, 1000, 1500 or 2000
 target_num_nodes | (optional) The desired number of nodes for the node cluster (default: `1`)
 tags | (optional) List of tags of the node cluster to be used when deploying services see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
 

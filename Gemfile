@@ -5,7 +5,7 @@ source 'http://rubygems.org'
 gem "middleman", "~>3.3.0"
 
 # For syntax highlighting
-gem 'rouge', '1.0.0', :git => 'https://github.com/fermayo/rouge.git', :branch => 'add-http-patch-1.0'
+gem 'rouge'
 gem "middleman-syntax"
 
 # Plugin for middleman to generate Github pages

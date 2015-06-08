@@ -12,7 +12,6 @@
     "ip": "56.78.90.12",
     "is_user_action": true,
     "location": "New York, USA",
-    "logs": "",
     "method": "POST",
     "object": "/api/v1/cluster/eea638f4-b77a-4183-b241-22dbd7866f22/",
     "path": "/api/v1/cluster/",
@@ -45,7 +44,6 @@ end_date | Date and time when the API call finished processing
 state | State of the operation (see table below)
 ip | IP address of the user that performed the API call
 location | Geographic location of the IP address of the user that performed the API call
-logs | Logs produced as a result of the operation
 body | Data of the API call
 is_user_action | If the action has been triggered by the user
 
@@ -150,3 +148,30 @@ Available in Tutum's **REST API**
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the action to retrieve
+
+
+## Get the logs of an action
+
+```http
+GET /v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/?user=username&token=apikey HTTP/1.1
+Host: stream.tutum.co
+Connection: Upgrade
+Upgrade: websocket
+```
+
+Get the logs of the specified action.
+
+### Endpoint Type
+
+Available in Tutum's **STREAM API**
+
+### HTTP Request
+
+`GET /v1/action/(uuid)/logs/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the service to retrieve logs
+tail | Number of lines to show from the end of the logs (default: `300`)
