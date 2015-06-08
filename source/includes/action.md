@@ -12,7 +12,6 @@
     "ip": "56.78.90.12",
     "is_user_action": true,
     "location": "New York, USA",
-    "logs": "",
     "method": "POST",
     "object": "/api/v1/cluster/eea638f4-b77a-4183-b241-22dbd7866f22/",
     "path": "/api/v1/cluster/",
@@ -45,7 +44,6 @@ end_date | Date and time when the API call finished processing
 state | State of the operation (see table below)
 ip | IP address of the user that performed the API call
 location | Geographic location of the IP address of the user that performed the API call
-logs | Logs produced as a result of the operation
 body | Data of the API call
 is_user_action | If the action has been triggered by the user
 
