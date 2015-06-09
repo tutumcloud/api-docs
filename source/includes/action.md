@@ -152,6 +152,33 @@ uuid | The UUID of the action to retrieve
 
 ## Get the logs of an action
 
+> Example log line
+
+```json
+{
+    "type": "log",
+    "log": "Log line from the action",
+    "timestamp": 1433779324
+}
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+c := make(chan tutum.Logs)
+action, err := tutum.GetAction("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+    log.Println(err)
+}
+
+go action.GetLogs(c)
+
+for {
+	log.Println(<-c)
+}
+```
+
 ```http
 GET /v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/?user=username&token=apikey HTTP/1.1
 Host: stream.tutum.co
@@ -160,6 +187,7 @@ Upgrade: websocket
 ```
 
 Get the logs of the specified action.
+
 
 ### Endpoint Type
 
@@ -173,5 +201,4 @@ Available in Tutum's **STREAM API**
 
 Parameter | Description
 --------- | -----------
-uuid | The UUID of the service to retrieve logs
-tail | Number of lines to show from the end of the logs (default: `300`)
+uuid | The UUID of the action to retrieve logs
