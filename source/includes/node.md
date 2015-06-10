@@ -6,6 +6,7 @@
 
 ```json
 {
+    "availability_zone": "/api/v1/az/testing-region/testing-az/",
 	"cpu": 1,
 	"current_num_containers": 4,
 	"deployed_datetime": "Tue, 16 Sep 2014 17:01:15 +0000",
@@ -43,6 +44,7 @@ A node is a virtual machine provided by a cloud provider where containers can be
 
 Attribute | Description
 --------- | -----------
+availability_zone | The resource URI of the availability zone where the node is deployed, if any
 uuid | A unique identifier for the node generated automatically on creation
 resource_uri | A unique API endpoint that represents the node
 external_fqdn | An automatically generated FQDN for the node. Containers deployed on this node will inherit this FQDN.
@@ -358,7 +360,7 @@ if err = node.Terminate(); err != nil {
 tutum node rm 7eaf7fff
 ```
 
-Terminates the specified node. For security reasons, only nodes with no running containers can be terminated, otherwise the API call will fail.
+Terminates the specified node.
 
 ### Endpoint Type
 
