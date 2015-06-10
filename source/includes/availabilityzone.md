@@ -29,7 +29,8 @@ resource_uri | A unique API endpoint that represents the region
 ## List all availability zones
 
 ```python
-# TODO
+import tutum
+tutum.AZ.list()
 ```
 
 ```http
@@ -69,7 +70,8 @@ region | Filter by region (resource URI)
 ## Get an individual availability zone
 
 ```python
-# TODO
+import tutum
+tutum.AZ.fetch("sa-east-1/sa-east-1a")
 ```
 
 ```go
