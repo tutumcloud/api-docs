@@ -40,6 +40,7 @@
   "public_url": "",
   "resource_uri": "/api/v1/image/registry.local/user1/image1/",
   "star_count": 0,
+  "state": "SUCCESS",
   "jumpstart": false,
   "tags": [
     "/api/v1/image/registry.local/user1/image1/tag/latest/",
@@ -58,6 +59,7 @@ resource_uri | A unique API endpoint that represents the image
 name | Name of the image with docker format, i.e. 'ubuntu' or 'tutum/hello-world'
 description | Description of the image
 icon_url | URL of the image icon
+state | The state of the image (see table `Image states` below)
 star_count | How many people starred the image
 jumpstart | Whether the image is a jumpstart or not
 in_use | If the image is being used by any of your services
@@ -67,6 +69,16 @@ public_url | URL of the detailed information page in the public docker index
 registry | Resource URI of the registry where this image is hosted
 build_source | The build source for this image (see table `Image Build Source attributes` below)
 tags | List of resource URIs of the tags associated with this docker image
+
+
+### Image States
+
+State | Description
+----- | -----------
+Empty | The image has no built tags available yet.
+Success | All image tags are successfully built.
+Building | Any of the images tags is being built.
+Failed | There is at least an image tag whose last build failed.
 
 
 ### Image Category attributes

@@ -52,8 +52,19 @@ Attribute | Description
 resource_uri | A unique API endpoint that represents the image tag
 name | Name of the tag
 full_name | Full name of the image tag with docker format, i.e. 'ubuntu:latest' or 'tutum/hello-world:staging'
+state | The state of the image tag (see table `Image Tag states` below)
 buildable | If the image tag has a build source associated to it
 layer | Specification of the current layer associated to this image tag (see table `Image Tag Layer attributes` below)
+
+
+### Image Tag States
+
+State | Description
+----- | -----------
+Empty | The image tag has not been built yet.
+Success | The last build on this tag finished successfully.
+Building | The image tag is being built.
+Failed | The last build on this tag failed.
 
 
 ### Image Tag Layer attributes
