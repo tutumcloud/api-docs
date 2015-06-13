@@ -11,6 +11,7 @@
     "end_date": "Wed, 17 Sep 2014 08:26:22 +0000",
     "ip": "56.78.90.12",
     "is_user_action": true,
+    "can_be_canceled": false,
     "location": "New York, USA",
     "method": "POST",
     "object": "/api/v1/cluster/eea638f4-b77a-4183-b241-22dbd7866f22/",
@@ -46,13 +47,17 @@ ip | IP address of the user that performed the API call
 location | Geographic location of the IP address of the user that performed the API call
 body | Data of the API call
 is_user_action | If the action has been triggered by the user
+can_be_canceled | If the action can be canceled by the user in the middle of its execution
 
 
 ### Action states
 
 State | Description
 ----- | -----------
+Pending | The action needed asynchronous execution and it is waiting for an in progress action
 In progress | The action needed asynchronous execution and is being performed
+Canceling | The action is being canceled by user request
+Canceled | The action has been canceled
 Success | The action was executed successfully
 Failed | There was an issue when the action was being performed. Check the logs for more information.
 
@@ -227,3 +232,29 @@ Parameter | Description
 uuid | The UUID of the action to retrieve logs
 tail | Number of lines to show from the end of the logs (default: `300`)
 follow | Whether to stream logs or close the connection immediately (default: true)
+
+
+## Cancel an action
+
+```http
+POST /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/cancel/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+Cancels an action in Pending or In progress state.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
+### HTTP Request
+
+`POST /api/v1/action/(uuid)/cancel/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the action to cancel
