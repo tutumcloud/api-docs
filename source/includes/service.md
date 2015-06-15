@@ -464,7 +464,7 @@ def log_handler(message):
 	print message
 
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-service.logs(log_handler)
+service.logs(tail=300, follow=True, log_handler=log_handler)
 ```
 
 ```go
@@ -512,6 +512,7 @@ Parameter | Description
 --------- | -----------
 uuid | The UUID of the service to retrieve logs
 tail | Number of lines to show from the end of the logs (default: `300`)
+follow | Whether to stream logs or close the connection immediately (default: true)
 
 
 ## Update an existing service
