@@ -36,6 +36,7 @@
   "icon_url": "/_static/assets/images/dockerimages/docker-64.png",
   "in_use": false,
   "is_private_image": true,
+  "last_build_date": "Fri, 8 Nov 2013 00:22:26 +0000",
   "name": "registry.local/user1/image1",
   "public_url": "",
   "resource_uri": "/api/v1/image/registry.local/user1/image1/",
@@ -67,6 +68,7 @@ categories | List of categories associated with this image (see table `Image Cat
 is_private_image | Whether this image is hosted in a private registry or not
 public_url | URL of the detailed information page in the public docker index
 registry | Resource URI of the registry where this image is hosted
+last_build_data | Date of the last successfully build on any of the image tags
 build_source | The build source for this image (see table `Image Build Source attributes` below)
 tags | List of resource URIs of the tags associated with this docker image
 
