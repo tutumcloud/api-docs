@@ -225,3 +225,5 @@ Available in Tutum's **STREAM API**
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the action to retrieve logs
+tail | Number of lines to show from the end of the logs (default: `300`)
+follow | Whether to stream logs or close the connection immediately (default: true)

@@ -512,6 +512,7 @@ Parameter | Description
 --------- | -----------
 uuid | The UUID of the service to retrieve logs
 tail | Number of lines to show from the end of the logs (default: `300`)
+follow | Whether to stream logs or close the connection immediately (default: true)
 
 
 ## Update an existing service
