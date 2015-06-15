@@ -464,7 +464,7 @@ def log_handler(message):
 	print message
 
 service = tutum.Service.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-service.logs(log_handler)
+service.logs(tail=300, follow=True, log_handler=log_handler)
 ```
 
 ```go

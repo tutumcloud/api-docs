@@ -437,7 +437,7 @@ def log_handler(message):
 	print message
 
 container = tutum.Container.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-container.logs(log_handler)
+container.logs(tail=300, follow=True, log_handler=log_handler)
 ```
 
 ```go
