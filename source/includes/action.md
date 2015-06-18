@@ -83,6 +83,9 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum action list
+```
 
 Lists all actions in chronological order. Returns a list of `Action` objects.
 
@@ -133,6 +136,11 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```shell
+tutum action inspect 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
+```
+
+
 Get all the details of an specific action
 
 ### Endpoint Type
@@ -162,6 +170,16 @@ uuid | The UUID of the action to retrieve
 }
 ```
 
+```python
+import tutum
+
+def log_handler(message):
+    print message
+
+action = tutum.Action.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+action.logs(tail=300, follow=True, log_handler=log_handler)
+```
+
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
@@ -186,6 +204,11 @@ Connection: Upgrade
 Upgrade: websocket
 ```
 
+```shell
+tutum action logs 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
+```
+
+
 Get the logs of the specified action.
 
 
@@ -202,3 +225,5 @@ Available in Tutum's **STREAM API**
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the action to retrieve logs
+tail | Number of lines to show from the end of the logs (default: `300`)
+follow | Whether to stream logs or close the connection immediately (default: true)
