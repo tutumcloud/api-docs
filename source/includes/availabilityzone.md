@@ -29,7 +29,9 @@ resource_uri | A unique API endpoint that represents the region
 ## List all availability zones
 
 ```python
-# TODO
+import tutum
+
+az = tutum.AZ.list()
 ```
 
 ```http
@@ -40,7 +42,14 @@ Accept: application/json
 ```
 
 ```go
-# TODO
+import "github.com/tutumcloud/go-tutum/tutum"
+
+az, err := tutum.ListAZ()
+if err != nil {
+	log.Println(err)
+}
+
+log.Println(az)
 ```
 
 ```shell
@@ -69,11 +78,20 @@ region | Filter by region (resource URI)
 ## Get an individual availability zone
 
 ```python
-# TODO
+import tutum
+
+az = tutum.AZ.fetch("aws/sa-east-1/sa-east-1a")
 ```
 
 ```go
-# TODO
+import "github.com/tutumcloud/go-tutum/tutum"
+
+az, err := tutum.GetAZ("aws/sa-east-1/sa-east-1a")
+if err != nil {
+	log.Println(err)
+}
+
+log.Println(az)
 ```
 
 ```http
