@@ -40,7 +40,14 @@ Accept: application/json
 ```
 
 ```go
-# TODO
+import "github.com/tutumcloud/go-tutum/tutum"
+
+az, err := tutum.ListAZ()
+if err != nil {
+	log.Println(err)
+}
+
+log.Println(az)
 ```
 
 ```shell
@@ -73,7 +80,14 @@ region | Filter by region (resource URI)
 ```
 
 ```go
-# TODO
+import "github.com/tutumcloud/go-tutum/tutum"
+
+az, err := tutum.GetAZ("aws/sa-east-1/sa-east-1a")
+if err != nil {
+	log.Println(err)
+}
+
+log.Println(az)
 ```
 
 ```http
