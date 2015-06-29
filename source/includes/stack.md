@@ -34,6 +34,8 @@
       "linked_to_service": [],
       "memory": 2048,
       "name": "wordpress-stackable",
+      "network": "bridge",
+      "pid": "none",
       "privileged": false,
       "public_dns": "wordpress-stackable.admin.svc.tutum.io",
       "resource_uri": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
