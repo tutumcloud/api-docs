@@ -23,7 +23,7 @@ includes:
   - container
   - volumegroup
   - volume
-  - triggers 
+  - triggers
   - tutum-events
   - errors
 
@@ -86,16 +86,18 @@ ws = websocket.WebSocketApp('wss://stream.tutum.co/v1/events?user={}&token={}'.f
 ```
 
 ```go
-import "golang.org/x/net/websocket"
+import "github.com/gorilla/websocket"
 
 var StreamUrl = "wss://stream.tutum.co:443/v1/events?token=" + ApiKey + "&user=" + User
-var origin = "http://localhost"
 
-ws, err := websocket.Dial(StreamUrl, "", origin)
+header := http.Header{}
+header.Add("User-Agent", customUserAgent)
+
+var Dialer websocket.Dialer
+ws, _, err := Dialer.Dial(url, header)
 if err != nil {
-  log.Println(err)
+	log.Println(err)
 }
-
 ```
 
 ```http
