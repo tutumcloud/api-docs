@@ -7,7 +7,7 @@
 ```json
 {
   "build_source": {
-    "autotests": true,
+    "autotests": "OFF",
     "build_settings": [
       {
         "autobuild": false,
@@ -97,8 +97,17 @@ Attribute | Description
 type | Type of the build source
 repository | The repository where images are built from
 owner | The owner of the repository
-autotests | Whether to execute tests for new commits
+autotests | Whether to execute tests for new commits or external pull requests (see table `Image Build Source Autotests values` below)
 build_settings | List of associations between image tags and repository branches to do builds (see table `Image Build Setting attributes` below)
+
+
+### Image Build Source Autotests values
+
+Value | Description
+----- | -----------
+OFF | Ignore tests for repository commits or external pull requests.
+SOURCE_ONLY | Execute tests for commits in this source repository.
+SOURCE_AND_FORKS | Execute tests for commits in this repository and for external pull requests.
 
 
 ### Image Build Setting attributes
@@ -180,7 +189,7 @@ Attribute | Description
 type | (optional) Type of the build source (currently only `GITHUB` is supported)
 repository | The repository where images are built from
 owner | (optional) The owner of the repository (default: the owner of the linked Github account)
-autotests | (optional) Whether to execute tests for new commits (default: `false`)
+autotests | (optional) Whether to execute tests for new commits (default: `OFF`)
 build_settings | List of associations between image tags and repository branches to do builds (see table `Related Build Setting attributes` below)
 
 
