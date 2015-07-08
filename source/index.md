@@ -18,6 +18,9 @@ includes:
   - nodecluster
   - node
   - tokens
+  - registry
+  - image
+  - imagetag
   - stack
   - service
   - container

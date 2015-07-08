@@ -1,4 +1,4 @@
-api-docs:
+apidocs:
   image: tutum/api-docs:latest
   ports:
     - "4567:4567"
