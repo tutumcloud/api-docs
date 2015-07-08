@@ -128,6 +128,18 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+imagesList, err := tutum.ListImages()
+
+if err != nil {
+    log.Println(err)
+}
+
+log.Pringln(imagesList)
+```
+
 Lists all current images. Returns a list of `Image` objects.
 
 ### Endpoint Type
@@ -161,6 +173,34 @@ Content-Type: application/json
 {"name": "registry.local/user1/image1"}
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+image, err := tutum.CreateImage(tutum.ImageCreateRequest{
+	BuildSource: tutum.BuildSource{
+		Build_Settings: []tutum.BuildSettings{{
+			Branch:     "master",
+			Dockerfile: "/",
+			Tag:        "latest",
+		},{
+            Branch:     "staging",
+            Dockerfile: "/",
+            Tag:        "staging"
+        }},
+		Owner:      "user1",
+		Repository: "repository1",
+	},
+	Name:        "registry.local/user1/image1/",
+	Description: "Image1",
+})
+
+if err != nil {
+	log.Println(err)
+}
+
+log.Println(image)
+```
+
 Creates a new private image.
 
 ### Endpoint Type
@@ -178,7 +218,7 @@ Parameter | Description
 name | Name of the image with docker format, i.e. 'ubuntu' or 'tutum/hello-world'
 username | (optional) Username to authenticate with the private registry (not needed for Tutum private registry)
 password | (optional) Password to authenticate with the private registry (not needed for Tutum private registry)
-description | Description of the image
+description | (optional) Description of the image
 build_source | The build source for this image (see table `Related Build Source attributes` below)
 
 
@@ -210,6 +250,18 @@ GET /api/v1/image/registry.local/user1/image1/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+image, err = tutum.GetImage("registry.local/user1/image1/")
+
+if err != nil {
+    log.Println(err)
+}
+
+log.Println(image)
 ```
 
 Gets all the details of an specific image
@@ -276,6 +328,19 @@ Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
 ```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+image, err = tutum.GetImage("registry.local/user1/image1/")
+
+if err != nil {
+    log.Println(err)
+}
+
+image.Remove()
+```
+
 
 Deletes the image from Tutum.
 

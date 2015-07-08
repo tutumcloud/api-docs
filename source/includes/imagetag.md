@@ -113,6 +113,18 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+imageTag, err := tutum.GetImageTag("registry.local/user1/image1", "latest")
+
+if err != nil {
+	log.Println(err)
+}
+
+log.Println(imageTag)
+```
+
 Gets all the details of an specific image tag
 
 ### Endpoint Type
@@ -134,12 +146,24 @@ tag | The name of the tag
 ## Build an existing image tag
 
 ```http
-PATCH /api/v1/service/registry.local/user1/image1/tag/latest/build/ HTTP/1.1
+POST /api/v1/service/registry.local/user1/image1/tag/latest/build/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+imageTag, err := tutum.GetImageTag("registry.local/user1/image1", "latest")
+
+if err != nil {
+	log.Println(err)
+}
+
+imageTag.Build()
 ```
 
 Builds the image tag from its associated build source repository.
