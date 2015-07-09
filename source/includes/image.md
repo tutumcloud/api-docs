@@ -157,6 +157,7 @@ Parameter | Description
 name | Filter by image name
 jumpstart | Filter by whether the image is a jumpstart or not
 is_private_image | Filter by whether the image is private or not
+is_user_image | Filter by whether the image has been added as user repository or not
 registry | Filter by the image registry
 categories | Filter by the image categories
 
