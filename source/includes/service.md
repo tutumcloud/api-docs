@@ -109,6 +109,7 @@
   ],
   "memory": 2048,
   "name": "wordpress-stackable",
+  "network": "bridge",
   "privileged": false,
   "public_dns": "wordpress-stackable.admin.svc.tutum.io",
   "resource_uri": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
@@ -146,6 +147,8 @@ image_tag | Resource URI of the image (including tag) used for the service conta
 name | A user provided name for the service. This name will be inherited by the service containers and will be used in endpoint URLs, environment variable names, etc.
 public_dns | An external FQDN that resolves to all IPs of the nodes where the service containers are running on (as an `A` record with multiple IP entries which will be used by clients in a [round-robin fashion](http://en.wikipedia.org/wiki/Round-robin_DNS)). If the service is not publishing any ports, this FQDN will fail to resolve.
 state | The state of the service (see table `Service states` below)
+network | Network mode to set on the containers (see table `Network Modes` below, more information https://docs.docker.com/reference/run/#network-settings)
+pid | Set the PID (Process) Namespace mode for the containers (more information https://docs.docker.com/reference/run/#pid-settings-pid)
 synchronized | Flag indicating if the current service definition is synchronized with the current containers.
 deployed_datetime | The date and time of the last deployment of the service (if applicable, `null` otherwise)
 started_datetime | The date and time of the last `start` operation on the service (if applicable, `null` otherwise)
@@ -169,7 +172,7 @@ linked_to_service | A list of services that the service is linked to (see table 
 bindings | A list of volume bindings that the service has mounted (see table `Service binding attributes` below)
 autorestart | Whether to restart the containers of the service automatically if they stop (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the containers of the service automatically if they stop (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
-roles | List of Tutum roles asigned to this service (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
+roles | List of Tutum roles assigned to this service (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
 privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 deployment_strategy | Container distribution among nodes (see table `Deployment strategies` below and [Deployment strategies](https://support.tutum.co/support/solutions/articles/5000520721) for more information)
@@ -240,6 +243,13 @@ EMPTIEST_NODE | It will deploy containers to the node with the lower total amoun
 HIGH_AVAILABILITY | It will deploy containers to the node with the lower amount of running containers of the same service.
 EVERY_NODE | It will deploy one container on every node. The service won't be able to scale manually. New containers will be deployed to new nodes automatically.
 
+
+### Network Modes
+
+Strategy | Description
+-------- | -----------
+bridge | Creates a new network stack for the container on the docker bridge.
+host | Uses the host network stack inside the container.
 
 ## List all services
 
@@ -357,6 +367,8 @@ privileged | (optional) Whether to start the containers with Docker's `privilege
 deployment_strategy | (optional) Container distribution among nodes (default: `EMPTIEST_NODE`, see table `Deployment strategies` above and [Deployment strategies](https://support.tutum.co/support/solutions/articles/5000520721) for more information)
 tags | (optional) A list of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
 autoredeploy | (optional) Whether to redeploy the containers of the service when its image is updated in Tutum registry (default: `false`) (see [Tutum's private registry](https://support.tutum.co/support/solutions/articles/5000012183-using-tutum-s-private-docker-image-registry) for more information)
+network | (optional) Set the network mode to the containers (default: `bridge`, possible values: `bridge`, `host`)
+pid | (optional) Set the PID (Process) Namespace mode for the containers (default: `none` value, possible values: `none`, `host`)
 
 
 ### Related bindings attributes
@@ -600,6 +612,8 @@ tags | (optional) List of new tags the service will have. This operation replace
 target_num_containers | (optional) The number of containers to scale this service to
 deployment_strategy | (optional) Container distribution among nodes. A service cannot be updated to or from a deployment strategy of `EVERY_NODE`. (See table `Deployment strategies` above and [Deployment strategies](https://support.tutum.co/support/solutions/articles/5000520721) for more information)
 autoredeploy | Whether to redeploy the containers of the service when its image is updated in Tutum registry (see [Tutum's private registry](https://support.tutum.co/support/solutions/articles/5000012183-using-tutum-s-private-docker-image-registry) for more information)
+network | (optional) Set the network mode to the containers (default: `bridge`, possible values: `bridge`, `host`)
+pid | (optional) Set the PID (Process) Namespace mode for the containers (default: `none` value, possible values: `none`, `host`)
 
 
 ## Start a service

@@ -48,6 +48,7 @@ location | Geographic location of the IP address of the user that performed the 
 body | Data of the API call
 is_user_action | If the action has been triggered by the user
 can_be_canceled | If the action can be canceled by the user in the middle of its execution
+can_be_retried | If the action can be retried by the user
 
 
 ### Action states
@@ -258,3 +259,29 @@ Available in Tutum's **REST API**
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the action to cancel
+
+
+## Retry an action
+
+```http
+POST /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/retry/ HTTP/1.1
+Host: dashboard.tutum.co
+Authorization: ApiKey username:apikey
+Accept: application/json
+```
+
+Retries an action in Success, Failed or Canceled state.
+
+### Endpoint Type
+
+Available in Tutum's **REST API**
+
+### HTTP Request
+
+`POST /api/v1/action/(uuid)/retry/`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | The UUID of the action to retry

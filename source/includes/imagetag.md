@@ -23,6 +23,12 @@
         "value": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
       }
     ],
+    "labels": [
+      {
+        "key": "Tutum",
+        "value" "Pure awesomeness"
+      }
+    ],
     "ports": [
       {
         "port": 80,
@@ -77,6 +83,7 @@ docker_id | The docker id of this image layer
 entrypoint | Entrypoint used on launch for containers using this image layer
 run_command | Run command used on launch for containers using this image layer
 envvars | List of image-defined environment variables (see table `Image Tag Layer Environment Variable attributes` below)
+labels | List of image-defined labels (see table `Image Tag Layer Label attributes` below)
 ports | List of image-defined ports (see table `Image Tag Layer Port attributes` below)
 volumes | List of image-defined volumes (see table `Image Tag Layer Volume attributes` below)
 
@@ -87,6 +94,14 @@ Attribute | Description
 --------- | -----------
 key | The name of the environment variable
 value | The value of the environment variable
+
+
+### Image Tag Layer Label Variable
+
+Attribute | Description
+--------- | -----------
+key | The name of the label
+value | The value of the label
 
 
 ### Image Tag Layer Port attributes
@@ -113,6 +128,18 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+imageTag, err := tutum.GetImageTag("registry.local/user1/image1", "latest")
+
+if err != nil {
+	log.Println(err)
+}
+
+log.Println(imageTag)
+```
+
 Gets all the details of an specific image tag
 
 ### Endpoint Type
@@ -134,12 +161,24 @@ tag | The name of the tag
 ## Build an existing image tag
 
 ```http
-PATCH /api/v1/service/registry.local/user1/image1/tag/latest/build/ HTTP/1.1
+POST /api/v1/service/registry.local/user1/image1/tag/latest/build/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
 Content-Type: application/json
 
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+imageTag, err := tutum.GetImageTag("registry.local/user1/image1", "latest")
+
+if err != nil {
+	log.Println(err)
+}
+
+imageTag.Build()
 ```
 
 Builds the image tag from its associated build source repository.
