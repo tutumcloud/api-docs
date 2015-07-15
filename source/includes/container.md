@@ -214,7 +214,8 @@
     "state": "Running",
     "stopped_datetime": null,
     "synchronized": true,
-    "uuid": "c1dd4e1e-1356-411c-8613-e15146633640"
+    "uuid": "c1dd4e1e-1356-411c-8613-e15146633640",
+    "working_dir": "/app"
 }
 ```
 
@@ -244,6 +245,7 @@ stopped_datetime | The date and time of the last `stop` operation on the contain
 destroyed_datetime | The date and time of the `terminate` operation on the container (if applicable, `null` otherwise)
 container_ports | List of published ports of this container (see table `Container Port attributes` below)
 container_envvars | List of user-defined environment variables set on the containers of the service, which will override the container environment variables (see table `Container Environment Variable attributes` below)
+working_dir | Working directory for running binaries within a container
 entrypoint | Entrypoint used on the container on launch
 run_command | Run command used on the container on launch
 cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
