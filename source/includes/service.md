@@ -129,7 +129,8 @@
         {"name": "tagthree3"}
   ],
   "target_num_containers": 2,
-  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b"
+  "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b",
+  "working_dir": "/app"
 }
 ```
 
@@ -162,6 +163,7 @@ stack | Resource URIs of the stack that the service belongs to
 containers | List of resource URIs of the containers launched as part of the service
 container_ports | List of ports to be published on the containers of this service (see table `Service Port attributes` below)
 container_envvars | List of user-defined environment variables to set on the containers of the service, which will override the image environment variables (see table `Service Environment Variable attributes` below)
+working_dir | Working directory for running binaries within a container of this service
 entrypoint | Entrypoint to be set on the containers launched as part of the service, which will override the image entrypoint
 run_command | Run command to be set on the containers launched as part of the service, which will override the image run command
 sequential_deployment | Whether the containers for this service should be deployed in sequence, linking each of them to the previous containers (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
@@ -369,7 +371,7 @@ tags | (optional) A list of tags to be used to deploy the service (see [Tags](ht
 autoredeploy | (optional) Whether to redeploy the containers of the service when its image is updated in Tutum registry (default: `false`) (see [Tutum's private registry](https://support.tutum.co/support/solutions/articles/5000012183-using-tutum-s-private-docker-image-registry) for more information)
 network | (optional) Set the network mode to the containers (default: `bridge`, possible values: `bridge`, `host`)
 pid | (optional) Set the PID (Process) Namespace mode for the containers (default: `none` value, possible values: `none`, `host`)
-
+working_dir | (optional) Working directory for running binaries within a container of this service (default: `/`)
 
 ### Related bindings attributes
 
@@ -614,7 +616,7 @@ deployment_strategy | (optional) Container distribution among nodes. A service c
 autoredeploy | Whether to redeploy the containers of the service when its image is updated in Tutum registry (see [Tutum's private registry](https://support.tutum.co/support/solutions/articles/5000012183-using-tutum-s-private-docker-image-registry) for more information)
 network | (optional) Set the network mode to the containers (default: `bridge`, possible values: `bridge`, `host`)
 pid | (optional) Set the PID (Process) Namespace mode for the containers (default: `none` value, possible values: `none`, `host`)
-
+working_dir | (optional) Working directory for running binaries within a container of this service (default: `/`)
 
 ## Start a service
 
