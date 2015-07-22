@@ -200,7 +200,7 @@
     },
     "memory": 1024,
     "name": "wordpress-stackable",
-    "network": "bridge",
+    "net": "bridge",
     "node": "/api/v1/node/9691c44e-3155-4ca2-958d-c9571aac0a14/",
     "pid": "none",
     "private_ip": "10.7.0.1",
@@ -258,7 +258,7 @@ linked_to_container | List of IP addresses of the linked containers (see table `
 link_variables | List of environment variables that would be exposed in any container that is linked to this one
 privileged | Whether the container has Docker's `privileged` flag set or not (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 private_ip | IP address of the container on the overlay network. This IP will be reachable from any other container.
-network | Network mode set on the container (see table `Network Modes` below, more information https://docs.docker.com/reference/run/#network-settings)
+net | Network mode set on the container (see table `Network Modes` below, more information https://docs.docker.com/reference/run/#network-settings)
 pid | Set the PID (Process) Namespace mode for the container (more information https://docs.docker.com/reference/run/#pid-settings-pid)
 
 
