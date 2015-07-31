@@ -20,7 +20,7 @@
 
 A volume is a representation of a Docker volume in a node.
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -123,7 +123,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/volume/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

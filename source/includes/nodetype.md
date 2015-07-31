@@ -28,7 +28,7 @@
 A node type is a representation of an instance size supported by a certain cloud provider in a certain region and/or availability zone.
 
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -129,7 +129,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/nodetype/(provider.name)/(name)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

@@ -42,7 +42,7 @@
 
 An image is a repository from a registry.  Public DockerHub images are created when inspected. Private images must be added to Tutum before using them. For Tutum private registry images, they are also automatically added when pushing the image to the Tutum private registry.
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -287,7 +287,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/image/(name)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -328,7 +328,7 @@ Available in Tutum's **REST API**
 
 `PATCH /api/v1/image/(name)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -387,7 +387,7 @@ Available in Tutum's **REST API**
 
 `DELETE /api/v1/image/registry.local/user1/image1/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
