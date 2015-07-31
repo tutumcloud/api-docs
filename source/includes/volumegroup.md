@@ -22,7 +22,7 @@
 
 A volume group is a representation of a group of Docker volumes belonging to a service and sharing the same container mount point.
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -125,7 +125,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/volumegroup/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

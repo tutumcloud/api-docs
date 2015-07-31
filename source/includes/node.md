@@ -40,7 +40,7 @@
 
 A node is a virtual machine provided by a cloud provider where containers can be deployed.
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -181,7 +181,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/node/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -236,7 +236,7 @@ Available in Tutum's **REST API**
 
 `PATCH /api/v1/node/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -293,7 +293,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/node/(uuid)/docker-upgrade/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -319,7 +319,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/node/(uuid)/health-check/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -370,7 +370,7 @@ Available in Tutum's **REST API**
 
 `DELETE /api/v1/node/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

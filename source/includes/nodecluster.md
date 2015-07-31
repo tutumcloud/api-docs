@@ -31,7 +31,7 @@
 A node cluster is a group of nodes that share the same provider, region and/or availability zone, and node type. They are on the same private network.
 
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -214,7 +214,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/nodecluster/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -260,7 +260,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/nodecluster/(uuid)/deploy/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -317,7 +317,7 @@ Available in Tutum's **REST API**
 
 `PATCH /api/v1/nodecluster/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -372,7 +372,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/nodecluster/(uuid)/docker-upgrade/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -423,7 +423,7 @@ Available in Tutum's **REST API**
 
 `DELETE /api/v1/nodecluster/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

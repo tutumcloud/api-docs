@@ -21,7 +21,7 @@
 
 A stack is a logical grouping of closely related services, that may be linked with one another.
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -203,7 +203,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/stack/(uuid)/export/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -252,7 +252,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/stack/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -326,7 +326,7 @@ Available in Tutum's **REST API**
 
 `PATCH /api/v1/stack/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -385,7 +385,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/stack/(uuid)/stop/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -436,7 +436,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/stack/(uuid)/start/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -487,7 +487,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/stack/(uuid)/redeploy/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -538,7 +538,7 @@ Available in Tutum's **REST API**
 
 `DELETE /api/v1/stack/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
