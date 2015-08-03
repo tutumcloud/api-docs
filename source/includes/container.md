@@ -756,5 +756,3 @@ uuid | The UUID of the container where the command will be executed
 Parameter | Description
 --------- | -----------
 command | Command to be executed (default: `sh`)
-user | Your Tutum username
-token | Your Tutum API key
