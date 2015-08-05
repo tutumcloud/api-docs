@@ -121,6 +121,12 @@ autobuild | Whether to build the image tag on new commits on this branch
 
 ## List all images
 
+```python
+import tutum
+
+images = tutum.Image.list()
+```
+
 ```http
 GET /api/v1/image/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -138,6 +144,10 @@ if err != nil {
 }
 
 log.Pringln(imagesList)
+```
+
+```shell
+tutum image list
 ```
 
 Lists all current images. Returns a list of `Image` objects.
@@ -163,6 +173,13 @@ categories | Filter by the image categories
 
 
 ## Creates a new image.
+
+```python
+import tutum
+
+image = tutum.Image.create(name=repository, username=username, password=password, description=description)
+image.save()
+```
 
 ```http
 POST /api/v1/image/ HTTP/1.1
@@ -191,7 +208,7 @@ image, err := tutum.CreateImage(tutum.ImageCreateRequest{
 		Owner:      "user1",
 		Repository: "repository1",
 	},
-	Name:        "registry.local/user1/image1/",
+	Name:        "registry.local/user1/image1",
 	Description: "Image1",
 })
 
@@ -200,6 +217,10 @@ if err != nil {
 }
 
 log.Println(image)
+```
+
+```shell
+tutum image register -u username -p password registry.local/user1/image1
 ```
 
 Creates a new private image.
@@ -246,6 +267,12 @@ autobuild | (optional) Whether to build the image tag on new commits on this bra
 
 ## Get an existing image
 
+```python
+import tutum
+
+image = tutum.Image.fetch("registry.local/user1/image1")
+```
+
 ```http
 GET /api/v1/image/registry.local/user1/image1/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -256,13 +283,17 @@ Accept: application/json
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-image, err = tutum.GetImage("registry.local/user1/image1/")
+image, err = tutum.GetImage("registry.local/user1/image1")
 
 if err != nil {
     log.Println(err)
 }
 
 log.Println(image)
+```
+
+```shell
+tutum image inspect registry.local/user1/image1
 ```
 
 Gets all the details of an specific image
@@ -284,6 +315,14 @@ name | The name of the image to retrieve
 
 ## Update an existing image
 
+```python
+import tutum
+
+image = tutum.Image.fetch("registry.local/user1/image1")
+image.description = "New image description"
+image.save()
+```
+
 ```http
 PATCH /api/v1/service/registry.local/user1/image1/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -292,6 +331,10 @@ Accept: application/json
 Content-Type: application/json
 
 {"description": "New image description"}
+```
+
+```shell
+tutum image update -d "New image description" registry.local/user1/image1
 ```
 
 Updates the image details.
@@ -323,6 +366,13 @@ build_source | The build source for this image (see table `Image Build Source at
 
 ## Delete an image
 
+```python
+import tutum
+
+image = tutum.Image.fetch("registry.local/user1/image1")
+image.delete()
+```
+
 ```http
 DELETE /api/v1/image/registry.local/user1/image1/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -333,7 +383,7 @@ Accept: application/json
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-image, err = tutum.GetImage("registry.local/user1/image1/")
+image, err = tutum.GetImage("registry.local/user1/image1")
 
 if err != nil {
     log.Println(err)
@@ -342,6 +392,9 @@ if err != nil {
 image.Remove()
 ```
 
+```shell
+tutum image rm registry.local/user1/image1
+```
 
 Deletes the image from Tutum.
 

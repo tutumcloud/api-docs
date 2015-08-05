@@ -121,6 +121,12 @@ container_path | The container path where the volume is mounted
 
 ## Get an existing image tag
 
+```python
+import tutum
+
+image_tag = tutum.ImageTag.fetch("registry.local/user1/image1", "latest")
+```
+
 ```http
 GET /api/v1/image/registry.local/user1/image1/tag/latest/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -138,6 +144,10 @@ if err != nil {
 }
 
 log.Println(imageTag)
+```
+
+```shell
+tutum image tag inspect registry.local/user1/image1:latest
 ```
 
 Gets all the details of an specific image tag
@@ -160,6 +170,13 @@ tag | The name of the tag
 
 ## Build an existing image tag
 
+```python
+import tutum
+
+image_tag = tutum.ImageTag.fetch("registry.local/user1/image1", "latest")
+image_tag.build()
+```
+
 ```http
 POST /api/v1/service/registry.local/user1/image1/tag/latest/build/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -179,6 +196,10 @@ if err != nil {
 }
 
 imageTag.Build()
+```
+
+```shell
+tutum image tag build registry.local/user1/image1:latest
 ```
 
 Builds the image tag from its associated build source repository.
