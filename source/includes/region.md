@@ -28,7 +28,7 @@
 A region is a representation of an entire or a subset of a data center of a cloud provider. It can contain availability zones (depending on the provider) and one or more node types.
 
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -129,7 +129,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/region/(provider.name)/(name)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

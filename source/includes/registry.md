@@ -17,7 +17,7 @@
 
 A registry where image repositories are hosted
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -68,7 +68,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/registry/(host)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

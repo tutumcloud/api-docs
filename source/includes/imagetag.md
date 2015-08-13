@@ -51,7 +51,7 @@
 
 An image tag from a registry.
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -160,7 +160,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/image/(name)/tag/(tag)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -212,7 +212,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/image/(name)/tag/(tag)/build/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

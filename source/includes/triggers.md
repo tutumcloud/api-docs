@@ -16,7 +16,7 @@
 Triggers are URLs that will start a redeploy of the service whenever a `POST` request is sent to them. They require no authorization headers, so they should be treated as access tokens. Triggers can be revoked if they are leaked or no longer used for security purposes. See [Triggers](https://tutum.freshdesk.com/support/solutions/articles/5000513815) for more information.
 
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -84,7 +84,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/service/(uuid)/trigger/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -195,7 +195,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/service/(uuid)/trigger/(trigger_uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -245,7 +245,7 @@ Available in Tutum's **REST API**
 
 `DELETE /api/v1/service/(uuid)/trigger/(trigger_uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -291,7 +291,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/service/(uuid)/trigger/(trigger_uuid)/call/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
