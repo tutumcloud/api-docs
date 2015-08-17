@@ -49,7 +49,7 @@ uuid | A unique identifier for the node generated automatically on creation
 resource_uri | A unique API endpoint that represents the node
 external_fqdn | An automatically generated FQDN for the node. Containers deployed on this node will inherit this FQDN.
 state | The state of the node. See the below table for a list of possible states.
-node_cluster | The resouce URI of the node cluster to which this node belongs to (if applicable)
+node_cluster | The resource URI of the node cluster to which this node belongs to (if applicable)
 node_type | The resource URI of the node type used for the node
 region | The resource URI of the region where the node is deployed
 docker_execdriver | Docker's execution driver used in the node
