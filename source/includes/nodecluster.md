@@ -24,7 +24,17 @@
         {"name": "tagthree3"}
     ],
     "target_num_nodes": 2,
-    "uuid": "5516df0b-721e-4470-b350-741ff22e63a0"
+    "uuid": "5516df0b-721e-4470-b350-741ff22e63a0",
+	"provider_options": {
+        "vpc": {
+            "id": "vpc-aa1c70d4",
+            "subnets": ["subnet-aaa7d94f", "subnet-aa15fa64"],
+            "security_groups": ["sg-aa1c70d4"]
+        },
+        "iam": {
+            "instance_profile_name": "my_instance_profile"
+        }
+	}
 }
 ```
 
@@ -48,6 +58,7 @@ current_num_nodes | The actual number of nodes in the node cluster. This may dif
 deployed_datetime | The date and time when this node cluster was deployed
 destroyed_datetime | The date and time when this node cluster was terminated (if applicable)
 tags | List of tags to identify the node cluster nodes when deploying services (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
+provider_options | Provider-specific extra options for the deployment of the node.
 
 
 ### Node Cluster states
@@ -172,6 +183,18 @@ region | (required) The resource URI of the region where the node cluster is to 
 disk | (optional) The size of the volume to create where images and containers will be stored, in GB (default: `60`). Not available for Digital Ocean. To create Softlayer nodes you must select one of the following sizes (in GBs): 10, 20, 25, 30, 40, 50, 75, 100, 125, 150, 175, 200, 250, 300, 350, 400, 500, 750, 1000, 1500 or 2000
 target_num_nodes | (optional) The desired number of nodes for the node cluster (default: `1`)
 tags | (optional) List of tags of the node cluster to be used when deploying services see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
+provider_options | Provider-specific extra options for the deployment of the node. See the following section for more info.
+
+### Provider options
+
+You can specify several deployment options in AWS provider, following the schema:
+
+* "vpc": VPC-related options (optional)
+    * "id": AWS VPC identifier of the target VPC where the nodes of the cluster will be deployed (required)
+    * "subnets": a list of target subnet indentifiers inside selected VPC. If you specify more than one subnet, Tutum will balance among all of them following a high-availability schema (optional)
+    * "security_groups": the security group that will be applied to every node of the cluster (optional)
+* "iam": IAM-related options (optional)
+    * "instance_profile_name": name of the instance profile (container for instance an IAM role) to attach to every node of the cluster (required)
 
 
 ## Get an existing node cluster
