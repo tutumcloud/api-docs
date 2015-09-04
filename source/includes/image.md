@@ -9,18 +9,8 @@
   "build_source": {
     "autotests": "OFF",
     "build_settings": [
-      {
-        "autobuild": false,
-        "branch": "master",
-        "dockerfile": "/",
-        "tag": "/api/v1/image/registry.local/user1/image1/tag/latest/"
-      },
-      {
-        "autobuild": true,
-        "branch": "staging",
-        "dockerfile": "/",
-        "tag": "/api/v1/image/registry.local/user1/image1/tag/staging/"
-      }
+      "/api/v1/image/registry.local/user1/image1/buildsetting/latest/",
+      "/api/v1/image/registry.local/user1/image1/buildsetting/staging/"
     ],
     "owner": "tutumcloud",
     "repository": "test-private-repo",
@@ -98,7 +88,7 @@ type | Type of the build source
 repository | The repository where images are built from
 owner | The owner of the repository
 autotests | Whether to execute tests for new commits or external pull requests (see table `Image Build Source Autotests values` below)
-build_settings | List of associations between image tags and repository branches to do builds (see table `Image Build Setting attributes` below)
+build_settings | List of resource URIs of the build settings associated with this docker image
 
 
 ### Image Build Source Autotests values
@@ -109,15 +99,6 @@ OFF | Ignore tests for repository commits or external pull requests.
 SOURCE_ONLY | Execute tests for commits in this source repository.
 SOURCE_AND_FORKS | Execute tests for commits in this repository and for external pull requests.
 
-
-### Image Build Setting attributes
-
-Attribute | Description
---------- | -----------
-tag | The name of the tag to be built
-branch | The Github repository branch where the image is build from
-dockerfile | The path of the Dockerfile file in the branch
-autobuild | Whether to build the image tag on new commits on this branch
 
 ## List all images
 
