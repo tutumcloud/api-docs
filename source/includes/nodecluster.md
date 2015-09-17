@@ -11,11 +11,11 @@
     "destroyed_datetime": null,
     "disk": 60,
     "name": "TestCluster",
-    "node_type": "/api/v1/nodetype/digitalocean/512mb/",
+    "node_type": "/api/v1/nodetype/aws/t2.micro/",
     "nodes": [
         "/api/v1/node/75d20367-0948-4f10-8ba4-ffb4d16ed3c6/"
     ],
-    "region": "/api/v1/region/digitalocean/ams1/",
+    "region": "/api/v1/region/aws/us-east-1/",
     "resource_uri": "/api/v1/nodecluster/5516df0b-721e-4470-b350-741ff22e63a0/",
     "state": "Deployed",
     "tags": [
@@ -25,7 +25,7 @@
     ],
     "target_num_nodes": 2,
     "uuid": "5516df0b-721e-4470-b350-741ff22e63a0",
-	"provider_options": {
+    "provider_options": {
         "vpc": {
             "id": "vpc-aa1c70d4",
             "subnets": ["subnet-aaa7d94f", "subnet-aa15fa64"],
@@ -34,7 +34,7 @@
         "iam": {
             "instance_profile_name": "my_instance_profile"
         }
-	}
+    }
 }
 ```
 
@@ -58,7 +58,7 @@ current_num_nodes | The actual number of nodes in the node cluster. This may dif
 deployed_datetime | The date and time when this node cluster was deployed
 destroyed_datetime | The date and time when this node cluster was terminated (if applicable)
 tags | List of tags to identify the node cluster nodes when deploying services (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
-provider_options | Provider-specific extra options for the deployment of the node.
+provider_options | Provider-specific extra options for the deployment of the node (see `Provider options` table below for more information)
 
 
 ### Node Cluster states
@@ -73,6 +73,18 @@ Scaling | The cluster is either deploying new nodes or terminating existing ones
 Terminating | All nodes in the cluster are either being terminated or already terminated. No actions allowed in this state.
 Terminated | The node cluster and all its nodes have been terminated. No actions allowed in this state.
 Empty cluster | There are no nodes deployed in this cluster. Possible actions in this state: `terminate`.
+
+
+### Provider options
+
+You can specify the following options when using the Amazon Web Services provider:
+
+* "vpc": VPC-related options (optional)
+    * "id": AWS VPC identifier of the target VPC where the nodes of the cluster will be deployed (required)
+    * "subnets": a list of target subnet indentifiers inside selected VPC. If you specify more than one subnet, Tutum will balance among all of them following a high-availability schema (optional)
+    * "security_groups": the security group that will be applied to every node of the cluster (optional)
+* "iam": IAM-related options (optional)
+    * "instance_profile_name": name of the instance profile (container for instance an IAM role) to attach to every node of the cluster (required)
 
 
 ## List all node clusters
@@ -183,18 +195,7 @@ region | (required) The resource URI of the region where the node cluster is to 
 disk | (optional) The size of the volume to create where images and containers will be stored, in GB (default: `60`). Not available for Digital Ocean. To create Softlayer nodes you must select one of the following sizes (in GBs): 10, 20, 25, 30, 40, 50, 75, 100, 125, 150, 175, 200, 250, 300, 350, 400, 500, 750, 1000, 1500 or 2000
 target_num_nodes | (optional) The desired number of nodes for the node cluster (default: `1`)
 tags | (optional) List of tags of the node cluster to be used when deploying services see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
-provider_options | Provider-specific extra options for the deployment of the node. See the following section for more info.
-
-### Provider options
-
-You can specify several deployment options in AWS provider, following the schema:
-
-* "vpc": VPC-related options (optional)
-    * "id": AWS VPC identifier of the target VPC where the nodes of the cluster will be deployed (required)
-    * "subnets": a list of target subnet indentifiers inside selected VPC. If you specify more than one subnet, Tutum will balance among all of them following a high-availability schema (optional)
-    * "security_groups": the security group that will be applied to every node of the cluster (optional)
-* "iam": IAM-related options (optional)
-    * "instance_profile_name": name of the instance profile (container for instance an IAM role) to attach to every node of the cluster (required)
+provider_options | Provider-specific extra options for the deployment of the node (see table `Provider options` above for more information)
 
 
 ## Get an existing node cluster
