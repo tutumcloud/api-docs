@@ -137,7 +137,7 @@
 
 A service is a template used to deploy one or more containers.
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -450,7 +450,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/service/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -520,11 +520,16 @@ Available in Tutum's **STREAM API**
 
 `GET /v1/service/(uuid)/logs/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the service to retrieve logs
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
 tail | Number of lines to show from the end of the logs (default: `300`)
 follow | Whether to stream logs or close the connection immediately (default: true)
 
@@ -586,7 +591,7 @@ Available in Tutum's **REST API**
 
 `PATCH /api/v1/service/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -662,7 +667,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/service/(uuid)/start/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -713,7 +718,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/service/(uuid)/stop/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -752,7 +757,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/service/(uuid)/scale/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -803,7 +808,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/service/(uuid)/redeploy/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -854,7 +859,7 @@ Available in Tutum's **REST API**
 
 `DELETE /api/v1/service/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

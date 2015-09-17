@@ -27,7 +27,7 @@
 A provider is a representation of a cloud provider supported by Tutum. Providers have one or more regions where nodes are deployed.
 
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -125,7 +125,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/provider/(name)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

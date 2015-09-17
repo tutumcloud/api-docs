@@ -222,7 +222,7 @@
 
 A container is a representation of a Docker container in a node.
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -424,7 +424,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/container/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -492,11 +492,16 @@ Available in Tutum's **STREAM API**
 
 `GET /v1/container/(uuid)/logs/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the container to retrieve logs
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
 tail | Number of lines to show from the end of the logs (default: `300`)
 follow | Whether to stream logs or close the connection immediately (default: true)
 
@@ -545,7 +550,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/container/(uuid)/start/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -595,7 +600,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/container/(uuid)/stop/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -647,7 +652,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/container/(uuid)/redeploy/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -699,7 +704,7 @@ Available in Tutum's **REST API**
 
 `DELETE /api/v1/container/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -730,7 +735,7 @@ Connection: Upgrade
 Upgrade: websocket
 ```
 
-Executes a command inside the specified running container, creating a bi-directional stream for the process' standard input and output
+Executes a command inside the specified running container, creating a bi-directional stream for the process' standard input and output. This endpoint can be connected to using a bi-directional Secure Web Socket `wss://stream.tutum.co/v1/container/(uuid)/exec/?user=username&token=apikey`
 
 ### Endpoint Type
 
@@ -740,9 +745,14 @@ Available in Tutum's **STREAM API**
 
 `GET /v1/container/(uuid)/exec/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the container where the command will be executed
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
 command | Command to be executed (default: `sh`)

@@ -50,7 +50,7 @@
 
 An image tag from a registry.
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -147,9 +147,10 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/image/(name)/tag/(tag)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
 name | The name of the image to retrieve the tag
 tag | The name of the tag
+
