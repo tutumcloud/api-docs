@@ -73,7 +73,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/image/(name)/buildsetting/(tag)/build/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
