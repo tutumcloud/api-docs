@@ -29,7 +29,7 @@ An action represents an API call by a user. Details of the API call such as time
 Simple API calls that do not require asynchronous execution will return immediately with the appropiate HTTP error code and an action object will be created either in `Success` or `Failed` states. API calls that do require asynchronous execution will return HTTP code `202 Accepted` immediately and create an action object in `In progress` state, which will change to `Success` or `Failed` state depending on the outcome of the operation being performed.
 
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -157,7 +157,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/action/(uuid)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -226,14 +226,18 @@ Available in Tutum's **STREAM API**
 
 `GET /v1/action/(uuid)/logs/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the action to retrieve logs
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
 tail | Number of lines to show from the end of the logs (default: `300`)
 follow | Whether to stream logs or close the connection immediately (default: true)
-
 
 ## Cancel an action
 
@@ -254,7 +258,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/action/(uuid)/cancel/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
@@ -280,7 +284,7 @@ Available in Tutum's **REST API**
 
 `POST /api/v1/action/(uuid)/retry/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------

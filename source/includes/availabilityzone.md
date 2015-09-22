@@ -16,7 +16,7 @@
 An Availability Zone is an isolated location inside a region. Providers that support availability zones: AWS
 
 
-### Attributes
+### Attributes
 
 Attribute | Description
 --------- | -----------
@@ -112,7 +112,7 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/az/(provider.name)/(region.name)/(name)/`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Description
 --------- | -----------
