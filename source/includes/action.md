@@ -248,6 +248,24 @@ Authorization: ApiKey username:apikey
 Accept: application/json
 ```
 
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+action, err := tutum.GetAction("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+action, err = action.Cancel()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(action)
+```
+
 Cancels an action in Pending or In progress state.
 
 ### Endpoint Type
@@ -272,6 +290,24 @@ POST /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/retry/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
+```
+
+```go
+import "github.com/tutumcloud/go-tutum/tutum"
+
+action, err := tutum.GetAction("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+
+if err != nil {
+  log.Println(err)
+}
+
+action, err = action.Retry()
+
+if err != nil {
+  log.Println(err)
+}
+
+log.Println(action)
 ```
 
 Retries an action in Success, Failed or Canceled state.
