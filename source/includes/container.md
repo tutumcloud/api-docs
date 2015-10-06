@@ -658,6 +658,12 @@ Parameter | Description
 --------- | -----------
 uuid | The UUID of the container to redeploy
 
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+reuse_volumes | Wheather to reuse container volumes for this redeploy operation or not (default: `true`).
+
 
 ## Terminate a container
 
