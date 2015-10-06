@@ -181,7 +181,7 @@ privileged | Whether to start the containers with Docker's `privileged` flag set
 deployment_strategy | Container distribution among nodes (see table `Deployment strategies` below and [Deployment strategies](https://support.tutum.co/support/solutions/articles/5000520721) for more information)
 tags | List of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
 autoredeploy | Whether to redeploy the containers of the service when its image is updated in Tutum registry (see [Tutum's private registry](https://support.tutum.co/support/solutions/articles/5000012183-using-tutum-s-private-docker-image-registry) for more information)
-nickname | (optional) A user-friendly name for the service (`name` by default)
+nickname | A user-friendly name for the service (`name` by default)
 
 
 ### Service binding attributes
