@@ -495,6 +495,12 @@ Parameter | Description
 --------- | -----------
 uuid | The UUID of the stack to redeploy
 
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+reuse_volumes | Wheather to reuse container volumes for this redeploy operation or not (default: `true`).
+
 
 ## Terminate a stack
 
