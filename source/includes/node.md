@@ -18,6 +18,7 @@
 	"external_fqdn": "fc1a5bb9-user.node.tutum.io",
 	"last_seen": "Thu, 25 Sep 2014 13:14:44 +0000",
 	"memory": 1792,
+	"nickname": "fc1a5bb9-user.node.tutum.io",
 	"last_metric": {
 		"cpu": 1.3278507035616,
 		"disk": 462479360,
@@ -66,6 +67,7 @@ tunnel | If the node does not accept incoming connections to port 2375, the addr
 deployed_datetime | The date and time when this node cluster was deployed
 destroyed_datetime | The date and time when this node cluster was terminated (if applicable)
 tags | List of tags to identify the node when deploying services (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
+nickname | A user-friendly name for the node (`external_fqdn` by default)
 
 
 ### Node states
@@ -218,7 +220,7 @@ Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
 
-{"tags": [{"name": "tag-1"}]}
+{"tags": [{"name": "tag-1"}], "nickname": "dev node"}
 ```
 
 ```shell
@@ -226,7 +228,7 @@ tutum tag add -t tag-1 7eaf7fff
 tutum tag set -t tag-2 7eaf7fff
 ```
 
-Replaces the old tags in the node for the new list provided.
+Names the node with a user-friendly name and/or replaces the old tags for the new list provided.
 
 ### Endpoint Type
 
@@ -246,6 +248,7 @@ uuid | The UUID of the node to retrieve
 
 Parameter | Description
 --------- | -----------
+nickname | (optional) A user-friendly name for the node (`external_fqdn` by default)
 tags | (optional) List of tags the node will have. This operation replaces the user tag list.
 
 

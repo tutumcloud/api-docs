@@ -10,6 +10,7 @@
     "deployed_datetime": "Tue, 16 Sep 2014 17:01:15 +0000",
     "destroyed_datetime": null,
     "disk": 60,
+    "nickname": "my test cluster",
     "name": "TestCluster",
     "node_type": "/api/v1/nodetype/aws/t2.micro/",
     "nodes": [
@@ -59,6 +60,7 @@ deployed_datetime | The date and time when this node cluster was deployed
 destroyed_datetime | The date and time when this node cluster was terminated (if applicable)
 tags | List of tags to identify the node cluster nodes when deploying services (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
 provider_options | Provider-specific extra options for the deployment of the node (see `Provider options` table below for more information)
+nickname | A user-friendly name for the node cluster (`name` by default)
 
 
 ### Node Cluster states
@@ -193,6 +195,7 @@ name | (required) A user provided name for the node cluster
 node_type | (required) The resource URI of the node type to be used for the node cluster
 region | (required) The resource URI of the region where the node cluster is to be deployed
 disk | (optional) The size of the volume to create where images and containers will be stored, in GB (default: `60`). Not available for Digital Ocean. To create Softlayer nodes you must select one of the following sizes (in GBs): 10, 20, 25, 30, 40, 50, 75, 100, 125, 150, 175, 200, 250, 300, 350, 400, 500, 750, 1000, 1500 or 2000
+nickname | (optional) A user-friendly name for the node cluster (`name` by default)
 target_num_nodes | (optional) The desired number of nodes for the node cluster (default: `1`)
 tags | (optional) List of tags of the node cluster to be used when deploying services see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information) (default: `[]`)
 provider_options | Provider-specific extra options for the deployment of the node (see table `Provider options` above for more information)
@@ -354,55 +357,6 @@ Parameter | Description
 --------- | -----------
 target_num_nodes | (optional) The number of nodes to scale this node cluster to
 tags | (optional) List of tags the node cluster (and nodes within the node cluster) will have. This operation replaces the user tag list.
-
-
-## Upgrade Docker Daemon
-
-```python
-import tutum
-
-nodecluster = tutum.NodeCluster.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-nodecluster.docker_upgrade()
-```
-
-```go
-import "github.com/tutumcloud/go-tutum/tutum"
-
-nodecluster, err := tutum.GetNodeCluster("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-
-if err != nil {
-  log.Println(err)
-}
-
-if err = nodecluster.Upgrade(); err != nil {
-   log.Println(err)
-}
-```
-
-```http
-POST /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/docker-upgrade/ HTTP/1.1
-Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
-Accept: application/json
-```
-
-Upgrades the Docker Daemon of all the nodes in the cluster.
-
-### Endpoint Type
-
-Available in Tutum's **REST API**
-
-### HTTP Request
-
-`POST /api/v1/nodecluster/(uuid)/docker-upgrade/`
-
-### Path Parameters
-
-Parameter | Description
---------- | -----------
-uuid | The UUID of the node cluster to upgrade
-
-
 ## Terminate a node cluster
 
 ```python

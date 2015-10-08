@@ -57,6 +57,7 @@
   "entrypoint": "",
   "image_name": "tutum/wordpress-stackable:latest",
   "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
+  "nickname": "wordpress-stackable",
   "link_variables": {
     "WORDPRESS_STACKABLE_1_ENV_DB_HOST": "**LinkMe**",
     "WORDPRESS_STACKABLE_1_ENV_DB_NAME": "wordpress",
@@ -180,6 +181,7 @@ privileged | Whether to start the containers with Docker's `privileged` flag set
 deployment_strategy | Container distribution among nodes (see table `Deployment strategies` below and [Deployment strategies](https://support.tutum.co/support/solutions/articles/5000520721) for more information)
 tags | List of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
 autoredeploy | Whether to redeploy the containers of the service when its image is updated in Tutum registry (see [Tutum's private registry](https://support.tutum.co/support/solutions/articles/5000012183-using-tutum-s-private-docker-image-registry) for more information)
+nickname | A user-friendly name for the service (`name` by default)
 
 
 ### Service binding attributes
@@ -372,6 +374,8 @@ autoredeploy | (optional) Whether to redeploy the containers of the service when
 net | (optional) Set the network mode to the containers (default: `bridge`, possible values: `bridge`, `host`)
 pid | (optional) Set the PID (Process) Namespace mode for the containers (default: `none` value, possible values: `none`, `host`)
 working_dir | (optional) Working directory for running binaries within a container of this service (default: `/`)
+nickname | (optional) A user-friendly name for the service (`name` by default)
+
 
 ### Related bindings attributes
 
@@ -622,6 +626,8 @@ autoredeploy | Whether to redeploy the containers of the service when its image 
 net | (optional) Set the network mode to the containers (default: `bridge`, possible values: `bridge`, `host`)
 pid | (optional) Set the PID (Process) Namespace mode for the containers (default: `none` value, possible values: `none`, `host`)
 working_dir | (optional) Working directory for running binaries within a container of this service (default: `/`)
+nickname | (optional) A user-friendly name for the service (`name` by default)
+
 
 ## Start a service
 
@@ -813,6 +819,12 @@ Available in Tutum's **REST API**
 Parameter | Description
 --------- | -----------
 uuid | The UUID of the service to redeploy
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+reuse_volumes | Wheather to reuse container volumes for this redeploy operation or not (default: `true`).
 
 
 ## Terminate a service
