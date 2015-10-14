@@ -788,7 +788,9 @@ if err != nil {
   log.Println(err)
 }
 
-if err = service.Redeploy(); err != nil {
+//Redeploy(tutum.ReuseVolumesOption{Reuse: true}) to reuse the existing volumes
+//Redeploy(tutum.ReuseVolumesOption{Reuse: false}) to not reuse the existing volumes
+if err = service.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil {
    log.Println(err)
 }
 ```
