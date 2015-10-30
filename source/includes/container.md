@@ -22,6 +22,13 @@
             "rewritable": true
         }
     ],
+    "cap_add": [
+        "ALL"
+    ],
+    "cap_drop": [
+        "NET_ADMIN",
+        "SYS_ADMIN"
+    ],
     "container_envvars": [
         {
             "key": "DB_1_ENV_DEBIAN_FRONTEND",
@@ -150,6 +157,16 @@
     "cpu_shares": 100,
     "deployed_datetime": "Thu, 16 Oct 2014 12:04:08 +0000",
     "destroyed_datetime": null,
+    "devices": [
+        "/dev/ttyUSB0:/dev/ttyUSB0"
+    ],
+    "dns": [
+        "8.8.8.8"
+    ],
+    "dns_search": [
+        "example.com",
+        "c1dd4e1e-1356-411c-8613-e15146633640.local.tutum.io"
+    ],
     "domainname": "domainname",
     "entrypoint": "",
     "exit_code": null,
@@ -211,6 +228,10 @@
     "resource_uri": "/api/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
     "roles": ["global"],
     "run_command": "/run-wordpress.sh",
+    "security_opt": [
+        "label:user:USER",
+        "label:role:ROLE"
+    ],
     "service": "/api/v1/service/adeebc1b-1b81-4af0-b8f2-cefffc69d7fb/",
     "started_datetime": "Thu, 16 Oct 2014 12:04:08 +0000",
     "state": "Running",
@@ -256,6 +277,12 @@ hostname | Hostname used on the container on launch
 domainname | Domainname used on the container on launch
 tty | If the container has the tty enable
 stdin_open | If the container has stdin opened
+dns | Container custom DNS servers
+dns_search | Container custom DNS search domain
+cap_add | Container added capabilities
+cap_drop | Container dropped capabilities
+devices | List of container device mappings
+secuirty_opt | Labeling scheme of this container
 entrypoint | Entrypoint used on the container on launch
 run_command | Run command used on the container on launch
 cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
