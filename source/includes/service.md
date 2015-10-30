@@ -29,6 +29,13 @@
         "volumes_from": "/api/v1/service/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a179/"
     }
   ],
+  "cap_add": [
+    "ALL"
+  ],
+  "cap_drop": [
+    "NET_ADMIN",
+    "SYS_ADMIN"
+  ],
   "container_envvars": [
     {
       "key": "DB_PASS",
@@ -54,6 +61,15 @@
   "deployed_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
   "deployment_strategy": "EMPTIEST_NODE",
   "destroyed_datetime": null,
+  "devices": [
+    "/dev/ttyUSB0:/dev/ttyUSB0"
+  ],
+  "dns": [
+    "8.8.8.8"
+  ],
+  "dns_search": [
+    "example.com",
+  ],
   "domainname": "domainname",
   "entrypoint": "",
   "hostname": "hostname",
@@ -119,6 +135,8 @@
   "roles": ["global"],
   "run_command": "/run-wordpress.sh",
   "running_num_containers": 1,
+  "security_opt": [
+  ],
   "sequential_deployment": false,
   "started_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
   "state": "Partly running",
@@ -175,6 +193,12 @@ hostname | Set the hostname used on containers of this service
 domainname | Set the domainname used on containers of this service
 tty | If the containers of this service have the tty enable (`false` by default)
 stdin_open | If the containers of this service have stdin opened (`false` by default)
+dns | Custom DNS servers for containers of this service
+dns_search | Custom DNS search domain for containers of this service
+cap_add | Added capabilities for containers of this service
+cap_drop | Dropped capabilities for containers of this service
+devices | List of device mappings for containers of this service
+secuirty_opt | Labeling scheme for containers of this service
 entrypoint | Entrypoint to be set on the containers launched as part of the service, which will override the image entrypoint
 run_command | Run command to be set on the containers launched as part of the service, which will override the image run command
 sequential_deployment | Whether the containers for this service should be deployed in sequence, linking each of them to the previous containers (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
