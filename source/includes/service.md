@@ -54,7 +54,9 @@
   "deployed_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
   "deployment_strategy": "EMPTIEST_NODE",
   "destroyed_datetime": null,
+  "domainname": "domainname",
   "entrypoint": "",
+  "hostname": "hostname",
   "image_name": "tutum/wordpress-stackable:latest",
   "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
   "nickname": "wordpress-stackable",
@@ -121,6 +123,7 @@
   "started_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
   "state": "Partly running",
   "stack": "/api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/",
+  "stdin_open": false,
   "stopped_datetime": null,
   "stopped_num_containers": 0,
   "synchronized": true,
@@ -130,6 +133,8 @@
         {"name": "tagthree3"}
   ],
   "target_num_containers": 2,
+  "tty": false,
+  "user": "root",
   "uuid": "09cbcf8d-a727-40d9-b420-c8e18b7fa55b",
   "working_dir": "/app"
 }
@@ -165,6 +170,11 @@ containers | List of resource URIs of the containers launched as part of the ser
 container_ports | List of ports to be published on the containers of this service (see table `Service Port attributes` below)
 container_envvars | List of user-defined environment variables to set on the containers of the service, which will override the image environment variables (see table `Service Environment Variable attributes` below)
 working_dir | Working directory for running binaries within a container of this service
+user | Set the user used on containers of this service (`root` by default)
+hostname | Set the hostname used on containers of this service
+domainname | Set the domainname used on containers of this service
+tty | If the containers of this service have the tty enable (`false` by default)
+stdin_open | If the containers of this service have stdin opened (`false` by default)
 entrypoint | Entrypoint to be set on the containers launched as part of the service, which will override the image entrypoint
 run_command | Run command to be set on the containers launched as part of the service, which will override the image run command
 sequential_deployment | Whether the containers for this service should be deployed in sequence, linking each of them to the previous containers (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
@@ -788,7 +798,9 @@ if err != nil {
   log.Println(err)
 }
 
-if err = service.Redeploy(); err != nil {
+//Redeploy(tutum.ReuseVolumesOption{Reuse: true}) to reuse the existing volumes
+//Redeploy(tutum.ReuseVolumesOption{Reuse: false}) to not reuse the existing volumes
+if err = service.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil {
    log.Println(err)
 }
 ```

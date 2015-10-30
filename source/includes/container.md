@@ -150,9 +150,11 @@
     "cpu_shares": 100,
     "deployed_datetime": "Thu, 16 Oct 2014 12:04:08 +0000",
     "destroyed_datetime": null,
+    "domainname": "domainname",
     "entrypoint": "",
     "exit_code": null,
     "exit_code_msg": null,
+    "hostname": "hostname",
     "image_name": "tutum/wordpress-stackable:latest",
     "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
     "last_metric": {
@@ -212,8 +214,11 @@
     "service": "/api/v1/service/adeebc1b-1b81-4af0-b8f2-cefffc69d7fb/",
     "started_datetime": "Thu, 16 Oct 2014 12:04:08 +0000",
     "state": "Running",
+    "stdin_open": false,
     "stopped_datetime": null,
     "synchronized": true,
+    "tty": false,
+    "user": "root",
     "uuid": "c1dd4e1e-1356-411c-8613-e15146633640",
     "working_dir": "/app"
 }
@@ -246,6 +251,11 @@ destroyed_datetime | The date and time of the `terminate` operation on the conta
 container_ports | List of published ports of this container (see table `Container Port attributes` below)
 container_envvars | List of user-defined environment variables set on the containers of the service, which will override the container environment variables (see table `Container Environment Variable attributes` below)
 working_dir | Working directory for running binaries within a container
+user | User used on the container on launch
+hostname | Hostname used on the container on launch
+domainname | Domainname used on the container on launch
+tty | If the container has the tty enable
+stdin_open | If the container has stdin opened
 entrypoint | Entrypoint used on the container on launch
 run_command | Run command used on the container on launch
 cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
@@ -259,7 +269,7 @@ link_variables | List of environment variables that would be exposed in any cont
 privileged | Whether the container has Docker's `privileged` flag set or not (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 private_ip | IP address of the container on the overlay network. This IP will be reachable from any other container.
 net | Network mode set on the container (see table `Network Modes` below, more information https://docs.docker.com/reference/run/#network-settings)
-pid | Set the PID (Process) Namespace mode for the container (more information https://docs.docker.com/reference/run/#pid-settings-pid)
+pid | PID (Process) Namespace mode for the container (more information https://docs.docker.com/reference/run/#pid-settings-pid)
 
 
 ### Container Binding attributes
@@ -625,10 +635,11 @@ container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 if err != nil {
 	log.Println(err)
 }
-
-if err = container.Redeploy(); err != nil {
-       log.Println(err)
-   }
+//Redeploy(tutum.ReuseVolumesOption{Reuse: true) to reuse the existing volumes
+//Redeploy(tutum.ReuseVolumesOption{Reuse: false}) to not reuse the existing volumes
+if err = container.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil {
+  log.Println(err)
+}
 ```
 
 ```http
