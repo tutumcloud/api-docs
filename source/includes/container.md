@@ -635,10 +635,11 @@ container, err := tutum.GetContainer("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 if err != nil {
 	log.Println(err)
 }
-
-if err = container.Redeploy(); err != nil {
-       log.Println(err)
-   }
+//Redeploy(tutum.ReuseVolumesOption{Reuse: true) to reuse the existing volumes
+//Redeploy(tutum.ReuseVolumesOption{Reuse: false}) to not reuse the existing volumes
+if err = container.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil {
+  log.Println(err)
+}
 ```
 
 ```http
