@@ -65,7 +65,8 @@ Accept: application/json
 ```
 
 ```shell
-tutum login -u username -p apikey
+export TUTUM_USER=username
+export TUTUM_APIKEY=apikey
 ```
 
 > Make sure to replace `username` with your username and `apikey` with your API key.
@@ -112,7 +113,8 @@ Upgrade: websocket
 ```
 
 ```shell
-tutum login -u username -p apikey
+export TUTUM_USER=username
+export TUTUM_APIKEY=apikey
 ```
 
 > Make sure to replace `username` with your username and `apikey` with your API key.
