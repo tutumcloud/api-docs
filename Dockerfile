@@ -1,9 +1,9 @@
 FROM ubuntu:trusty
 MAINTAINER fernando@tutum.co
 
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq ruby ruby-dev build-essential git awscli
-RUN gem install --no-ri --no-rdoc bundler
+RUN apt-get update && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -yq ruby ruby-dev build-essential git awscli && \
+	gem install --no-ri --no-rdoc bundler
 ADD slate/ /app
 ADD Gemfile /app/Gemfile
 RUN rm -f /app/Gemfile.lock && cd /app && bundle install
