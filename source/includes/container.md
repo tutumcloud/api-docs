@@ -766,7 +766,7 @@ if err != nil {
   log.Println(err)
 }
 
-c := make(chan string)
+c := make(chan tutum.Exec)
 
 container.Exec("ls", c)
 
