@@ -305,7 +305,7 @@ image.save()
 ```
 
 ```http
-PATCH /api/v1/service/registry.local/user1/image1/ HTTP/1.1
+PATCH /api/v1/image/registry.local/user1/image1/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: ApiKey username:apikey
 Accept: application/json
