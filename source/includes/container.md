@@ -171,6 +171,9 @@
     "entrypoint": "",
     "exit_code": null,
     "exit_code_msg": null,
+    "extra_hosts": [
+        "onehost:50.31.209.229"
+    ],
     "hostname": "hostname",
     "image_name": "tutum/wordpress-stackable:latest",
     "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
@@ -282,6 +285,7 @@ dns_search | Container custom DNS search domain
 cap_add | Container added capabilities
 cap_drop | Container dropped capabilities
 devices | List of container device mappings
+extra_hosts | List of container hostname mappings
 secuirty_opt | Labeling scheme of this container
 entrypoint | Entrypoint used on the container on launch
 run_command | Run command used on the container on launch
