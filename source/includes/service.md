@@ -72,6 +72,9 @@
   ],
   "domainname": "domainname",
   "entrypoint": "",
+  "extra_hosts": [
+    "onehost:50.31.209.229"
+  ],
   "hostname": "hostname",
   "image_name": "tutum/wordpress-stackable:latest",
   "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
@@ -198,6 +201,7 @@ dns_search | Custom DNS search domain for containers of this service
 cap_add | Added capabilities for containers of this service
 cap_drop | Dropped capabilities for containers of this service
 devices | List of device mappings for containers of this service
+extra_hosrs | List of hostname mappings for containers of this service
 secuirty_opt | Labeling scheme for containers of this service
 entrypoint | Entrypoint to be set on the containers launched as part of the service, which will override the image entrypoint
 run_command | Run command to be set on the containers launched as part of the service, which will override the image run command
