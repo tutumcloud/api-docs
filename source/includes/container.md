@@ -155,6 +155,8 @@
         }
     ],
     "cpu_shares": 100,
+    "cpuset": "0,1",
+    "cgroup_parent": "m-executor-abcd",
     "deployed_datetime": "Thu, 16 Oct 2014 12:04:08 +0000",
     "destroyed_datetime": null,
     "devices": [
@@ -177,6 +179,11 @@
     "hostname": "hostname",
     "image_name": "tutum/wordpress-stackable:latest",
     "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
+    "labels": {
+        "com.example.description": "Accounting webapp",
+        "com.example.department": "Finance",
+        "com.example.label-with-empty-value": ""
+    },
     "last_metric": {
         "cpu": 1.3278507035616,
         "disk": 462479360,
@@ -220,6 +227,7 @@
         "WORDPRESS_STACKABLE_PORT_80_TCP_PORT": "80",
         "WORDPRESS_STACKABLE_PORT_80_TCP_PROTO": "tcp"
     },
+    "mac_address": "02:42:ac:11:65:43",
     "memory": 1024,
     "name": "wordpress-stackable",
     "net": "bridge",
@@ -228,6 +236,7 @@
     "private_ip": "10.7.0.1",
     "privileged": false,
     "public_dns": "wordpress-stackable-1.admin.cont.tutum.io",
+    "read_only": true,
     "resource_uri": "/api/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
     "roles": ["global"],
     "run_command": "/run-wordpress.sh",
@@ -274,10 +283,13 @@ stopped_datetime | The date and time of the last `stop` operation on the contain
 destroyed_datetime | The date and time of the `terminate` operation on the container (if applicable, `null` otherwise)
 container_ports | List of published ports of this container (see table `Container Port attributes` below)
 container_envvars | List of user-defined environment variables set on the containers of the service, which will override the container environment variables (see table `Container Environment Variable attributes` below)
+labels | Container metadata in form of dictionary
 working_dir | Working directory for running binaries within a container
 user | User used on the container on launch
 hostname | Hostname used on the container on launch
 domainname | Domainname used on the container on launch
+mac_address | Ethernet device's MAC address used on the container on launch
+cgroup_name | Optional parent cgroup for the container.
 tty | If the container has the tty enable
 stdin_open | If the container has stdin opened
 dns | Container custom DNS servers
@@ -290,6 +302,7 @@ secuirty_opt | Labeling scheme of this container
 entrypoint | Entrypoint used on the container on launch
 run_command | Run command used on the container on launch
 cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+cpuset | CPUs in which execution is allowed
 memory | The memory limit of the container in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 last_metric | Last reported metric for the container (see table `Container Last Metric attributes` below for more information)
 autorestart | Whether to restart the container automatically if it stops (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
@@ -298,6 +311,7 @@ roles | List of Tutum roles asigned to this container (see [API roles](https://s
 linked_to_container | List of IP addresses of the linked containers (see table `Container Link attributes` below and [Service links](https://support.tutum.co/support/solutions/articles/5000012181) for more information)
 link_variables | List of environment variables that would be exposed in any container that is linked to this one
 privileged | Whether the container has Docker's `privileged` flag set or not (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+read_only | Whether the container filesystem is read-only or not
 private_ip | IP address of the container on the overlay network. This IP will be reachable from any other container.
 net | Network mode set on the container (see table `Network Modes` below, more information https://docs.docker.com/reference/run/#network-settings)
 pid | PID (Process) Namespace mode for the container (more information https://docs.docker.com/reference/run/#pid-settings-pid)
