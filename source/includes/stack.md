@@ -510,7 +510,7 @@ reuse_volumes | Wheather to reuse container volumes for this redeploy operation 
 import tutum
 
 stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
-stack.terminate()
+stack.delete()
 ```
 
 ```go
