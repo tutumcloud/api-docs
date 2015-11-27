@@ -229,6 +229,7 @@
     },
     "mac_address": "02:42:ac:11:65:43",
     "memory": 1024,
+    "memory_swap": 4096,
     "name": "wordpress-stackable",
     "net": "bridge",
     "node": "/api/v1/node/9691c44e-3155-4ca2-958d-c9571aac0a14/",
@@ -304,6 +305,7 @@ run_command | Run command used on the container on launch
 cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 cpuset | CPUs in which execution is allowed
 memory | The memory limit of the container in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+memory_swap | Total memory limit (memory + swap) of the container in MB
 last_metric | Last reported metric for the container (see table `Container Last Metric attributes` below for more information)
 autorestart | Whether to restart the container automatically if it stops (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the container automatically if it stops (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
