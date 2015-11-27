@@ -138,6 +138,7 @@
   ],
   "mac_address": "02:42:ac:11:65:43",
   "memory": 2048,
+  "memory_swap": 8192,
   "name": "wordpress-stackable",
   "net": "bridge",
   "privileged": false,
@@ -221,6 +222,7 @@ sequential_deployment | Whether the containers for this service should be deploy
 cpu_shares | The relative CPU priority of the containers of the service (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 cpuset | CPUs in which to allow execution
 memory | The memory limit of the containers of the service in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+memory_swap | Total memory limit (memory + swap) of the containers of the service in MB
 linked_from_service | A list of services that are linked to this one (see table `Related services attributes` below)
 linked_to_service | A list of services that the service is linked to (see table `Related services attributes` below)
 bindings | A list of volume bindings that the service has mounted (see table `Service binding attributes` below)
