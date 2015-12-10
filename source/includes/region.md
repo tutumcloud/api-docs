@@ -52,7 +52,7 @@ regions = tutum.Region.list()
 ```http
 GET /api/v1/region/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -114,7 +114,7 @@ log.Println(region)
 ```http
 GET /api/v1/region/digitalocean/lon1/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

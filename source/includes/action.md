@@ -85,7 +85,7 @@ log.Println(actionList)
 ```http
 GET /api/v1/action/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -138,7 +138,7 @@ log.Println(action)
 ```http
 GET /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -204,8 +204,9 @@ for {
 ```
 
 ```http
-GET /v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/?user=username&token=apikey HTTP/1.1
+GET /v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
 Host: stream.tutum.co
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
 Upgrade: websocket
 ```
@@ -244,7 +245,7 @@ follow | Whether to stream logs or close the connection immediately (default: tr
 ```http
 POST /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/cancel/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -288,7 +289,7 @@ uuid | The UUID of the action to cancel
 ```http
 POST /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/retry/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

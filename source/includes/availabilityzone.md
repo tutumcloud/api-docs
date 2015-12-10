@@ -37,7 +37,7 @@ az = tutum.AZ.list()
 ```http
 GET /api/v1/az/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -97,7 +97,7 @@ log.Println(az)
 ```http
 GET /api/v1/az/aws/sa-east-1/sa-east-1a/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

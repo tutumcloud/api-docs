@@ -29,6 +29,13 @@
         "volumes_from": "/api/v1/service/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a179/"
     }
   ],
+  "cap_add": [
+    "ALL"
+  ],
+  "cap_drop": [
+    "NET_ADMIN",
+    "SYS_ADMIN"
+  ],
   "container_envvars": [
     {
       "key": "DB_PASS",
@@ -50,16 +57,35 @@
     "/api/v1/container/fdf9c116-7c08-4a60-b0ce-c54ca72c2f25/"
   ],
   "cpu_shares": 100,
+  "cpuset": "0,1",
+  "cgroup_parent": "m-executor-abcd",
   "current_num_containers": 2,
   "deployed_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
   "deployment_strategy": "EMPTIEST_NODE",
   "destroyed_datetime": null,
+  "devices": [
+    "/dev/ttyUSB0:/dev/ttyUSB0"
+  ],
+  "dns": [
+    "8.8.8.8"
+  ],
+  "dns_search": [
+    "example.com",
+  ],
   "domainname": "domainname",
   "entrypoint": "",
+  "extra_hosts": [
+    "onehost:50.31.209.229"
+  ],
   "hostname": "hostname",
   "image_name": "tutum/wordpress-stackable:latest",
   "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
   "nickname": "wordpress-stackable",
+  "labels": {
+    "com.example.description": "Accounting webapp",
+    "com.example.department": "Finance",
+    "com.example.label-with-empty-value": ""
+  },
   "link_variables": {
     "WORDPRESS_STACKABLE_1_ENV_DB_HOST": "**LinkMe**",
     "WORDPRESS_STACKABLE_1_ENV_DB_NAME": "wordpress",
@@ -110,15 +136,20 @@
       "to_service": "/api/v1/service/72f175bd-390b-46e3-9463-830aca32ce3e/"
     }
   ],
+  "mac_address": "02:42:ac:11:65:43",
   "memory": 2048,
+  "memory_swap": 8192,
   "name": "wordpress-stackable",
   "net": "bridge",
   "privileged": false,
   "public_dns": "wordpress-stackable.admin.svc.tutum.io",
+  "read_only": true,
   "resource_uri": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
   "roles": ["global"],
   "run_command": "/run-wordpress.sh",
   "running_num_containers": 1,
+  "security_opt": [
+  ],
   "sequential_deployment": false,
   "started_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
   "state": "Partly running",
@@ -169,17 +200,29 @@ stack | Resource URIs of the stack that the service belongs to
 containers | List of resource URIs of the containers launched as part of the service
 container_ports | List of ports to be published on the containers of this service (see table `Service Port attributes` below)
 container_envvars | List of user-defined environment variables to set on the containers of the service, which will override the image environment variables (see table `Service Environment Variable attributes` below)
+labels | Metadata in form of dictionary used for every container of this service
 working_dir | Working directory for running binaries within a container of this service
 user | Set the user used on containers of this service (`root` by default)
 hostname | Set the hostname used on containers of this service
 domainname | Set the domainname used on containers of this service
+mac_address | Ethernet device's MAC address used on containers of this service
+cgroup_name | Optional parent cgroup used on containers of this service.
 tty | If the containers of this service have the tty enable (`false` by default)
 stdin_open | If the containers of this service have stdin opened (`false` by default)
+dns | Custom DNS servers for containers of this service
+dns_search | Custom DNS search domain for containers of this service
+cap_add | Added capabilities for containers of this service
+cap_drop | Dropped capabilities for containers of this service
+devices | List of device mappings for containers of this service
+extra_hosrs | List of hostname mappings for containers of this service
+secuirty_opt | Labeling scheme for containers of this service
 entrypoint | Entrypoint to be set on the containers launched as part of the service, which will override the image entrypoint
 run_command | Run command to be set on the containers launched as part of the service, which will override the image run command
 sequential_deployment | Whether the containers for this service should be deployed in sequence, linking each of them to the previous containers (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
 cpu_shares | The relative CPU priority of the containers of the service (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+cpuset | CPUs in which to allow execution
 memory | The memory limit of the containers of the service in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+memory_swap | Total memory limit (memory + swap) of the containers of the service in MB
 linked_from_service | A list of services that are linked to this one (see table `Related services attributes` below)
 linked_to_service | A list of services that the service is linked to (see table `Related services attributes` below)
 bindings | A list of volume bindings that the service has mounted (see table `Service binding attributes` below)
@@ -188,6 +231,7 @@ autodestroy | Whether to terminate the containers of the service automatically i
 roles | List of Tutum roles assigned to this service (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
 link_variables | List of environment variables that would be exposed in the containers if they are linked to this service
 privileged | Whether to start the containers with Docker's `privileged` flag set or not, which allows containers to access all devices on the host among other things (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+read_only | Whether the filesystem of every service container is read-only or not (`false` by default)
 deployment_strategy | Container distribution among nodes (see table `Deployment strategies` below and [Deployment strategies](https://support.tutum.co/support/solutions/articles/5000520721) for more information)
 tags | List of tags to be used to deploy the service (see [Tags](https://support.tutum.co/support/solutions/articles/5000508859) for more information)
 autoredeploy | Whether to redeploy the containers of the service when its image is updated in Tutum registry (see [Tutum's private registry](https://support.tutum.co/support/solutions/articles/5000012183-using-tutum-s-private-docker-image-registry) for more information)
@@ -288,7 +332,7 @@ log.Println(serviceList)
 ```http
 GET /api/v1/service/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -339,7 +383,7 @@ log.Println(service)
 ```http
 POST /api/v1/service/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -446,7 +490,7 @@ log.Println(service)
 ```http
 GET /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -514,8 +558,9 @@ go service.Logs(c)
 ```
 
 ```http
-GET /v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/?user=username&token=apikey HTTP/1.1
+GET /v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
 Host: stream.tutum.co
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
 Upgrade: websocket
 ```
@@ -576,7 +621,7 @@ if err = service.Update(tutum.ServiceCreateRequest{Target_num_containers: 3}); e
 ```http
 PATCH /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -665,7 +710,7 @@ if err = service.Start(); err != nil {
 ```http
 POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -716,7 +761,7 @@ if err = service.Stop(); err != nil {
 ```http
 POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -755,7 +800,7 @@ service.scale()
 ```http
 POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/scale/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -808,7 +853,7 @@ if err = service.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil {
 ```http
 POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/redeploy/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -865,7 +910,7 @@ if err = service.Terminate(); err != nil {
 ```http
 DELETE /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

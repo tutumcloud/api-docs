@@ -64,7 +64,7 @@ log.Println(nodetypeList)
 ```http
 GET /api/v1/nodetype/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -114,7 +114,7 @@ log.Println(nodetype)
 ```http
 GET /api/v1/nodetype/digitalocean/1gb/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

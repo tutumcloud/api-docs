@@ -26,7 +26,7 @@ origin | Possible values: `user`, `tutum`
 ```http
 GET /api/v1/tag/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

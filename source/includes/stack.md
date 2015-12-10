@@ -75,7 +75,7 @@ log.Println(stackList)
 ```http
 GET /api/v1/stack/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -123,7 +123,7 @@ log.Println(stack)
 ```http
 POST /api/v1/stack/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -191,7 +191,7 @@ if err = stack.Export(); err != nil {
 ```http
 GET /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/export/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -236,7 +236,7 @@ log.Println(stack)
 ```http
 GET /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -289,7 +289,7 @@ if err = stack.Update(tutum.StackCreateRequest{Services: []tutum.ServiceCreateRe
 ```http
 PATCH /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -369,7 +369,7 @@ if err = stack.Stop(); err != nil {
 ```http
 POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/stop/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -420,7 +420,7 @@ if err = stack.Start(); err != nil {
 ```http
 POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/start/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -473,7 +473,7 @@ if err = stack.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil {
 ```http
 POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/redeploy/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -510,7 +510,7 @@ reuse_volumes | Wheather to reuse container volumes for this redeploy operation 
 import tutum
 
 stack = tutum.Stack.fetch("46aca402-2109-4a70-a378-760cfed43816")
-stack.terminate()
+stack.delete()
 ```
 
 ```go
@@ -530,7 +530,7 @@ if err = stack.Terminate(); err != nil {
 ```http
 DELETE /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

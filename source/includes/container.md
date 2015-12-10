@@ -22,6 +22,13 @@
             "rewritable": true
         }
     ],
+    "cap_add": [
+        "ALL"
+    ],
+    "cap_drop": [
+        "NET_ADMIN",
+        "SYS_ADMIN"
+    ],
     "container_envvars": [
         {
             "key": "DB_1_ENV_DEBIAN_FRONTEND",
@@ -148,15 +155,35 @@
         }
     ],
     "cpu_shares": 100,
+    "cpuset": "0,1",
+    "cgroup_parent": "m-executor-abcd",
     "deployed_datetime": "Thu, 16 Oct 2014 12:04:08 +0000",
     "destroyed_datetime": null,
+    "devices": [
+        "/dev/ttyUSB0:/dev/ttyUSB0"
+    ],
+    "dns": [
+        "8.8.8.8"
+    ],
+    "dns_search": [
+        "example.com",
+        "c1dd4e1e-1356-411c-8613-e15146633640.local.tutum.io"
+    ],
     "domainname": "domainname",
     "entrypoint": "",
     "exit_code": null,
     "exit_code_msg": null,
+    "extra_hosts": [
+        "onehost:50.31.209.229"
+    ],
     "hostname": "hostname",
     "image_name": "tutum/wordpress-stackable:latest",
     "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
+    "labels": {
+        "com.example.description": "Accounting webapp",
+        "com.example.department": "Finance",
+        "com.example.label-with-empty-value": ""
+    },
     "last_metric": {
         "cpu": 1.3278507035616,
         "disk": 462479360,
@@ -200,7 +227,9 @@
         "WORDPRESS_STACKABLE_PORT_80_TCP_PORT": "80",
         "WORDPRESS_STACKABLE_PORT_80_TCP_PROTO": "tcp"
     },
+    "mac_address": "02:42:ac:11:65:43",
     "memory": 1024,
+    "memory_swap": 4096,
     "name": "wordpress-stackable",
     "net": "bridge",
     "node": "/api/v1/node/9691c44e-3155-4ca2-958d-c9571aac0a14/",
@@ -208,9 +237,14 @@
     "private_ip": "10.7.0.1",
     "privileged": false,
     "public_dns": "wordpress-stackable-1.admin.cont.tutum.io",
+    "read_only": true,
     "resource_uri": "/api/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
     "roles": ["global"],
     "run_command": "/run-wordpress.sh",
+    "security_opt": [
+        "label:user:USER",
+        "label:role:ROLE"
+    ],
     "service": "/api/v1/service/adeebc1b-1b81-4af0-b8f2-cefffc69d7fb/",
     "started_datetime": "Thu, 16 Oct 2014 12:04:08 +0000",
     "state": "Running",
@@ -250,16 +284,28 @@ stopped_datetime | The date and time of the last `stop` operation on the contain
 destroyed_datetime | The date and time of the `terminate` operation on the container (if applicable, `null` otherwise)
 container_ports | List of published ports of this container (see table `Container Port attributes` below)
 container_envvars | List of user-defined environment variables set on the containers of the service, which will override the container environment variables (see table `Container Environment Variable attributes` below)
+labels | Container metadata in form of dictionary
 working_dir | Working directory for running binaries within a container
 user | User used on the container on launch
 hostname | Hostname used on the container on launch
 domainname | Domainname used on the container on launch
+mac_address | Ethernet device's MAC address used on the container on launch
+cgroup_name | Optional parent cgroup for the container.
 tty | If the container has the tty enable
 stdin_open | If the container has stdin opened
+dns | Container custom DNS servers
+dns_search | Container custom DNS search domain
+cap_add | Container added capabilities
+cap_drop | Container dropped capabilities
+devices | List of container device mappings
+extra_hosts | List of container hostname mappings
+secuirty_opt | Labeling scheme of this container
 entrypoint | Entrypoint used on the container on launch
 run_command | Run command used on the container on launch
 cpu_shares | The relative CPU priority of the container (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+cpuset | CPUs in which execution is allowed
 memory | The memory limit of the container in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
+memory_swap | Total memory limit (memory + swap) of the container in MB
 last_metric | Last reported metric for the container (see table `Container Last Metric attributes` below for more information)
 autorestart | Whether to restart the container automatically if it stops (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | Whether to terminate the container automatically if it stops (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
@@ -267,6 +313,7 @@ roles | List of Tutum roles asigned to this container (see [API roles](https://s
 linked_to_container | List of IP addresses of the linked containers (see table `Container Link attributes` below and [Service links](https://support.tutum.co/support/solutions/articles/5000012181) for more information)
 link_variables | List of environment variables that would be exposed in any container that is linked to this one
 privileged | Whether the container has Docker's `privileged` flag set or not (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
+read_only | Whether the container filesystem is read-only or not
 private_ip | IP address of the container on the overlay network. This IP will be reachable from any other container.
 net | Network mode set on the container (see table `Network Modes` below, more information https://docs.docker.com/reference/run/#network-settings)
 pid | PID (Process) Namespace mode for the container (more information https://docs.docker.com/reference/run/#pid-settings-pid)
@@ -365,7 +412,7 @@ log.Println(containerList)
 ```http
 GET /api/v1/container/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -416,7 +463,7 @@ log.Println(container)
 ```http
 GET /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -482,8 +529,9 @@ go container.Logs(c)
 ```
 
 ```http
-GET /v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/?user=username&token=apikey HTTP/1.1
+GET /v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
 Host: stream.tutum.co
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
 Upgrade: websocket
 ```
@@ -514,6 +562,7 @@ Parameter | Description
 --------- | -----------
 tail | Number of lines to show from the end of the logs (default: `300`)
 follow | Whether to stream logs or close the connection immediately (default: true)
+service | Filter by service (resource URI)
 
 
 ## Start a container
@@ -542,7 +591,7 @@ if err = container.Start(); err != nil {
 ```http
 POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -592,7 +641,7 @@ if err = container.Stop(); err != nil {
 ```http
 POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -645,7 +694,7 @@ if err = container.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil 
 ```http
 POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -703,7 +752,7 @@ if err = container.Terminate(); err != nil {
 ```http
 DELETE /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -739,20 +788,21 @@ if err != nil {
   log.Println(err)
 }
 
-c := make(chan string)
+c := make(chan tutum.Exec)
 
 container.Exec("ls", c)
 
 ```
 
 ```http
-GET /v1/container/(uuid)/exec/?user=username&token=apikey HTTP/1.1
+GET /v1/container/(uuid)/exec/ HTTP/1.1
 Host: stream.tutum.co
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
 Upgrade: websocket
 ```
 
-Executes a command inside the specified running container, creating a bi-directional stream for the process' standard input and output. This endpoint can be connected to using a bi-directional Secure Web Socket `wss://stream.tutum.co/v1/container/(uuid)/exec/?user=username&token=apikey`
+Executes a command inside the specified running container, creating a bi-directional stream for the process' standard input and output. This endpoint can be connected to using a bi-directional Secure Web Socket `wss://stream.tutum.co/v1/container/(uuid)/exec/`
 
 ### Endpoint Type
 

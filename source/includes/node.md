@@ -113,7 +113,7 @@ log.Println(nodeList)
 ```http
 GET /api/v1/node/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -165,7 +165,7 @@ log.Println(node)
 ```http
 GET /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -217,7 +217,7 @@ if err = node.Update(tutum.Node{Tags: []string{{Name: "tag-1"}}}); err != nil {
 ```http
 PATCH /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 
 {"tags": [{"name": "tag-1"}], "nickname": "dev node"}
@@ -278,7 +278,7 @@ if err = node.Upgrade(); err != nil {
 ```http
 POST /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/docker-upgrade/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -308,7 +308,7 @@ uuid | The UUID of the node to upgrade
 ```http
 POST /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/health-check/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -341,7 +341,7 @@ node.delete()
 ```http
 DELETE /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
