@@ -95,11 +95,13 @@ ws = websocket.WebSocketApp('wss://stream.tutum.co/v1/events', header=[header])
 
 ```go
 import "github.com/gorilla/websocket"
+import "encoding/base64"
 
 var StreamUrl = "wss://stream.tutum.co:443/v1/events"
 
+sEnc := base64.StdEncoding.EncodeToString([]byte(User + ":" + ApiKey))
 header := http.Header{}
-header.Add("Authorization", xxxx)
+header.Add("Authorization", fmt.Sprintf("Basic %s", sEnc))
 
 var Dialer websocket.Dialer
 ws, _, err := Dialer.Dial(url, header)
