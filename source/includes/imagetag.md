@@ -117,7 +117,7 @@ image_tag = tutum.ImageTag.fetch("registry.local/user1/image1", "latest")
 ```http
 GET /api/v1/image/registry.local/user1/image1/tag/latest/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

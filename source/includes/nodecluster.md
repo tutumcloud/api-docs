@@ -112,7 +112,7 @@ log.Println(nodeclusters)
 ```http
 GET /api/v1/nodecluster/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -166,7 +166,7 @@ log.Println(nodecluster)
 ```http
 POST /api/v1/nodecluster/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -223,7 +223,7 @@ log.Println(nodecluster)
 ```http
 GET /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -273,7 +273,7 @@ if err = nodecluster.Deploy(); err != nil {
 ```http
 POST /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/deploy/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -321,7 +321,7 @@ if err = nodecluster.Update(tutum.NodeCreateRequest{Target_num_nodes: 4}); err !
 ```http
 PATCH /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -383,7 +383,7 @@ if err = nodecluster.Terminate(); err != nil {
 ```http
 DELETE /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

@@ -49,7 +49,7 @@ providers = tutum.Provider.list()
 ```http
 GET /api/v1/provider/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -110,7 +110,7 @@ log.Println(provider)
 ```http
 GET /api/v1/provider/digitalocean/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

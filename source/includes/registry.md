@@ -34,7 +34,7 @@ is_ssl | Whether this registry has SSL activated or not
 ```http
 GET /api/v1/registry/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -54,7 +54,7 @@ Available in Tutum's **REST API**
 ```http
 GET /api/v1/registry/registry.local/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

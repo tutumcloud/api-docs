@@ -111,7 +111,7 @@ images = tutum.Image.list()
 ```http
 GET /api/v1/image/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -165,7 +165,7 @@ image.save()
 ```http
 POST /api/v1/image/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -257,7 +257,7 @@ image = tutum.Image.fetch("registry.local/user1/image1")
 ```http
 GET /api/v1/image/registry.local/user1/image1/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -307,7 +307,7 @@ image.save()
 ```http
 PATCH /api/v1/image/registry.local/user1/image1/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -357,7 +357,7 @@ image.delete()
 ```http
 DELETE /api/v1/image/registry.local/user1/image1/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

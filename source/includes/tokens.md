@@ -35,7 +35,7 @@ log.Println(token)
 ```http
 POST /api/v1/token/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 

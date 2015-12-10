@@ -94,8 +94,9 @@ for {
 ```
 
 ```http
-GET /v1/events/?user=username&token=apikey HTTP/1.1
+GET /v1/events/ HTTP/1.1
 Host: stream.tutum.co
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
 Upgrade: websocket
 ```

@@ -47,7 +47,7 @@ Failed | The last build on this build setting tag failed.
 ```http
 GET /api/v1/image/registry.local/user1/image1/buildsetting/latest/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -57,7 +57,7 @@ Accept: application/json
 ```http
 POST /api/v1/service/registry.local/user1/image1/buildsetting/latest/build/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 

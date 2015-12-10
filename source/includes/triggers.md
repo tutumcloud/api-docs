@@ -48,7 +48,7 @@ trigger.list()
 ```http
 GET /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -123,7 +123,7 @@ log.Println(trigger)
 ```http
 POST /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -181,7 +181,7 @@ log.Println(trigger)
 ```http
 GET /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -227,7 +227,7 @@ service.DeleteTrigger("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```http
 DELETE /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 

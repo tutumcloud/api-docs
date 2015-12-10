@@ -412,7 +412,7 @@ log.Println(containerList)
 ```http
 GET /api/v1/container/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -463,7 +463,7 @@ log.Println(container)
 ```http
 GET /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -529,8 +529,9 @@ go container.Logs(c)
 ```
 
 ```http
-GET /v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/?user=username&token=apikey HTTP/1.1
+GET /v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
 Host: stream.tutum.co
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
 Upgrade: websocket
 ```
@@ -590,7 +591,7 @@ if err = container.Start(); err != nil {
 ```http
 POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -640,7 +641,7 @@ if err = container.Stop(); err != nil {
 ```http
 POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -693,7 +694,7 @@ if err = container.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil 
 ```http
 POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -751,7 +752,7 @@ if err = container.Terminate(); err != nil {
 ```http
 DELETE /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -794,13 +795,14 @@ container.Exec("ls", c)
 ```
 
 ```http
-GET /v1/container/(uuid)/exec/?user=username&token=apikey HTTP/1.1
+GET /v1/container/(uuid)/exec/ HTTP/1.1
 Host: stream.tutum.co
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
 Upgrade: websocket
 ```
 
-Executes a command inside the specified running container, creating a bi-directional stream for the process' standard input and output. This endpoint can be connected to using a bi-directional Secure Web Socket `wss://stream.tutum.co/v1/container/(uuid)/exec/?user=username&token=apikey`
+Executes a command inside the specified running container, creating a bi-directional stream for the process' standard input and output. This endpoint can be connected to using a bi-directional Secure Web Socket `wss://stream.tutum.co/v1/container/(uuid)/exec/`
 
 ### Endpoint Type
 

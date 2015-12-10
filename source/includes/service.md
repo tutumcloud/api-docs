@@ -332,7 +332,7 @@ log.Println(serviceList)
 ```http
 GET /api/v1/service/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -383,7 +383,7 @@ log.Println(service)
 ```http
 POST /api/v1/service/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -490,7 +490,7 @@ log.Println(service)
 ```http
 GET /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -558,8 +558,9 @@ go service.Logs(c)
 ```
 
 ```http
-GET /v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/?user=username&token=apikey HTTP/1.1
+GET /v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
 Host: stream.tutum.co
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
 Upgrade: websocket
 ```
@@ -620,7 +621,7 @@ if err = service.Update(tutum.ServiceCreateRequest{Target_num_containers: 3}); e
 ```http
 PATCH /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
@@ -709,7 +710,7 @@ if err = service.Start(); err != nil {
 ```http
 POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -760,7 +761,7 @@ if err = service.Stop(); err != nil {
 ```http
 POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -799,7 +800,7 @@ service.scale()
 ```http
 POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/scale/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -852,7 +853,7 @@ if err = service.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil {
 ```http
 POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/redeploy/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
@@ -909,7 +910,7 @@ if err = service.Terminate(); err != nil {
 ```http
 DELETE /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
-Authorization: ApiKey username:apikey
+Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 ```
 
