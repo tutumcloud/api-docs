@@ -87,8 +87,8 @@ Available in Tutum's **REST API**
 Parameter | Description
 --------- | -----------
 name | Filter by node type name
-regions | Filter by region (resource URI)
-availability_zones | Filter by availability zone (resource URI)
+regions | Filter by resource URI of the target regions
+availability_zones | Filter by resource URI of the target availability zones
 
 
 ## Get an individual node type

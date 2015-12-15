@@ -160,8 +160,8 @@ name | Filter by image name
 jumpstart | Filter by whether the image is a jumpstart or not
 is_private_image | Filter by whether the image is private or not
 is_user_image | Filter by whether the image has been added as user repository or not
-registry | Filter by the image registry
-categories | Filter by the image categories
+registry | Filter by resource URI of the target image registry
+categories | Filter by the name of the image category, HTML quoted. Example: `/api/v1/image/?categories__name=Database%20Servers`
 
 
 ## Creates a new image.

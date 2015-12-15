@@ -87,7 +87,7 @@ Available in Tutum's **REST API**
 Parameter | Description
 --------- | -----------
 name | Filter by region name
-provider | Filter by provider (resource URI)
+provider | Filter by resource URI of the target provider
 
 
 
