@@ -134,10 +134,11 @@ Available in Tutum's **REST API**
 
 Parameter | Description
 --------- | -----------
+uuid | Filter by UUID
 state | Filter by state. Possible values: `Init`, `Deploying`, `Deployed`, `Partly deployed`, `Scaling`, `Terminating`, `Terminated`, `Empty cluster`
 name | Filter by node cluster name
-region | Filter by region (resource URI)
-node_type | Filter by node type (resource URI)
+region | Filter by resource URI of the target region
+node_type | Filter by resource URI of the target node type
 
 
 ## Create a new node cluster

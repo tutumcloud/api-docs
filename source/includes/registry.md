@@ -48,6 +48,15 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/registry/`
 
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | Filter by UUID.
+name | Filter by registry name
+host | Filter by registry host.
+is_tutum_registry | Filter by whether the registry is a Tutum registry or not. Possible values: 'true' or 'false'
+
 
 ## Get an existing registry
 

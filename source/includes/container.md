@@ -434,10 +434,11 @@ Available in Tutum's **REST API**
 
 Parameter | Description
 --------- | -----------
+uuid | Filter by UUID
 state | Filter by state. Possible values: `Starting`, `Running`, `Stopping`, `Stopped`, `Terminating`, `Terminated`
 name | Filter by container name
-
-
+service | Filter by resource URI of the target service.
+node | Filter by resource URI of the target node.
 
 ## Get an existing container
 

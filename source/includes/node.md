@@ -135,10 +135,12 @@ Available in Tutum's **REST API**
 
 Parameter | Description
 --------- | -----------
+uuid | Filter by UUID
 state | Filter by state. Possible values: `Deploying`, `Deployed`, `Unreachable`, `Upgrading`, `Terminating`, `Terminated`
-node_cluster | Filter by node cluster (resource URI)
-node_type | Filter by node type (resource URI)
-region | Filter by region (resource URI)
+node_cluster | Filter by resource URI of the target node cluster
+node_type | Filter by resource URI of the target node type
+region | Filter by resource URI of the target region
+docker_version | Filter by Docker engine version running in the nodes
 
 
 

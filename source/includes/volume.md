@@ -81,6 +81,14 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/volume/`
 
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | Filter by UUID
+node | Filter by resource URI of the target node
+containers | Filter by resource URI of the target containers
+
 
 ## Get an existing volume
 
