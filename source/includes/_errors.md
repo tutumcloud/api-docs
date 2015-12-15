@@ -1,5 +1,14 @@
 # Errors
 
+
+> API response structure
+
+```json
+{
+    "error": "Descriptive error message"
+}
+```
+
 The Tutum API uses the following error codes:
 
 
