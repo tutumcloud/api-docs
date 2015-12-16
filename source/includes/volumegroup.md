@@ -83,6 +83,15 @@ Available in Tutum's **REST API**
 
 `GET /api/v1/volumegroup/`
 
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+uuid | Filter by UUID
+name | Filter by volume group name
+volumes | Filter by resource URI of the target volumes
+services | Filter by resource URI of the target services
+
 
 ## Get an existing volume group
 

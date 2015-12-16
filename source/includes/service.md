@@ -354,10 +354,10 @@ Available in Tutum's **REST API**
 
 Parameter | Description
 --------- | -----------
+uuid | Filter by UUID
 state | Filter by state. Possible values: `Not running`, `Starting`, `Running`, `Partly running`, `Scaling`, `Redeploying`, `Stopping`, `Stopped`, `Terminating`, `Terminated`
 name | Filter by service name
-
-
+stack | Filter by resource URI of the target stack.
 
 ## Create a new service
 

@@ -71,7 +71,7 @@ Available in Tutum's **REST API**
 Parameter | Description
 --------- | -----------
 name | Filter by availability zone name
-region | Filter by region (resource URI)
+region | Filter by resource URI of the target region
 
 
 

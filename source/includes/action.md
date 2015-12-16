@@ -107,12 +107,23 @@ Available in Tutum's **REST API**
 
 Parameter | Description
 --------- | -----------
+uuid | Filter by UUID.
 state | Filter by state. Possible values: `In progress`, `Success`, `Failed`
-start_date__gte | Filter by start date (after or on the date supplied)
-start_date__lte | Filter by start date (before or on the date supplied)
-end_date__gte | Filter by end date (after or on the date supplied)
-end_date__lte | Filter by end date (before or on the date supplied)
-object | Filter by related object (resource URI)
+start_date | Filter by start date. Valid filtering values are `start_date__gte` (after or on the date supplied) and `start_date__lte` (before or on the date supplied)
+end_date | Filter by end date. Valid filtering values are `end_date__gte` (after or on the date supplied) and `end_date__lte` (before or on the date supplied)
+object | Filter by resource URI of the related object. This filter can only be combined with 'include_related' filter
+include_related | There is a parent-child relationship between Tutum objects, described in table `Relationships between Tutum objects`. If set to 'true', will include the actions of the related objects to the object specified in "object" filter parameter. Possible values: 'true' or 'false'
+
+
+## Relationships between Tutum objects
+
+Object | Relationships
+------ | -------------
+Container | Container, service, stack (if any)
+Service | All containers in the service, service, stack (if any)
+Stack | All services in the stack, all containers in every service in the stack, stack
+Node | Node, node cluster (if any)
+Node cluster | All nodes in the cluster, node cluster
 
 
 ## Get an action by UUID

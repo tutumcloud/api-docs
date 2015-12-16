@@ -97,6 +97,7 @@ Available in Tutum's **REST API**
 
 Parameter | Description
 --------- | -----------
+uuid | Filter by UUID
 name | Filter by stack name
 
 

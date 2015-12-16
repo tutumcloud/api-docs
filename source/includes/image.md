@@ -14,7 +14,17 @@
     ],
     "owner": "tutumcloud",
     "repository": "test-private-repo",
-    "type": "GITHUB"
+    "type": "GITHUB",
+    "envvars": [
+        {
+            "key": "test_envvar",
+            "value": "test_value"
+        },
+        {
+            "key": "test_envvar2",
+            "value": "test_value"
+        }
+    ]
   },
   "categories": [
     {
@@ -89,6 +99,7 @@ repository | The repository where images are built from
 owner | The owner of the repository
 autotests | Whether to execute tests for new commits or external pull requests (see table `Image Build Source Autotests values` below)
 build_settings | List of resource URIs of the build settings associated with this docker image
+envvars | List of user-defined environment variables to be used for Docker repository builds and tests
 
 
 ### Image Build Source Autotests values
@@ -149,8 +160,8 @@ name | Filter by image name
 jumpstart | Filter by whether the image is a jumpstart or not
 is_private_image | Filter by whether the image is private or not
 is_user_image | Filter by whether the image has been added as user repository or not
-registry | Filter by the image registry
-categories | Filter by the image categories
+registry | Filter by resource URI of the target image registry
+categories | Filter by the name of the image category, HTML quoted. Example: `/api/v1/image/?categories__name=Database%20Servers`
 
 
 ## Creates a new image.
@@ -234,6 +245,7 @@ repository | The repository where images are built from
 owner | (optional) The owner of the repository (default: the owner of the linked Github account)
 autotests | (optional) Whether to execute tests for new commits (default: `OFF`)
 build_settings | List of associations between image tags and repository branches to do builds (see table `Related Build Setting attributes` below)
+envvars | (optional) List of user-defined environment variables to be used for Docker repository builds and tests
 
 
 ### Related Build Setting attributes
@@ -342,7 +354,7 @@ Parameter | Description
 username | (optional) Username to authenticate with the private registry (not needed for Tutum private registry)
 password | (optional) Password to authenticate with the private registry (not needed for Tutum private registry)
 description | Description of the image
-build_source | The build source for this image (see table `Image Build Source attributes` below)
+build_source | The build source for this image (see table `Image Build Source attributes`)
 
 
 ## Delete an image
