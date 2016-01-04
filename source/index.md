@@ -21,7 +21,6 @@ includes:
   - registry
   - image
   - imagetag
-  - buildsetting
   - stack
   - service
   - container
