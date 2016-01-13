@@ -7,16 +7,16 @@
 ```json
 {
     "action": "Cluster Create",
-    "body": "{\"image_tag\": \"/api/v1/image/tutum/ubuntu-quantal/tag/latest/\", \"name\": \"test_cluster\"}",
+    "body": "{\"image_tag\": \"/api/repo/v1/repository/tutum/ubuntu-quantal/tag/latest/\", \"name\": \"test_cluster\"}",
     "end_date": "Wed, 17 Sep 2014 08:26:22 +0000",
     "ip": "56.78.90.12",
     "is_user_action": true,
     "can_be_canceled": false,
     "location": "New York, USA",
     "method": "POST",
-    "object": "/api/v1/cluster/eea638f4-b77a-4183-b241-22dbd7866f22/",
-    "path": "/api/v1/cluster/",
-    "resource_uri": "/api/v1/action/6246c558-976c-4df6-ba60-eb1a344a17af/",
+    "object": "/api/infra/v1/cluster/eea638f4-b77a-4183-b241-22dbd7866f22/",
+    "path": "/api/infra/v1/cluster/",
+    "resource_uri": "/api/audit/v1/action/6246c558-976c-4df6-ba60-eb1a344a17af/",
     "start_date": "Wed, 17 Sep 2014 08:26:22 +0000",
     "state": "Success",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.78.2 (KHTML, like Gecko) Version/7.0.6 Safari/537.78.2",
@@ -83,7 +83,7 @@ log.Println(actionList)
 ```
 
 ```http
-GET /api/v1/action/ HTTP/1.1
+GET /api/audit/v1/action/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -101,7 +101,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/action/`
+`GET /api/audit/v1/action/`
 
 ### Query Parameters
 
@@ -147,7 +147,7 @@ log.Println(action)
 ```
 
 ```http
-GET /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+GET /api/audit/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -166,7 +166,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/action/(uuid)/`
+`GET /api/audit/v1/action/(uuid)/`
 
 ### Path Parameters
 
@@ -215,7 +215,7 @@ for {
 ```
 
 ```http
-GET /v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
+GET /api/audit/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
 Host: stream.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
@@ -254,7 +254,7 @@ follow | Whether to stream logs or close the connection immediately (default: tr
 ## Cancel an action
 
 ```http
-POST /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/cancel/ HTTP/1.1
+POST /api/audit/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/cancel/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -286,7 +286,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/action/(uuid)/cancel/`
+`POST /api/audit/v1/action/(uuid)/cancel/`
 
 ### Path Parameters
 
@@ -298,7 +298,7 @@ uuid | The UUID of the action to cancel
 ## Retry an action
 
 ```http
-POST /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/retry/ HTTP/1.1
+POST /api/audit/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/retry/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -330,7 +330,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/action/(uuid)/retry/`
+`POST /api/audit/v1/action/(uuid)/retry/`
 
 ### Path Parameters
 

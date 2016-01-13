@@ -9,9 +9,9 @@
 	"type": "action",
 	"action": "update",
 	"parents": [
-		"/api/v1/container/0b0e3538-88df-4f07-9aed-3a3cc4175076/"
+		"/api/app/v1/container/0b0e3538-88df-4f07-9aed-3a3cc4175076/"
 	],
-	"resource_uri": "/api/v1/action/49f0efe8-a704-4a10-b02f-f96344fabadd/",
+	"resource_uri": "/api/app/v1/action/49f0efe8-a704-4a10-b02f-f96344fabadd/",
 	"state": "Success"
 }
 ```

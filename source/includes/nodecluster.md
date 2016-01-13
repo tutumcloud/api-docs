@@ -12,12 +12,12 @@
     "disk": 60,
     "nickname": "my test cluster",
     "name": "TestCluster",
-    "node_type": "/api/v1/nodetype/aws/t2.micro/",
+    "node_type": "/api/infra/v1/nodetype/aws/t2.micro/",
     "nodes": [
-        "/api/v1/node/75d20367-0948-4f10-8ba4-ffb4d16ed3c6/"
+        "/api/infra/v1/node/75d20367-0948-4f10-8ba4-ffb4d16ed3c6/"
     ],
-    "region": "/api/v1/region/aws/us-east-1/",
-    "resource_uri": "/api/v1/nodecluster/5516df0b-721e-4470-b350-741ff22e63a0/",
+    "region": "/api/infra/v1/region/aws/us-east-1/",
+    "resource_uri": "/api/infra/v1/nodecluster/5516df0b-721e-4470-b350-741ff22e63a0/",
     "state": "Deployed",
     "tags": [
         {"name": "tag_one"},
@@ -110,7 +110,7 @@ log.Println(nodeclusters)
 ```
 
 ```http
-GET /api/v1/nodecluster/ HTTP/1.1
+GET /api/infra/v1/nodecluster/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -128,7 +128,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/nodecluster/`
+`GET /api/infra/v1/nodecluster/`
 
 ### Query Parameters
 
@@ -155,7 +155,7 @@ nodecluster.save()
 ```go
 import "github.com/tutumcloud/go-tutum/tutum"
 
-nodecluster, err := tutum.CreateNodeCluster(tutum.NodeCreateRequest{Name: "my_cluster", Region: "/api/v1/region/digitalocean/lon1/", NodeType: "/api/v1/nodetype/digitalocean/1gb/", Target_num_nodes: 2})
+nodecluster, err := tutum.CreateNodeCluster(tutum.NodeCreateRequest{Name: "my_cluster", Region: "/api/infra/v1/region/digitalocean/lon1/", NodeType: "/api/infra/v1/nodetype/digitalocean/1gb/", Target_num_nodes: 2})
 
 if err != nil {
   log.Println(err)
@@ -165,13 +165,13 @@ log.Println(nodecluster)
 ```
 
 ```http
-POST /api/v1/nodecluster/ HTTP/1.1
+POST /api/infra/v1/nodecluster/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
 Content-Type: application/json
 
-{"name": "my_cluster", "region": "/api/v1/region/digitalocean/lon1/", "node_type": "/api/v1/nodetype/digitalocean/1gb/", "disk": 60}
+{"name": "my_cluster", "region": "/api/infra/v1/region/digitalocean/lon1/", "node_type": "/api/infra/v1/nodetype/digitalocean/1gb/", "disk": 60}
 ```
 
 ```shell
@@ -186,7 +186,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/nodecluster/`
+`POST /api/infra/v1/nodecluster/`
 
 ### JSON Parameters
 
@@ -222,7 +222,7 @@ log.Println(nodecluster)
 ```
 
 ```http
-GET /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+GET /api/infra/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -240,7 +240,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/nodecluster/(uuid)/`
+`GET /api/infra/v1/nodecluster/(uuid)/`
 
 ### Path Parameters
 
@@ -272,7 +272,7 @@ if err = nodecluster.Deploy(); err != nil {
 ```
 
 ```http
-POST /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/deploy/ HTTP/1.1
+POST /api/infra/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/deploy/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -286,7 +286,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/nodecluster/(uuid)/deploy/`
+`POST /api/infra/v1/nodecluster/(uuid)/deploy/`
 
 ### Path Parameters
 
@@ -320,7 +320,7 @@ if err = nodecluster.Update(tutum.NodeCreateRequest{Target_num_nodes: 4}); err !
 ```
 
 ```http
-PATCH /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+PATCH /api/infra/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -343,7 +343,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`PATCH /api/v1/nodecluster/(uuid)/`
+`PATCH /api/infra/v1/nodecluster/(uuid)/`
 
 ### Path Parameters
 
@@ -382,7 +382,7 @@ if err = nodecluster.Terminate(); err != nil {
 ```
 
 ```http
-DELETE /api/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+DELETE /api/infra/v1/nodecluster/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -400,7 +400,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`DELETE /api/v1/nodecluster/(uuid)/`
+`DELETE /api/infra/v1/nodecluster/(uuid)/`
 
 ### Path Parameters
 

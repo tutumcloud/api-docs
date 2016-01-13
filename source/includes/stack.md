@@ -10,9 +10,9 @@
   "destroyed_datetime": null,
   "nickname": "deployment stack",
   "name": "tutum-app",
-  "resource_uri": "/api/v1/stack/7fe7ec85-58be-4904-81da-de2219098d7c/",
+  "resource_uri": "/api/app/v1/stack/7fe7ec85-58be-4904-81da-de2219098d7c/",
   "services": [
-    "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/"
+    "/api/app/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/"
   ],
   "state": "Running",
   "synchronized": true,
@@ -73,7 +73,7 @@ log.Println(stackList)
 ```
 
 ```http
-GET /api/v1/stack/ HTTP/1.1
+GET /api/app/v1/stack/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -91,7 +91,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/stack/`
+`GET /api/app/v1/stack/`
 
 ### Query Parameters
 
@@ -122,7 +122,7 @@ log.Println(stack)
 ```
 
 ```http
-POST /api/v1/stack/ HTTP/1.1
+POST /api/app/v1/stack/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -162,7 +162,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/stack/`
+`POST /api/app/v1/stack/`
 
 ### JSON Parameters
 
@@ -190,7 +190,7 @@ if err = stack.Export(); err != nil {
 ```
 
 ```http
-GET /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/export/ HTTP/1.1
+GET /api/app/v1/stack/46aca402-2109-4a70-a378-760cfed43816/export/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -204,7 +204,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/stack/(uuid)/export/`
+`GET /api/app/v1/stack/(uuid)/export/`
 
 ### Path Parameters
 
@@ -235,7 +235,7 @@ log.Println(stack)
 ```
 
 ```http
-GET /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
+GET /api/app/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -253,7 +253,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/stack/(uuid)/`
+`GET /api/app/v1/stack/(uuid)/`
 
 ### Path Parameters
 
@@ -288,7 +288,7 @@ if err = stack.Update(tutum.StackCreateRequest{Services: []tutum.ServiceCreateRe
 ```
 
 ```http
-PATCH /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
+PATCH /api/app/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -327,7 +327,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`PATCH /api/v1/stack/(uuid)/`
+`PATCH /api/app/v1/stack/(uuid)/`
 
 ### Path Parameters
 
@@ -368,7 +368,7 @@ if err = stack.Stop(); err != nil {
 ```
 
 ```http
-POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/stop/ HTTP/1.1
+POST /api/app/v1/stack/46aca402-2109-4a70-a378-760cfed43816/stop/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -386,7 +386,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/stack/(uuid)/stop/`
+`POST /api/app/v1/stack/(uuid)/stop/`
 
 ### Path Parameters
 
@@ -419,7 +419,7 @@ if err = stack.Start(); err != nil {
 ```
 
 ```http
-POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/start/ HTTP/1.1
+POST /api/app/v1/stack/46aca402-2109-4a70-a378-760cfed43816/start/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -437,7 +437,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/stack/(uuid)/start/`
+`POST /api/app/v1/stack/(uuid)/start/`
 
 ### Path Parameters
 
@@ -472,7 +472,7 @@ if err = stack.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil {
 ```
 
 ```http
-POST /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/redeploy/ HTTP/1.1
+POST /api/app/v1/stack/46aca402-2109-4a70-a378-760cfed43816/redeploy/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -490,7 +490,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/stack/(uuid)/redeploy/`
+`POST /api/app/v1/stack/(uuid)/redeploy/`
 
 ### Path Parameters
 
@@ -529,7 +529,7 @@ if err = stack.Terminate(); err != nil {
 ```
 
 ```http
-DELETE /api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
+DELETE /api/app/v1/stack/46aca402-2109-4a70-a378-760cfed43816/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -547,7 +547,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`DELETE /api/v1/stack/(uuid)/`
+`DELETE /api/app/v1/stack/(uuid)/`
 
 ### Path Parameters
 

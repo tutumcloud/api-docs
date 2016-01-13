@@ -24,7 +24,7 @@ origin | Possible values: `user`, `tutum`
 ## List all node tags
 
 ```http
-GET /api/v1/tag/ HTTP/1.1
+GET /api/infra/v1/tag/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -38,7 +38,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/tag/`
+`GET /api/infra/v1/tag/`
 
 ### Query Parameters
 

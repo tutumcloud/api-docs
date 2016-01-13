@@ -7,13 +7,13 @@
 ```json
 {
     "containers": [
-        "/api/v1/container/55b07a2e-fa72-481f-984b-0e94f275de0b/"
+        "/api/infra/v1/container/55b07a2e-fa72-481f-984b-0e94f275de0b/"
     ],
-    "node": "/api/v1/node/fc1a5bb9-17f5-4819-b667-8c7cd819e950/",
-    "resource_uri": "/api/v1/volume/1863e34d-6a7d-4945-aefc-8f27a4ab1a9e/",
+    "node": "/api/infra/v1/node/fc1a5bb9-17f5-4819-b667-8c7cd819e950/",
+    "resource_uri": "/api/infra/v1/volume/1863e34d-6a7d-4945-aefc-8f27a4ab1a9e/",
     "state": "Created",
     "uuid": "1863e34d-6a7d-4945-aefc-8f27a4ab1a9e",
-    "volume_group": "/api/v1/volumegroup/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a173/"
+    "volume_group": "/api/infra/v1/volumegroup/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a173/"
 }
 ```
 
@@ -61,7 +61,7 @@ log.Println(volumeList)
 ```
 
 ```http
-GET /api/v1/volume/ HTTP/1.1
+GET /api/infra/v1/volume/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -79,7 +79,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/volume/`
+`GET /api/infra/v1/volume/`
 
 ### Query Parameters
 
@@ -111,7 +111,7 @@ log.Println(volume)
 ```
 
 ```http
-GET /api/v1/volume/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+GET /api/infra/v1/volume/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -129,7 +129,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/volume/(uuid)/`
+`GET /api/infra/v1/volume/(uuid)/`
 
 ### Path Parameters
 

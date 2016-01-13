@@ -8,8 +8,8 @@
 {
     "available": true,
     "name": "ap-northeast-1a",
-    "region": "/api/v1/region/az/ap-northeast-1/",
-    "resource_uri": "/api/v1/az/aws/ap-northeast-1/ap-northeast-1a/"
+    "region": "/api/infra/v1/region/az/ap-northeast-1/",
+    "resource_uri": "/api/infra/v1/az/aws/ap-northeast-1/ap-northeast-1a/"
 }
 ```
 
@@ -35,7 +35,7 @@ az = tutum.AZ.list()
 ```
 
 ```http
-GET /api/v1/az/ HTTP/1.1
+GET /api/infra/v1/az/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -64,7 +64,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/az/`
+`GET /api/infra/v1/az/`
 
 ### Query Parameters
 
@@ -95,7 +95,7 @@ log.Println(az)
 ```
 
 ```http
-GET /api/v1/az/aws/sa-east-1/sa-east-1a/ HTTP/1.1
+GET /api/infra/v1/az/aws/sa-east-1/sa-east-1a/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -110,7 +110,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/az/(provider.name)/(region.name)/(name)/`
+`GET /api/infra/v1/az/(provider.name)/(region.name)/(name)/`
 
 ### Path Parameters
 

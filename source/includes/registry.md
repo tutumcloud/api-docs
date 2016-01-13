@@ -11,7 +11,7 @@
   "is_ssl": true,
   "is_tutum_registry": true,
   "name": "Tutum TEST",
-  "resource_uri": "/api/v1/registry/registry.local/",
+  "resource_uri": "/api/repo/v1/registry/registry.local/",
 }
 ```
 
@@ -32,7 +32,7 @@ is_ssl | Whether this registry has SSL activated or not
 ## List all registries
 
 ```http
-GET /api/v1/registry/ HTTP/1.1
+GET /api/repo/v1/registry/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -46,7 +46,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/registry/`
+`GET /api/repo/v1/registry/`
 
 ### Query Parameters
 
@@ -61,7 +61,7 @@ is_tutum_registry | Filter by whether the registry is a Tutum registry or not. P
 ## Get an existing registry
 
 ```http
-GET /api/v1/registry/registry.local/ HTTP/1.1
+GET /api/repo/v1/registry/registry.local/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -75,7 +75,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/registry/(host)/`
+`GET /api/repo/v1/registry/(host)/`
 
 ### Path Parameters
 

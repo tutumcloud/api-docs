@@ -11,17 +11,17 @@
     "label": "Amsterdam 2",
     "name": "ams2",
     "node_types": [
-        "/api/v1/nodetype/digitalocean/1gb/",
-        "/api/v1/nodetype/digitalocean/2gb/",
-        "/api/v1/nodetype/digitalocean/4gb/",
-        "/api/v1/nodetype/digitalocean/8gb/",
-        "/api/v1/nodetype/digitalocean/16gb/",
-        "/api/v1/nodetype/digitalocean/32gb/",
-        "/api/v1/nodetype/digitalocean/48gb/",
-        "/api/v1/nodetype/digitalocean/64gb/"
+        "/api/infra/v1/nodetype/digitalocean/1gb/",
+        "/api/infra/v1/nodetype/digitalocean/2gb/",
+        "/api/infra/v1/nodetype/digitalocean/4gb/",
+        "/api/infra/v1/nodetype/digitalocean/8gb/",
+        "/api/infra/v1/nodetype/digitalocean/16gb/",
+        "/api/infra/v1/nodetype/digitalocean/32gb/",
+        "/api/infra/v1/nodetype/digitalocean/48gb/",
+        "/api/infra/v1/nodetype/digitalocean/64gb/"
     ],
-    "provider": "/api/v1/provider/digitalocean/",
-    "resource_uri": "/api/v1/region/digitalocean/ams2/"
+    "provider": "/api/infra/v1/provider/digitalocean/",
+    "resource_uri": "/api/infra/v1/region/digitalocean/ams2/"
 }
 ```
 
@@ -50,7 +50,7 @@ regions = tutum.Region.list()
 ```
 
 ```http
-GET /api/v1/region/ HTTP/1.1
+GET /api/infra/v1/region/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -80,7 +80,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/region/`
+`GET /api/infra/v1/region/`
 
 ### Query Parameters
 
@@ -112,7 +112,7 @@ log.Println(region)
 ```
 
 ```http
-GET /api/v1/region/digitalocean/lon1/ HTTP/1.1
+GET /api/infra/v1/region/digitalocean/lon1/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -127,7 +127,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/region/(provider.name)/(name)/`
+`GET /api/infra/v1/region/(provider.name)/(name)/`
 
 ### Path Parameters
 

@@ -7,14 +7,14 @@
 ```json
 {
     "name": "mysql_etc",
-    "resource_uri": "/api/v1/volume/1863e34d-6a7d-4945-aefc-8f27a4ab1a9e/",
+    "resource_uri": "/api/infra/v1/volume/1863e34d-6a7d-4945-aefc-8f27a4ab1a9e/",
     "services": [
-        "/api/v1/service/1ddb524a-e7f5-4b68-b99c-50bf7c57602d/"
+        "/api/app/v1/service/1ddb524a-e7f5-4b68-b99c-50bf7c57602d/"
     ],
     "state": "Created",
     "uuid": "1863e34d-6a7d-4945-aefc-8f27a4ab1a9e",
     "volumes": [
-        "/api/v1/volume/1863e34d-6a7d-4945-aefc-8f27a4ab1a9e/"
+        "/api/app/v1/volume/1863e34d-6a7d-4945-aefc-8f27a4ab1a9e/"
      ]
 }
 ```
@@ -51,7 +51,7 @@ volumegroups = tutum.VolumeGroup.list()
 ```
 
 ```http
-GET /api/v1/volumegroup/ HTTP/1.1
+GET /api/infra/v1/volumegroup/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -81,7 +81,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/volumegroup/`
+`GET /api/infra/v1/volumegroup/`
 
 ### Query Parameters
 
@@ -114,7 +114,7 @@ log.Println(volumeGroup)
 ```
 
 ```http
-GET /api/v1/volumegroup/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+GET /api/infra/v1/volumegroup/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -132,7 +132,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/volumegroup/(uuid)/`
+`GET /api/infra/v1/volumegroup/(uuid)/`
 
 ### Path Parameters
 

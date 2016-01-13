@@ -58,7 +58,7 @@ tutum.ApiKey = "apikey"
 ```
 
 ```http
-GET /api/v1/service/ HTTP/1.1
+GET /api/app/v1/service/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -111,7 +111,7 @@ if err != nil {
 ```
 
 ```http
-GET /v1/events HTTP/1.1
+GET /api/audit/v1/events HTTP/1.1
 Host: stream.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
@@ -140,4 +140,4 @@ The Stream API requires the same authentication mechanism as the REST API:
 
 If you give an [API role](https://support.tutum.co/support/solutions/articles/5000524639) to a container, the environment variable `TUTUM_AUTH` inside the container will have the contents of the `Authorization` header that you can use to authenticate against the REST or Stream APIs:
 
-`curl -H "Authorization: $TUTUM_AUTH" https://dashboard.tutum.co/api/v1/service/`
+`curl -H "Authorization: $TUTUM_AUTH" https://dashboard.tutum.co/api/app/v1/service/`
