@@ -10,7 +10,7 @@
     "autorestart": "OFF",
     "bindings": [
         {
-            "volume": "/api/v1/volume/1863e34d-6a7d-4945-aefc-8f27a4ab1a9e/",
+            "volume": "/api/infra/v1/volume/1863e34d-6a7d-4945-aefc-8f27a4ab1a9e/",
             "host_path": null,
             "container_path": "/data",
             "rewritable": true
@@ -140,7 +140,7 @@
         },
         {
             "key": "DB_TUTUM_API_URL",
-            "value": "https://app-test.tutum.co/api/v1/service/c0fed1dc-c528-40c9-aa4c-dc00672ebcbf/"
+            "value": "https://app-test.tutum.co/api/app/v1/service/c0fed1dc-c528-40c9-aa4c-dc00672ebcbf/"
         }
     ],
     "container_ports": [
@@ -178,7 +178,7 @@
     ],
     "hostname": "hostname",
     "image_name": "tutum/wordpress-stackable:latest",
-    "image_tag": "/api/v1/image/tutum/wordpress-stackable/tag/latest/",
+    "image_tag": "/api/repo/v1/repository/tutum/wordpress-stackable/tag/latest/",
     "labels": {
         "com.example.description": "Accounting webapp",
         "com.example.department": "Finance",
@@ -194,9 +194,9 @@
     		"endpoints": {
     			"3306/tcp": "tcp://172.16.0.3:3306"
     		},
-    		"from_container": "/api/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
+    		"from_container": "/api/app/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
     		"name": "DB_1",
-    		"to_container": "/api/v1/container/ba434e1e-1234-411c-8613-e15146633640/"
+    		"to_container": "/api/app/v1/container/ba434e1e-1234-411c-8613-e15146633640/"
     	}
     ],
     "link_variables": {
@@ -232,20 +232,20 @@
     "memory_swap": 4096,
     "name": "wordpress-stackable",
     "net": "bridge",
-    "node": "/api/v1/node/9691c44e-3155-4ca2-958d-c9571aac0a14/",
+    "node": "/api/infra/v1/node/9691c44e-3155-4ca2-958d-c9571aac0a14/",
     "pid": "none",
     "private_ip": "10.7.0.1",
     "privileged": false,
     "public_dns": "wordpress-stackable-1.admin.cont.tutum.io",
     "read_only": true,
-    "resource_uri": "/api/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
+    "resource_uri": "/api/app/v1/container/c1dd4e1e-1356-411c-8613-e15146633640/",
     "roles": ["global"],
     "run_command": "/run-wordpress.sh",
     "security_opt": [
         "label:user:USER",
         "label:role:ROLE"
     ],
-    "service": "/api/v1/service/adeebc1b-1b81-4af0-b8f2-cefffc69d7fb/",
+    "service": "/api/app/v1/service/adeebc1b-1b81-4af0-b8f2-cefffc69d7fb/",
     "started_datetime": "Thu, 16 Oct 2014 12:04:08 +0000",
     "state": "Running",
     "stdin_open": false,
@@ -410,7 +410,7 @@ log.Println(containerList)
 ```
 
 ```http
-GET /api/v1/container/ HTTP/1.1
+GET /api/app/v1/container/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -428,7 +428,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/container/`
+`GET /api/app/v1/container/`
 
 ### Query Parameters
 
@@ -462,7 +462,7 @@ log.Println(container)
 
 
 ```http
-GET /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+GET /api/app/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -480,7 +480,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/container/(uuid)/`
+`GET /api/app/v1/container/(uuid)/`
 
 ### Path Parameters
 
@@ -530,7 +530,7 @@ go container.Logs(c)
 ```
 
 ```http
-GET /v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
+GET /v1/app/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
 Host: stream.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
@@ -590,7 +590,7 @@ if err = container.Start(); err != nil {
 ```
 
 ```http
-POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
+POST /api/app/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -608,7 +608,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/container/(uuid)/start/`
+`POST /api/app/v1/container/(uuid)/start/`
 
 ### Path Parameters
 
@@ -640,7 +640,7 @@ if err = container.Stop(); err != nil {
 ```
 
 ```http
-POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
+POST /api/app/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -658,7 +658,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/container/(uuid)/stop/`
+`POST /api/app/v1/container/(uuid)/stop/`
 
 ### Path Parameters
 
@@ -693,7 +693,7 @@ if err = container.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil 
 ```
 
 ```http
-POST /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
+POST /api/app/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -711,7 +711,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/container/(uuid)/redeploy/`
+`POST /api/app/v1/container/(uuid)/redeploy/`
 
 ### Path Parameters
 
@@ -751,7 +751,7 @@ if err = container.Terminate(); err != nil {
 
 
 ```http
-DELETE /api/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+DELETE /api/app/v1/container/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -769,7 +769,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`DELETE /api/v1/container/(uuid)/`
+`DELETE /api/app/v1/container/(uuid)/`
 
 ### Path Parameters
 
@@ -796,7 +796,7 @@ container.Exec("ls", c)
 ```
 
 ```http
-GET /v1/container/(uuid)/exec/ HTTP/1.1
+GET /api/app/v1/container/(uuid)/exec/ HTTP/1.1
 Host: stream.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade

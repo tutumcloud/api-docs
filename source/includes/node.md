@@ -6,7 +6,7 @@
 
 ```json
 {
-    "availability_zone": "/api/v1/az/testing-provider/testing-region/testing-az/",
+    "availability_zone": "/api/infra/v1/az/testing-provider/testing-region/testing-az/",
 	"cpu": 1,
 	"current_num_containers": 4,
 	"deployed_datetime": "Tue, 16 Sep 2014 17:01:15 +0000",
@@ -24,11 +24,11 @@
 		"disk": 462479360,
 		"memory": 763170816
 	},
-	"node_cluster": "/api/v1/nodecluster/d787a4b7-d525-4061-97a0-f423e8f1d229/",
-	"node_type": "/api/v1/nodetype/testing-provider/testing-type/",
+	"node_cluster": "/api/infra/v1/nodecluster/d787a4b7-d525-4061-97a0-f423e8f1d229/",
+	"node_type": "/api/infra/v1/nodetype/testing-provider/testing-type/",
 	"public_ip": "10.45.2.11",
-	"region": "/api/v1/region/testing-provider/testing-region/",
-	"resource_uri": "/api/v1/node/fc1a5bb9-17f5-4819-b667-8c7cd819e949/",
+	"region": "/api/infra/v1/region/testing-provider/testing-region/",
+	"resource_uri": "/api/infra/v1/node/fc1a5bb9-17f5-4819-b667-8c7cd819e949/",
 	"state": "Deployed",
 	"tags": [
 		{"name": "tag_one"},
@@ -111,7 +111,7 @@ log.Println(nodeList)
 ```
 
 ```http
-GET /api/v1/node/ HTTP/1.1
+GET /api/infra/v1/node/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -129,7 +129,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/node/`
+`GET /api/infra/v1/node/`
 
 ### Query Parameters
 
@@ -165,7 +165,7 @@ log.Println(node)
 ```
 
 ```http
-GET /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+GET /api/infra/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -183,7 +183,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/node/(uuid)/`
+`GET /api/infra/v1/node/(uuid)/`
 
 ### Path Parameters
 
@@ -217,7 +217,7 @@ if err = node.Update(tutum.Node{Tags: []string{{Name: "tag-1"}}}); err != nil {
 ```
 
 ```http
-PATCH /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+PATCH /api/infra/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -238,7 +238,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`PATCH /api/v1/node/(uuid)/`
+`PATCH /api/infra/v1/node/(uuid)/`
 
 ### Path Parameters
 
@@ -278,7 +278,7 @@ if err = node.Upgrade(); err != nil {
 ```
 
 ```http
-POST /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/docker-upgrade/ HTTP/1.1
+POST /api/infra/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/docker-upgrade/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -296,7 +296,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/node/(uuid)/docker-upgrade/`
+`POST /api/infra/v1/node/(uuid)/docker-upgrade/`
 
 ### Path Parameters
 
@@ -308,7 +308,7 @@ uuid | The UUID of the node to upgrade
 ## Perform a health check of a node
 
 ```http
-POST /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/health-check/ HTTP/1.1
+POST /api/infra/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/health-check/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -322,7 +322,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/node/(uuid)/health-check/`
+`POST /api/infra/v1/node/(uuid)/health-check/`
 
 ### Path Parameters
 
@@ -341,7 +341,7 @@ node.delete()
 ```
 
 ```http
-DELETE /api/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+DELETE /api/infra/v1/node/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -373,7 +373,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`DELETE /api/v1/node/(uuid)/`
+`DELETE /api/infra/v1/node/(uuid)/`
 
 ### Path Parameters
 

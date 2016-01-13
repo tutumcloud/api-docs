@@ -33,7 +33,7 @@ log.Println(token)
 ```
 
 ```http
-POST /api/v1/token/ HTTP/1.1
+POST /api/infra/v1/token/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -49,4 +49,4 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/token/`
+`POST /api/infra/v1/token/`

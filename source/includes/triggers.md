@@ -6,10 +6,10 @@
 
 ```json
 {
-  "url": "/api/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/trigger/0224815a-c156-44e4-92d7-997c69354438/call/",
+  "url": "/api/app/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/trigger/0224815a-c156-44e4-92d7-997c69354438/call/",
   "operation": "REDEPLOY",
   "name": "docker_trigger",
-  "resource_uri": "/api/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/trigger/0224815a-c156-44e4-92d7-997c69354438/"
+  "resource_uri": "/api/app/v1/service/82d4a246-52d8-468d-903d-9da9ef05ff28/trigger/0224815a-c156-44e4-92d7-997c69354438/"
 }
 ```
 
@@ -46,7 +46,7 @@ trigger.list()
 ```
 
 ```http
-GET /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/ HTTP/1.1
+GET /api/app/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -82,7 +82,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/service/(uuid)/trigger/`
+`GET /api/app/v1/service/(uuid)/trigger/`
 
 ### Path Parameters
 
@@ -121,7 +121,7 @@ log.Println(trigger)
 ```
 
 ```http
-POST /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/ HTTP/1.1
+POST /api/app/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -142,7 +142,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/service/(uuid)/trigger/`
+`POST /api/app/v1/service/(uuid)/trigger/`
 
 ### JSON Parameters
 
@@ -179,7 +179,7 @@ log.Println(trigger)
 ```
 
 ```http
-GET /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+GET /api/app/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -193,7 +193,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/service/(uuid)/trigger/(trigger_uuid)/`
+`GET /api/app/v1/service/(uuid)/trigger/(trigger_uuid)/`
 
 ### Path Parameters
 
@@ -225,7 +225,7 @@ service.DeleteTrigger("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```http
-DELETE /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+DELETE /api/app/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -243,7 +243,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`DELETE /api/v1/service/(uuid)/trigger/(trigger_uuid)/`
+`DELETE /api/app/v1/service/(uuid)/trigger/(trigger_uuid)/`
 
 ### Path Parameters
 
@@ -276,12 +276,12 @@ service.CallTrigger("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
 ```
 
 ```http
-POST /api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/ HTTP/1.1
+POST /api/app/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/ HTTP/1.1
 Host: dashboard.tutum.co
 Accept: application/json
 ```
 
-Executes the trigger. For `SCALEUP` triggers, the number of containers to scale up can be passed at the end of the trigger call url, for example `/api/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/3/`.
+Executes the trigger. For `SCALEUP` triggers, the number of containers to scale up can be passed at the end of the trigger call url, for example `/api/app/v1/service/61a29874-9134-48f9-b460-f37d4bec4826/trigger/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/call/3/`.
 
 ### Endpoint Type
 
@@ -289,7 +289,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/service/(uuid)/trigger/(trigger_uuid)/call/`
+`POST /api/app/v1/service/(uuid)/trigger/(trigger_uuid)/call/`
 
 ### Path Parameters
 

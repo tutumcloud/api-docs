@@ -10,17 +10,17 @@
     "label": "Digital Ocean",
     "name": "digitalocean",
     "regions": [
-        "/api/v1/region/digitalocean/ams1/",
-        "/api/v1/region/digitalocean/ams2/",
-        "/api/v1/region/digitalocean/ams3/",
-        "/api/v1/region/digitalocean/lon1/",
-        "/api/v1/region/digitalocean/nyc1/",
-        "/api/v1/region/digitalocean/nyc2/",
-        "/api/v1/region/digitalocean/nyc3/",
-        "/api/v1/region/digitalocean/sfo1/",
-        "/api/v1/region/digitalocean/sgp1/"
+        "/api/infra/v1/region/digitalocean/ams1/",
+        "/api/infra/v1/region/digitalocean/ams2/",
+        "/api/infra/v1/region/digitalocean/ams3/",
+        "/api/infra/v1/region/digitalocean/lon1/",
+        "/api/infra/v1/region/digitalocean/nyc1/",
+        "/api/infra/v1/region/digitalocean/nyc2/",
+        "/api/infra/v1/region/digitalocean/nyc3/",
+        "/api/infra/v1/region/digitalocean/sfo1/",
+        "/api/infra/v1/region/digitalocean/sgp1/"
     ],
-    "resource_uri": "/api/v1/provider/digitalocean/"
+    "resource_uri": "/api/infra/v1/provider/digitalocean/"
 }
 ```
 
@@ -47,7 +47,7 @@ providers = tutum.Provider.list()
 ```
 
 ```http
-GET /api/v1/provider/ HTTP/1.1
+GET /api/infra/v1/provider/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -77,7 +77,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/provider/`
+`GET /api/infra/v1/provider/`
 
 ### Query Parameters
 
@@ -108,7 +108,7 @@ log.Println(provider)
 ```
 
 ```http
-GET /api/v1/provider/digitalocean/ HTTP/1.1
+GET /api/infra/v1/provider/digitalocean/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -123,7 +123,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/provider/(name)/`
+`GET /api/infra/v1/provider/(name)/`
 
 ### Path Parameters
 

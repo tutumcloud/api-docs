@@ -26,7 +26,7 @@
         "host_path": null,
         "container_path": null,
         "rewritable": true,
-        "volumes_from": "/api/v1/service/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a179/"
+        "volumes_from": "/api/app/v1/service/2f4f54e5-9d3b-4ac1-85ad-a2d4ff25a179/"
     }
   ],
   "cap_add": [
@@ -53,8 +53,8 @@
     }
   ],
   "containers": [
-    "/api/v1/container/6f8ee454-9dc3-4387-80c3-57aac1be3cc6/",
-    "/api/v1/container/fdf9c116-7c08-4a60-b0ce-c54ca72c2f25/"
+    "/api/app/v1/container/6f8ee454-9dc3-4387-80c3-57aac1be3cc6/",
+    "/api/app/v1/container/fdf9c116-7c08-4a60-b0ce-c54ca72c2f25/"
   ],
   "cpu_shares": 100,
   "cpuset": "0,1",
@@ -126,14 +126,14 @@
     "WORDPRESS_STACKABLE_PORT_80_TCP_ADDR": "wordpress-stackable-1.admin.cont.tutum.io",
     "WORDPRESS_STACKABLE_PORT_80_TCP_PORT": "49153",
     "WORDPRESS_STACKABLE_PORT_80_TCP_PROTO": "tcp",
-    "WORDPRESS_STACKABLE_TUTUM_API_URL": "https://app-test.tutum.co/api/v1/service/adeebc1b-1b81-4af0-b8f2-cefffc69d7fb/"
+    "WORDPRESS_STACKABLE_TUTUM_API_URL": "https://app-test.tutum.co/api/app/v1/service/adeebc1b-1b81-4af0-b8f2-cefffc69d7fb/"
   },
   "linked_from_service": [],
   "linked_to_service": [
     {
-      "from_service": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
+      "from_service": "/api/app/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
       "name": "DB",
-      "to_service": "/api/v1/service/72f175bd-390b-46e3-9463-830aca32ce3e/"
+      "to_service": "/api/app/v1/service/72f175bd-390b-46e3-9463-830aca32ce3e/"
     }
   ],
   "mac_address": "02:42:ac:11:65:43",
@@ -144,7 +144,7 @@
   "privileged": false,
   "public_dns": "wordpress-stackable.admin.svc.tutum.io",
   "read_only": true,
-  "resource_uri": "/api/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
+  "resource_uri": "/api/app/v1/service/09cbcf8d-a727-40d9-b420-c8e18b7fa55b/",
   "roles": ["global"],
   "run_command": "/run-wordpress.sh",
   "running_num_containers": 1,
@@ -153,7 +153,7 @@
   "sequential_deployment": false,
   "started_datetime": "Mon, 13 Oct 2014 11:01:43 +0000",
   "state": "Partly running",
-  "stack": "/api/v1/stack/46aca402-2109-4a70-a378-760cfed43816/",
+  "stack": "/api/app/v1/stack/46aca402-2109-4a70-a378-760cfed43816/",
   "stdin_open": false,
   "stopped_datetime": null,
   "stopped_num_containers": 0,
@@ -330,7 +330,7 @@ log.Println(serviceList)
 ```
 
 ```http
-GET /api/v1/service/ HTTP/1.1
+GET /api/app/v1/service/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -348,7 +348,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/service/`
+`GET /api/app/v1/service/`
 
 ### Query Parameters
 
@@ -381,7 +381,7 @@ log.Println(service)
 ```
 
 ```http
-POST /api/v1/service/ HTTP/1.1
+POST /api/app/v1/service/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -402,7 +402,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/service/`
+`POST /api/app/v1/service/`
 
 ### JSON Parameters
 
@@ -415,8 +415,8 @@ run_command | (optional) The command used to start the containers of this servic
 entrypoint | (optional) The command prefix used to start the containers of this service, overriding the value specified in the image, i.e. `/usr/sbin/sshd` (default: `null`)
 container_ports | (optional) An array of objects with port information to be published in the containers for this service, which will be added to the image port information, i.e. `[{"protocol": "tcp", "inner_port": 80, "outer_port": 80}]` (default: `[]`) (See table `Service Port attributes` below)
 container_envvars | (optional) An array of objects with environment variables to be added in the service containers on launch (overriding any image-defined environment variables), i.e. `[{"key": "DB_PASSWORD", "value": "mypass"}]` (default: `[]`) (See table `Service Environment Variable attributes` below)
-linked_to_service | (optional) An array of service resource URIs to link this service to, including the link name, i.e. `[{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]` (default: `[]`) (See table `Related services attributes` below)
-bindings | (optional) An array of bindings this service has to mount, i.e. `[{"volumes_from": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "rewritable": true}]` (default: `[]`) (See table `Related bindings attributes` below)
+linked_to_service | (optional) An array of service resource URIs to link this service to, including the link name, i.e. `[{"to_service": "/api/app/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]` (default: `[]`) (See table `Related services attributes` below)
+bindings | (optional) An array of bindings this service has to mount, i.e. `[{"volumes_from": "/api/app/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "rewritable": true}]` (default: `[]`) (See table `Related bindings attributes` below)
 autorestart | (optional) Whether the containers for this service should be restarted if they stop, i.e. `ALWAYS` (default: `OFF`, possible values: `OFF`, `ON_FAILURE`, `ALWAYS`) (see [Crash recovery](https://support.tutum.co/support/solutions/articles/5000012174-crash) for more information)
 autodestroy | (optional) Whether the containers should be terminated if they stop, i.e. `OFF` (default: `OFF`, possible values: `OFF`, `ON_SUCCESS`, `ALWAYS`) (see [Autodestroy](https://support.tutum.co/support/solutions/articles/5000012175-) for more information)
 sequential_deployment | (optional) Whether the containers should be launched and scaled in sequence, i.e. `true` (default: `false`) (see [Service scaling](https://support.tutum.co/support/solutions/articles/5000012179-service) for more information)
@@ -488,7 +488,7 @@ log.Println(service)
 ```
 
 ```http
-GET /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+GET /api/app/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -506,7 +506,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`GET /api/v1/service/(uuid)/`
+`GET /api/app/v1/service/(uuid)/`
 
 ### Path Parameters
 
@@ -558,7 +558,7 @@ go service.Logs(c)
 ```
 
 ```http
-GET /v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
+GET /v1/app/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/logs/ HTTP/1.1
 Host: stream.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Connection: Upgrade
@@ -619,7 +619,7 @@ if err = service.Update(tutum.ServiceCreateRequest{Target_num_containers: 3}); e
 ```
 
 ```http
-PATCH /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+PATCH /api/app/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -628,7 +628,7 @@ Content-Type: application/json
 {"autorestart": "ON_FAILURE", "autodestroy": "OFF", "container_envvars": [{"key": "DB_PASSWORD", "value": "mypass"}],
 "container_ports": [{"protocol": "tcp", "inner_port": 80, "outer_port": 80}], "cpu_shares": 512,
 "entrypoint": "/usr/sbin/sshd", "image": "tutum/hello-world",
-"linked_to_service": [{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}],
+"linked_to_service": [{"to_service": "/api/app/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}],
 "memory": 2048, "privileged": True, "roles": ["global"], "run_command": "/run.sh", "sequential_deployment": False,
 "tags": [{"name": "tag-1"}], "target_num_containers": 3, "autoredeploy": False}
 
@@ -648,7 +648,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`PATCH /api/v1/service/(uuid)/`
+`PATCH /api/app/v1/service/(uuid)/`
 
 ### Path Parameters
 
@@ -668,7 +668,7 @@ container_ports | (optional) An array of objects with port information to be pub
 cpu_shares | (optional) The relative CPU priority of the containers the service describes (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 entrypoint | (optional) The command prefix used to start the containers of this service, overriding the value specified in the image, i.e. `/usr/sbin/sshd`
 image | (optional) The image used to deploy this service in docker format, i.e. `tutum/hello-world`, `tutum/ubuntu:5.6`. If no tag is indicated, it will be set to `latest` by default
-linked_to_service | (optional) An array of service resource URIs to link this service to, including the link name, i.e. `[{"to_service": "/api/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]` (See table `Related services attributes` below)
+linked_to_service | (optional) An array of service resource URIs to link this service to, including the link name, i.e. `[{"to_service": "/api/app/v1/service/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]` (See table `Related services attributes` below)
 memory | (optional) The memory limit of the containers of the service in MB (see [Runtime Constraints on CPU and Memory](https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory) for more information)
 privileged | (optional) Whether to start the containers with Docker's `privileged` flag set or not, i.e. `false` (see [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration) for more information)
 roles | (optional) A list of Tutum API roles to grant the service, i.e. `["global"]` (possible values: `global`) (see [Service links](https://support.tutum.co/support/solutions/articles/5000012181-service) for more information)
@@ -708,7 +708,7 @@ if err = service.Start(); err != nil {
 ```
 
 ```http
-POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
+POST /api/app/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -726,7 +726,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/service/(uuid)/start/`
+`POST /api/app/v1/service/(uuid)/start/`
 
 ### Path Parameters
 
@@ -759,7 +759,7 @@ if err = service.Stop(); err != nil {
 ```
 
 ```http
-POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
+POST /api/app/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -777,7 +777,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/service/(uuid)/stop/`
+`POST /api/app/v1/service/(uuid)/stop/`
 
 ### Path Parameters
 
@@ -798,7 +798,7 @@ service.scale()
 ```
 
 ```http
-POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/scale/ HTTP/1.1
+POST /api/app/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/scale/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -816,7 +816,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/service/(uuid)/scale/`
+`POST /api/app/v1/service/(uuid)/scale/`
 
 ### Path Parameters
 
@@ -851,7 +851,7 @@ if err = service.Redeploy(tutum.ReuseVolumesOption{Reuse: false}); err != nil {
 ```
 
 ```http
-POST /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/redeploy/ HTTP/1.1
+POST /api/app/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/redeploy/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -869,7 +869,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`POST /api/v1/service/(uuid)/redeploy/`
+`POST /api/app/v1/service/(uuid)/redeploy/`
 
 ### Path Parameters
 
@@ -908,7 +908,7 @@ if err = service.Terminate(); err != nil {
 ```
 
 ```http
-DELETE /api/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
+DELETE /api/app/v1/service/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
 Host: dashboard.tutum.co
 Authorization: Basic dXNlcm5hbWU6YXBpa2V5
 Accept: application/json
@@ -926,7 +926,7 @@ Available in Tutum's **REST API**
 
 ### HTTP Request
 
-`DELETE /api/v1/service/(uuid)/`
+`DELETE /api/app/v1/service/(uuid)/`
 
 ### Path Parameters
 
