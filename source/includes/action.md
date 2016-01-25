@@ -253,6 +253,13 @@ follow | Whether to stream logs or close the connection immediately (default: tr
 
 ## Cancel an action
 
+```python
+import tutum
+
+action = tutum.Action.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+action.cancel()
+```
+
 ```http
 POST /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/cancel/ HTTP/1.1
 Host: dashboard.tutum.co
@@ -278,6 +285,10 @@ if err != nil {
 log.Println(action)
 ```
 
+```shell
+tutum action cancel 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
+```
+
 Cancels an action in Pending or In progress state.
 
 ### Endpoint Type
@@ -296,6 +307,13 @@ uuid | The UUID of the action to cancel
 
 
 ## Retry an action
+
+```python
+import tutum
+
+action = tutum.Action.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
+action.retry()
+```
 
 ```http
 POST /api/v1/action/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/retry/ HTTP/1.1
@@ -320,6 +338,10 @@ if err != nil {
 }
 
 log.Println(action)
+```
+
+```shell
+tutum action retry 7eaf7fff-882c-4f3d-9a8f-a22317ac00ce
 ```
 
 Retries an action in Success, Failed or Canceled state.
