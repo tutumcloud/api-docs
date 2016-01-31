@@ -6,26 +6,6 @@
 
 ```json
 {
-  "build_source": {
-    "autotests": "OFF",
-    "build_settings": [
-      "/api/v1/image/registry.local/user1/image1/buildsetting/latest/",
-      "/api/v1/image/registry.local/user1/image1/buildsetting/staging/"
-    ],
-    "owner": "tutumcloud",
-    "repository": "test-private-repo",
-    "type": "GITHUB",
-    "envvars": [
-        {
-            "key": "test_envvar",
-            "value": "test_value"
-        },
-        {
-            "key": "test_envvar2",
-            "value": "test_value"
-        }
-    ]
-  },
   "categories": [
     {
       "name": "test"
@@ -69,7 +49,6 @@ is_private_image | Whether this image is hosted in a private registry or not
 public_url | URL of the detailed information page in the public docker index
 registry | Resource URI of the registry where this image is hosted
 last_build_data | Date of the last successfully build on any of the image tags
-build_source | The build source for this image (see table `Image Build Source attributes` below)
 tags | List of resource URIs of the tags associated with this docker image
 
 
@@ -88,27 +67,6 @@ Failed | There is at least an image tag whose last build failed.
 Attribute | Description
 --------- | -----------
 name | Name of the category
-
-
-### Image Build Source attributes
-
-Attribute | Description
---------- | -----------
-type | Type of the build source
-repository | The repository where images are built from
-owner | The owner of the repository
-autotests | Whether to execute tests for new commits or external pull requests (see table `Image Build Source Autotests values` below)
-build_settings | List of resource URIs of the build settings associated with this docker image
-envvars | List of user-defined environment variables to be used for Docker repository builds and tests
-
-
-### Image Build Source Autotests values
-
-Value | Description
------ | -----------
-OFF | Ignore tests for repository commits or external pull requests.
-SOURCE_ONLY | Execute tests for commits in this source repository.
-SOURCE_AND_FORKS | Execute tests for commits in this repository and for external pull requests.
 
 
 ## List all images
@@ -187,19 +145,6 @@ Content-Type: application/json
 import "github.com/tutumcloud/go-tutum/tutum"
 
 image, err := tutum.CreateImage(tutum.ImageCreateRequest{
-	BuildSource: tutum.BuildSource{
-		Build_Settings: []tutum.BuildSettings{{
-			Branch:     "master",
-			Dockerfile: "/",
-			Tag:        "latest",
-		},{
-            Branch:     "staging",
-            Dockerfile: "/",
-            Tag:        "staging"
-        }},
-		Owner:      "user1",
-		Repository: "repository1",
-	},
 	Name:        "registry.local/user1/image1",
 	Description: "Image1",
 })
@@ -233,29 +178,6 @@ name | Name of the image with docker format, i.e. 'ubuntu' or 'tutum/hello-world
 username | (optional) Username to authenticate with the private registry (not needed for Tutum private registry)
 password | (optional) Password to authenticate with the private registry (not needed for Tutum private registry)
 description | (optional) Description of the image
-build_source | The build source for this image (see table `Related Build Source attributes` below)
-
-
-### Related Build Source attributes
-
-Attribute | Description
---------- | -----------
-type | (optional) Type of the build source (currently only `GITHUB` is supported)
-repository | The repository where images are built from
-owner | (optional) The owner of the repository (default: the owner of the linked Github account)
-autotests | (optional) Whether to execute tests for new commits (default: `OFF`)
-build_settings | List of associations between image tags and repository branches to do builds (see table `Related Build Setting attributes` below)
-envvars | (optional) List of user-defined environment variables to be used for Docker repository builds and tests
-
-
-### Related Build Setting attributes
-
-Attribute | Description
---------- | -----------
-tag | The name of the tag to be built
-branch | The Github repository branch where the image is build from
-dockerfile | The path of the Dockerfile file in the branch
-autobuild | (optional) Whether to build the image tag on new commits on this branch (default: `false`)
 
 
 ## Get an existing image
@@ -354,7 +276,6 @@ Parameter | Description
 username | (optional) Username to authenticate with the private registry (not needed for Tutum private registry)
 password | (optional) Password to authenticate with the private registry (not needed for Tutum private registry)
 description | Description of the image
-build_source | The build source for this image (see table `Image Build Source attributes`)
 
 
 ## Delete an image
